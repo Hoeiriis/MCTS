@@ -16,8 +16,8 @@ class MCTS:
         self._engine = engine
 
         self.tree_policy = tree_policy(self._expand, self._best_child)
-        self.default_policy = default_policy(self._engine.get_valid_child_states)
-        self.backpropagation = backpropagation(self._engine.evaluate_terminal_state)
+        self.default_policy = default_policy(self._engine.get_valid_child_states, self._engine.evaluate_terminal_state)
+        self.backpropagation = backpropagation
         self.nodes_explored = 0
         self.search_tree_root = None
 
@@ -28,18 +28,15 @@ class MCTS:
 
         start_state = self._engine.start_state()
         self.search_tree_root = self._new_node([], start_state)
-        best_child = None
 
-        while self.search_tree_root.unvisited_child_states:
+        while self._engine.get_valid_child_states(self.search_tree_root.state):
             best_child = self._search(50)
             self.search_tree_root = best_child
 
             if self.two_player:
                 self._change_player()
-
-        print(0)
                 
-        return best_child, self._engine.evaluate_terminal_state(best_child)
+        return self.search_tree_root, self._engine.evaluate_terminal_state(self.search_tree_root)
 
     def _search(self, n_simulations):
 
