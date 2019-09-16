@@ -1,6 +1,6 @@
-from .MCTS.MCTS import MCTS
-
+from .MCTS import MCTS
+from .MCTS.tree_policies import *
 
 if __name__ == "__main__":
 
-    print("wow")
+    UTC = MCTS(tree_policy=uct)

@@ -29,7 +29,7 @@ class MCTS:
         start_state = self._engine.start_state()
         self.search_tree_root = self._new_node([], start_state)
 
-        while self._engine.get_valid_child_states(self.search_tree_root.state):
+        while self._engine.get_valid_child_states(self.search_tree_root.state).size != 0:
             best_child = self._search(50)
             self.search_tree_root = best_child
 
