@@ -1,9 +1,9 @@
-from MCTS_Prototyping.MCTS import MCTS
-from MCTS_Prototyping.MCTS.tree_policies import *
-from MCTS_Prototyping.MCTS.best_child import *
-from MCTS_Prototyping.MCTS.default_policies import *
-from MCTS_Prototyping.MCTS.backpropagation import *
-from MCTS_Prototyping.Environments.tictactoe import Board
+from MCTS import MCTS
+from MCTS.tree_policies import *
+from MCTS.best_child import *
+from MCTS.default_policies import *
+from MCTS.backpropagation import *
+from Environments.tictactoe import Board
 
 if __name__ == "__main__":
 
