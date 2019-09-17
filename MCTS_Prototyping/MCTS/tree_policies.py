@@ -1,4 +1,5 @@
-def uct(expand, best_child):
+
+def UCT_tree_policy(expand, best_child):
     def _uct(node):
 
         expanded_node = expand(node)

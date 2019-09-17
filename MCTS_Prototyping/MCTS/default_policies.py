@@ -1,8 +1,9 @@
 import numpy as np
 
-def default_policy_factory(get_valid_child_states, evaluate_terminal_state):
 
-    def default_policy(state):
+def random(get_valid_child_states, evaluate_terminal_state):
+
+    def _random(state):
         valid_states=get_valid_child_states(state)
         
         while valid_states.size!=0:
@@ -12,4 +13,4 @@ def default_policy_factory(get_valid_child_states, evaluate_terminal_state):
 
         return evaluate_terminal_state(state)
 
-    return default_policy
+    return _random
