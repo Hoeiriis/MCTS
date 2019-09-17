@@ -65,7 +65,7 @@ class MCTS:
         # terminal state
         return self.search_tree_root, self._environment.evaluate_terminal_state(self.search_tree_root.state)
 
-    def run(self):
+    def run(self, n_searches=100):
         # Initialize the environment and the search tree
         start_state = self._environment.start_state()
         self.search_tree_root = self._new_node(None, start_state)
@@ -74,7 +74,7 @@ class MCTS:
         # not have any valid child states
         while self._environment.get_valid_child_states(self.search_tree_root.state).size != 0:
             # Explore the search_tree and choose the best child
-            best_child = self._search(100)
+            best_child = self._search(n_searches)
 
             # the best child is set as the new root of the search tree: eg. we make an actual "move" in the environment
             self.search_tree_root = best_child
@@ -92,7 +92,7 @@ class MCTS:
         # loops over the search procedure n times
         for i in range(0, n_searches):
             # First the tree policy runs and find an unexpanded node to expand
-            node_to_simulate = self.tree_policy(self.search_tree_root)
+            node_to_simulate = self.tree_policy(self.search_tree_root, self.current_player)
             # The default policy is then run on the expanded node
             simulation_results = self.default_policy(node_to_simulate.state)
 
@@ -119,7 +119,7 @@ class MCTS:
         i = np.random.choice(len(node.unvisited_child_states))
         child_state = node.unvisited_child_states[i]
         # remove the child state from unvisited child states
-        node.valid_child_states = node.unvisited_child_states[1:]
+        node.unvisited_child_states = np.delete(node.unvisited_child_states, i, axis=0)
         self.nodes_explored += 1
 
         return self._new_node(node, child_state)
