@@ -11,7 +11,7 @@ if __name__ == "__main__":
     UCT = MCTS(environment,
                tree_policy=UCT_tree_policy,
                best_child=UCT_best_child,
-               default_policy=random,
+               default_policy=tictactoe_1,
                backpropagation=backup_negamax,
                two_players=True)
 

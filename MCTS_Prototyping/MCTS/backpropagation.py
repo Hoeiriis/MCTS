@@ -14,8 +14,12 @@ def backup_negamax(node, default_policy_score, current_player):
         node.visits += 1
         node.score[current_player] += default_policy_score
 
-        default_policy_score = -1*default_policy_score
-        current_player = 0 if current_player == 1 else 1
+        other_player_score = -1*default_policy_score
+        other_player = 0 if current_player == 1 else 1
+        node.score[other_player] += other_player_score
+
+        current_player = other_player
+        default_policy_score = other_player_score
 
 
 def get_ancestors(node):

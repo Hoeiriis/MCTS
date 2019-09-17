@@ -27,27 +27,80 @@ class MCTS:
         self.two_player = two_players
         self.current_player = 0
 
-    def run(self):
+    def run_tictactoe_maybe(self):
 
+        # Initialize the environment and the search tree
         start_state = self._environment.start_state()
         self.search_tree_root = self._new_node(None, start_state)
 
+        # Continually run until the environment terminates. The environment terminates when the search_tree_root does
+        # not have any valid child states
         while self._environment.get_valid_child_states(self.search_tree_root.state).size != 0:
-            best_child = self._search(50)
+
+            best_child = None
+            # If there currently is a winning move, choose that
+            for node in self.search_tree_root.children:
+                valid_child_child_states = self._environment.get_valid_child_states(node.state)
+                if valid_child_child_states.size == 0:
+                    winner = self._environment.evaluate_terminal_state(node.state)
+
+                    if self.current_player == 1:
+                        winner = -1 * winner
+                    if winner == 1:
+                        best_child = node
+                        break
+
+            # else explore the search_tree and choose the best child
+            if best_child is None:
+                best_child = self._search(500)
+
+            # the best child is set as the new root of the search tree: eg. we make an actual "move" in the environment
             self.search_tree_root = best_child
 
+            # if the environment has two players, the player is changed
             if self.two_player:
                 self._change_player()
-                
+
+        # When the environment terminates, the current tree node is returned along with the evaluation of the
+        # terminal state
         return self.search_tree_root, self._environment.evaluate_terminal_state(self.search_tree_root.state)
 
-    def _search(self, n_simulations):
+    def run(self):
+        # Initialize the environment and the search tree
+        start_state = self._environment.start_state()
+        self.search_tree_root = self._new_node(None, start_state)
 
-        for i in range(0, n_simulations):
+        # Continually run until the environment terminates. The environment terminates when the search_tree_root does
+        # not have any valid child states
+        while self._environment.get_valid_child_states(self.search_tree_root.state).size != 0:
+            # Explore the search_tree and choose the best child
+            best_child = self._search(100)
+
+            # the best child is set as the new root of the search tree: eg. we make an actual "move" in the environment
+            self.search_tree_root = best_child
+
+            # if the environment has two players, the player is changed
+            if self.two_player:
+                self._change_player()
+
+        # When the environment terminates, the current tree node is returned along with the evaluation of the
+        # terminal state
+        return self.search_tree_root, self._environment.evaluate_terminal_state(self.search_tree_root.state)
+
+    def _search(self, n_searches):
+
+        # loops over the search procedure n times
+        for i in range(0, n_searches):
+            # First the tree policy runs and find an unexpanded node to expand
             node_to_simulate = self.tree_policy(self.search_tree_root)
+            # The default policy is then run on the expanded node
             simulation_results = self.default_policy(node_to_simulate.state)
 
+            # The simulation results are backpropagated up through the ancestors of the expanded node
+            # If it's a two player environment, the backpropagation algorithm needs to know the current_player
             if self.two_player:
+                # Since the simulation results only returns results with repect to player 0 (eg. player 1), the results
+                # are inverted if the current player is player 1 (player 2)
                 if self.current_player == 1:
                     simulation_results = -1*simulation_results
 
@@ -55,14 +108,16 @@ class MCTS:
             else:
                 self.backpropagation(node_to_simulate, simulation_results)
 
-        return self.best_child(self.search_tree_root, current_player=self.current_player, c=1)
+        # When the search has finished, the algorithm chooses the best child based on current knowledge
+        return self.best_child(self.search_tree_root, current_player=self.current_player, c=0)
 
     def _expand(self, node):
         if node.unvisited_child_states.size == 0:
             return None
 
-        # Get a child state
-        child_state = node.unvisited_child_states[0]
+        # Get a random child state
+        i = np.random.choice(len(node.unvisited_child_states))
+        child_state = node.unvisited_child_states[i]
         # remove the child state from unvisited child states
         node.valid_child_states = node.unvisited_child_states[1:]
         self.nodes_explored += 1
@@ -71,7 +126,7 @@ class MCTS:
 
     def _new_node(self, parent_node, state):
         score = [0, 0]
-
+        # Create new node, also compute valid child states
         new_node = Node("Node{}".format(self.nodes_explored),
                         parent=parent_node,
                         state=state,
@@ -82,7 +137,4 @@ class MCTS:
         return new_node
 
     def _change_player(self):
-        if self.current_player == 0:
-            self.current_player = 1
-        else:
-            self.current_player = 0
+        self.current_player = 1 if self.current_player == 0 else 0
