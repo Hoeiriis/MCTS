@@ -3,4 +3,4 @@ project(MCTS_Library)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(MCTS_Library main.cpp)
+add_executable(MCTS_Library src/main.cpp)
