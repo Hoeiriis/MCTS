@@ -1,2 +1,3 @@
-# MCTS_Prototyping
-Prototypiing of implementations for Monte Carlo Tree Search
+# MCTS
+Python prototype of Monte Carlo Tree Search implementations
+C++ implementation of Monte Carlo Tree Search
