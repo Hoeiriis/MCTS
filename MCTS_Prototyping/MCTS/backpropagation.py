@@ -2,17 +2,17 @@
 
 def basic_backup(node, default_policy_score):
     ancestors = get_ancestors(node)
-    for node in ancestors:
-        node.visits += 1
-        node.score[0] += default_policy_score
+    for a_node in ancestors:
+        a_node.visits += 1
+        a_node.score[0] += default_policy_score
 
 
 def backup_negamax(node, default_policy_score, current_player):
     ancestors = get_ancestors(node)
 
-    for node in ancestors:
-        node.visits += 1
-        node.score[current_player] += default_policy_score
+    for a_node in ancestors:
+        a_node.visits += 1
+        a_node.score[current_player] += default_policy_score
 
         default_policy_score = -1*default_policy_score
         current_player = 0 if current_player == 1 else 1

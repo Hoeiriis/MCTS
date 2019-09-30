@@ -120,6 +120,7 @@ class MCTS:
         child_state = node.unvisited_child_states[i]
         # remove the child state from unvisited child states
         node.unvisited_child_states = np.delete(node.unvisited_child_states, i, axis=0)
+
         self.nodes_explored += 1
 
         return self._new_node(node, child_state)

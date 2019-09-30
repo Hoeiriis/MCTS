@@ -11,8 +11,6 @@ class Runner:
 
     def _run_one_game(self, simulations):
 
-        if self.games_ran % 25 == 0:
-            print("Running game {} out of 1000".format(self.games_ran))
 
         end_node, result = self.algo.run(simulations)
 
@@ -28,6 +26,8 @@ class Runner:
     def run(self, n_games=1000, simulations=100):
 
         for game in range(0, n_games):
+            print("Running game {} out of {}".format(self.games_ran, n_games), end="\r")
+
             self._run_one_game(simulations)
 
         print("out of {} games:".format(n_games))
