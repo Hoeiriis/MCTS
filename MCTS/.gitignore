@@ -58,3 +58,7 @@
 *.iws
 # CMake
 cmake-build-*/
+CMakeFiles/
+
+## emacs
+.dir-locals.el
