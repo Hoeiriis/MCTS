@@ -5,12 +5,14 @@
 #ifndef MCTS_LIBRARY_MCTSBASE_H
 #define MCTS_LIBRARY_MCTSBASE_H
 
-#include "../Environments/EnvironmentBase.h"
+#include <EnvironmentBase.h>
+#include <boost/function.hpp>
+#include <State.h>
 
-class MCTSBase {
-
+class MCTSBase
+{    
     public:
-        MCTSBase(EnvironmentBase& environment);
+        MCTSBase(EnvironmentBase& environment, boost::function<int(State)> default_policy);
         ~MCTSBase();
 
         virtual void run()=0;
