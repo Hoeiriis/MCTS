@@ -2,7 +2,7 @@ add_library(Environment EnvironmentBase.cpp)
 
 target_include_directories(Environment
   PUBLIC
-  $<INSTALL_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
@@ -10,10 +10,10 @@ target_include_directories(Environment
 
 add_library(TicTacToe TicTacToeEnvironment.cpp)
 target_link_libraries(TicTacToe Environment)
-# target_include_directories(TicTacToe
-#   PUBLIC
-#   $<INSTALL_INTERFACE:include>
-#   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-#   PRIVATE
-#   ${CMAKE_CURRENT_SOURCE_DIR}
-#   )
+target_include_directories(TicTacToe
+  PUBLIC
+  $<INSTALL_INTERFACE:include>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  )

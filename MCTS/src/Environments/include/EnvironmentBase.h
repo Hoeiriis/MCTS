@@ -2,13 +2,15 @@
 #define MCTS_LIBRARY_ENVIRONMENTBASE_H
 #include <vector>
 
+typedef double Reward;
 typedef std::vector<double> State;
 
 class EnvironmentBase {
 public:
-  virtual State GetStartState();
-  virtual std::vector<State> GetValidChildStates(State);
-  virtual State EvaluateTerminalState();
+  EnvironmentBase() {}
+  State GetStartState();
+  std::vector<State> GetValidChildStates(State);
+  Reward EvaluateTerminalState();
 };
 
 #endif // MCTS_LIBRARY_ENVIRONMENTBASE_H
