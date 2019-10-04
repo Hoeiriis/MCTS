@@ -137,3 +137,10 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 build/
+
+## emacs
+.dir-locals.el
+compile_commands.json
+*\~
+*#
+.projectile

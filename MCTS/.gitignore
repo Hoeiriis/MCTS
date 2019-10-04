@@ -59,8 +59,3 @@
 # CMake
 cmake-build-*/
 CMakeFiles/
-
-## emacs
-.dir-locals.el
-compile_commands.json
-*\~
