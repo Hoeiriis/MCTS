@@ -3,8 +3,6 @@ project(MCTS_Library)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
-set(CMAKE_CXX_STANDARD 14)
-
 IF($ENV{BOOST_ROOT})
   set(BOOST_ROOT $ENV{BOOST_ROOT})
 ENDIF()
@@ -17,4 +15,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
 
-add_executable(MCTS_Library src/main.cpp src/Core/MCTSBase.cpp src/Core/MCTSBase.h)
+add_executable(main src/main.cpp)
+add_library(MCTS_Library src/Core/MCTSBase.cpp)
+
+target_link_libraries(main MCTS_Library)
+
+target_compile_options(main PUBLIC -Wall -Wpedantic -O2)
+target_compile_features(main PUBLIC cxx_std_14)
