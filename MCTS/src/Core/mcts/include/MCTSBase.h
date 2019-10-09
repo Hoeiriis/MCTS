@@ -5,9 +5,9 @@
 #ifndef MCTS_LIBRARY_MCTSBASE_H
 #define MCTS_LIBRARY_MCTSBASE_H
 
-#include <EnvironmentBase.h>
 #include <boost/function.hpp>
-#include <State.h>
+#include "../../include/State.h"
+#include <EnvironmentBase.h>
 
 class MCTSBase
 {    
