@@ -141,6 +141,7 @@ build/
 
 ## emacs
 .dir-locals.el
+.history
 compile_commands.json
 *\~
 *#
