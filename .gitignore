@@ -137,6 +137,7 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 build/
+.ccls-cache/
 
 ## emacs
 .dir-locals.el
