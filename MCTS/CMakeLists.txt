@@ -19,15 +19,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
 
 add_subdirectory(src/Environments)
-
-add_library(MCTS_Library src/Core/MCTSBase.cpp)
-target_link_libraries(MCTS_Library Environment)
+add_subdirectory(src/Core)
 
 add_executable(main src/main.cpp)
-target_link_libraries(main
-                      MCTS_Library
-                      Environment
-                      TicTacToe)
+target_link_libraries(main Core)
 
 # compile_commands.json needs to be in the project root for my auto-completion
 # to work properly #
