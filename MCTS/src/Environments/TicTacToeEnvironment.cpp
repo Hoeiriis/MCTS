@@ -38,12 +38,6 @@ std::vector<BoardState> TicTacToeEnv::GetValidChildStates(BoardState &state) {
 }
 
 Reward TicTacToeEnv::EvaluateTerminalState(BoardState &state) {
-  /*
-    Return 1 if player one has won;
-    Return -1 if player two has won;
-    Return 0 otherwise
-  */
-
   Reward reward = 0;
 
   for (auto &condition : WinConditions) {
