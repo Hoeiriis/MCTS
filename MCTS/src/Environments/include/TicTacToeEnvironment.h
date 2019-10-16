@@ -5,12 +5,6 @@
 enum BoardPiece { None = 0, Cross = 1, Circle = 2 };
 typedef std::vector<BoardPiece> BoardState;
 
-class TicTacToeState : public State {
-public:
-  TicTacToeState(BoardState state) : data(state){};
-  BoardState data;
-};
-
 /**
  * @brief      Environment implementing the game tictactoe
  *

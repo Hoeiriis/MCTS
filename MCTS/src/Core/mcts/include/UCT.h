@@ -12,7 +12,7 @@ class UCT:MCTSBase
         UCT(EnvironmentBase<boost::any>& environement, boost::function<int(State<boost::any>)> default_policy);
         ~UCT();
 
-        void run() override;
+        void run(int n_searches);
 
 };
 
