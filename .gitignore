@@ -139,6 +139,13 @@ Makefile
 build/
 .ccls-cache/
 
+# doxygen generated files
+CMakeDoxyfile.in
+Doxyfile
+html/
+latex/
+CMakeDoxygenDefaults.cmake
+
 ## emacs
 .dir-locals.el
 .history
