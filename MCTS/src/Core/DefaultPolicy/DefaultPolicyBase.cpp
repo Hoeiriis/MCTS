@@ -1,8 +1,6 @@
 #include <DefaultPolicyBase.h>
 
-using namespace boost;
-
-DefaultPolicyBase::DefaultPolicyBase(function<States(State&)>& getValidChildStates,
-                                     function<Reward(State&)>& evaluateTerminalState):
+DefaultPolicyBase::DefaultPolicyBase(boost::function<States(State<boost::any>&)>& getValidChildStates,
+                                     boost::function<Reward(State<boost::any>&)>& evaluateTerminalState):
                                      getValidChildStates(getValidChildStates),
-                                     evaluateTerminalState(evaluateTerminalState){}
+                                     evaluateTerminalState(evaluateTerminalState){};

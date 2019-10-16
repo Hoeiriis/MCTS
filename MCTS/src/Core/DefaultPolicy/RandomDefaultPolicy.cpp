@@ -1,23 +1,20 @@
-#include <RandomDefaultPolicy.h>
 #include <vector>
-#include <time>
+#include <RandomDefaultPolicy.h>
 
+RandomDefaultPolicy::RandomDefaultPolicy(boost::function<States(State<boost::any>&)>& getValidChildStates, 
+                                         boost::function<Reward(State<boost::any>&)>& evaluateTerminalState):
+                                         DefaultPolicyBase(getValidChildStates,evaluateTerminalState){};
 
-RandomDefaultPolicy::RandomDefaultPolicy(function<States(State&)>& getValidChildStates,
-                                         function<Reward(State&)>& evaluateTerminalState):
-                                         DefaultPolicy(getValidChildStates),
-                                         DefaultPolicy(evaluateTerminalState){}
-
-double RandomDefaultPolicy::defaultPolicy(State::State state){
-    States validStates = this.getValidChildStates(state)
+double RandomDefaultPolicy::defaultPolicy(State<boost::any> state){
+    States validStates = this->getValidChildStates(state);
     int i;
-    std::srand((int)time(0);
+    std::srand((int)time(0));
 
     while (validStates.size() != 0){
-        i=rand()%validStates.size();
+        i=std::rand()%validStates.size();
         state = validStates[i];
-        validStates = this.getValidChildStates(state);
+        validStates = this->getValidChildStates(state);
     }
 
-    return (this.evaluateTerminalState(state));
-}
+    return (this->evaluateTerminalState(state));
+};
