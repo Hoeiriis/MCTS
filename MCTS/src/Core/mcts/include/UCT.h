@@ -2,16 +2,17 @@
 #define MCTS_LIBRARY_UCT_H
 
 #include "MCTSBase.h"
+#include <boost/any.hpp>
 
 class UCT:MCTSBase
 {
     private:
         /* data */
     public:
-        UCT(EnvironmentBase& environement);
+        UCT(EnvironmentBase<boost::any>& environement, boost::function<int(State<boost::any>)> default_policy);
         ~UCT();
 
-        void run() override;
+        void run(int n_searches);
         
 };
 
