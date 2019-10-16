@@ -1,17 +1,11 @@
+#ifndef TICTACENVIRONMENT_H
+#define TICTACENVIRONMENT_H
 #include <EnvironmentBase.h>
-#include <iostream>
-#include <ostream>
 
 enum BoardPiece { None = 0, Cross = 1, Circle = 2 };
 typedef std::vector<BoardPiece> BoardState;
 
-class TicTacToeState: public State{
-  public:
-    TicTacToeState(BoardState state):data(state){};
-    BoardState data;
-};
-
-class TicTacToeEnv : public EnvironmentBase {
+class TicTacToeEnv : public EnvironmentBase<BoardState> {
 public:
   TicTacToeEnv();
 
@@ -23,9 +17,9 @@ public:
    *
    * @return     State
    */
-  State GetStartState();
+  State<BoardState> GetStartState();
 
-  std::vector<State> GetValidChildStates(State &state);
+  std::vector<State<BoardState>> GetValidChildStates(State<BoardState> &state);
 /**
    * @brief      Evaluate whether a state is terminal
    *
@@ -37,7 +31,7 @@ public:
    *
    * @return     double
    */
-  Reward EvaluateTerminalState(State &state);
+  Reward EvaluateTerminalState(State<BoardState> &state);
 
   /**
    * @brief      Display a given state representation
@@ -50,7 +44,9 @@ public:
    *
    * @return     void
    */
-  void PrintBoard(BoardState &state);
+  void PrintBoard(State<BoardState> &state);
 
 private:
 };
+
+#endif //TICTACTOEENVIRONMET_H

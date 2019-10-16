@@ -1,4 +1,5 @@
 #include <TicTacToeEnvironment.h>
+#include <iostream>
 
 TicTacToeEnv::TicTacToeEnv() {}
 
@@ -7,17 +8,16 @@ std::vector<std::vector<int>> WinConditions = {
                                                {0, 3, 6}, {1, 4, 6}, {2, 5, 8}, // columns
                                                {0, 4, 8}, {2, 4, 6}};           // diagonals
 
-State TicTacToeEnv::GetStartState() {
+State<BoardState> TicTacToeEnv::GetStartState() {
   BoardState state(9, None);
-  TicTacToeState result = TicTacToeState(state);
+  State<BoardState> result = State<BoardState>(state);
 
   return result;
 }
 
-std::vector<State> TicTacToeEnv::GetValidChildStates(State &state) {
-  TicTacToeState tttstate = (TicTacToeState&)state;
-  BoardState bState = tttstate.data;
-  std::vector<State> result;
+std::vector<State<BoardState>> TicTacToeEnv::GetValidChildStates(State<BoardState> &state) {
+  BoardState bState = state.data;
+  std::vector<State<BoardState>> result;
   int board_pieces = 0;
   int player_turn;
   for (BoardPiece symbol : bState) {
@@ -33,20 +33,20 @@ std::vector<State> TicTacToeEnv::GetValidChildStates(State &state) {
 
       BoardState childState(bState);
       childState[i] = piece;
-      result.push_back(TicTacToeState(childState));
+      result.push_back(State<BoardState>(childState));
     }
   }
 
   return result;
 }
 
-Reward TicTacToeEnv::EvaluateTerminalState(TicTacToeState &tttstate) {
+Reward TicTacToeEnv::EvaluateTerminalState(State<BoardState> &state) {
   /*
     Return 1 if player one has won;
     Return -1 if player two has won;
     Return 0 otherwise
   */
-  BoardState state = tttstate.state;
+  BoardState bstate = state.data;
   Reward reward = 0;
 
   for (auto &condition : WinConditions) {
@@ -55,19 +55,21 @@ Reward TicTacToeEnv::EvaluateTerminalState(TicTacToeState &tttstate) {
     i2 = condition[1];
     i3 = condition[2];
 
-    if (state[i1] == state[i2] && state[i1] == state[i3] && state[i1] != None) {
-      return state[i1] == Cross ? 1 : -1;
+    if (bstate[i1] == bstate[i2] && bstate[i1] == bstate[i3] && bstate[i1] != None) {
+      return bstate[i1] == Cross ? 1 : -1;
     }
   }
 
   return reward;
 }
 
-void TicTacToeEnv::PrintBoard(BoardState &state) {
+void TicTacToeEnv::PrintBoard(State<BoardState> &state) {
+  BoardState bstate = state.data;
+
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       int index = i * 3 + j;
-      BoardPiece symbol = state[index];
+      BoardPiece symbol = bstate[index];
       std::cout << (symbol == None ? " u " : (symbol == Cross ? " X " : " O "));
     }
     std::cout << "\n";

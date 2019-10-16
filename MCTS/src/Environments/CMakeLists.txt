@@ -1,4 +1,4 @@
-add_library(Environment EnvironmentBase.cpp)
+add_library(Environment EnvironmentBase.cpp State.cpp)
 
 target_include_directories(Environment
   PUBLIC
@@ -17,5 +17,3 @@ target_include_directories(TicTacToe
   PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}
   )
-
-  target_link_libraries(Environment Core)

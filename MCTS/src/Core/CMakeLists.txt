@@ -1,4 +1,4 @@
-add_library(Core SearchNode.cpp State.cpp )
+add_library(Core SearchNode.cpp)
 
 target_include_directories(Core
         PUBLIC
