@@ -137,9 +137,11 @@ CMakeFiles/
 cmake_install.cmake
 Makefile
 build/
+.ccls-cache/
 
 ## emacs
 .dir-locals.el
+.history
 compile_commands.json
 *\~
 *#

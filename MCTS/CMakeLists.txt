@@ -3,12 +3,15 @@ project(MCTS_Library)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
-IF($ENV{BOOST_ROOT})
+if($ENV{BOOST_ROOT})
   set(BOOST_ROOT $ENV{BOOST_ROOT})
-ENDIF()
+endif()
 
 set(BOOST_COMPONENTS system)
-find_package(Boost 1.69 EXACT REQUIRED COMPONENTS ${BOOST_COMPONENTS})
+find_package(Boost
+             1.69
+             REQUIRED
+             COMPONENTS ${BOOST_COMPONENTS})
 
 set(OUTPUT_DIR "${PROJECT_SOURCE_DIR}/build")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
@@ -21,5 +24,10 @@ add_subdirectory(src/Core)
 add_executable(main src/main.cpp)
 target_link_libraries(main Core)
 
-# target_compile_options(main PUBLIC -Wall -Wpedantic -O2)
-# target_compile_features(main PUBLIC cxx_std_14)
+# compile_commands.json needs to be in the project root for my auto-completion
+# to work properly #
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+if(EXISTS "${PROJECT_SOURCE_DIR}/compile_commands.json")
+  file(COPY "${PROJECT_SOURCE_DIR}/compile_commands.json"
+       DESTINATION "${PROJECT_ROOT}")
+endif()
