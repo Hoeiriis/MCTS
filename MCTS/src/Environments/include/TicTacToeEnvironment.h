@@ -5,7 +5,26 @@
 enum BoardPiece { None = 0, Cross = 1, Circle = 2 };
 typedef std::vector<BoardPiece> BoardState;
 
+<<<<<<< Updated upstream
 class TicTacToeEnv : public EnvironmentBase<BoardState> {
+=======
+class TicTacToeState : public State {
+public:
+  TicTacToeState(BoardState state) : data(state){};
+  BoardState data;
+};
+
+/**
+ * @brief      Environment implementing the game tictactoe
+ *
+ * @details    Implements barebones functionality of the game - defines legal
+ * moves and determines a winner if there is one.
+ *
+ *
+ * @return     TicTacToeEnv
+ */
+class TicTacToeEnv : public EnvironmentBase {
+>>>>>>> Stashed changes
 public:
   TicTacToeEnv();
 
@@ -19,8 +38,18 @@ public:
    */
   State<BoardState> GetStartState();
 
+  /**
+   * @brief      Return successor states of a state
+   *
+   * @details    Given a representation of a state, return a vector of all
+   * possible successor states of that state.
+   *
+   * @param      &state
+   *
+   * @return     vector<state>
+   */
   std::vector<State<BoardState>> GetValidChildStates(State<BoardState> &state);
-/**
+  /**
    * @brief      Evaluate whether a state is terminal
    *
    * @details    Checks vertical, horizontal, and diagonally whether one player
@@ -49,4 +78,4 @@ public:
 private:
 };
 
-#endif //TICTACTOEENVIRONMET_H
+#endif // TICTACTOEENVIRONMET_H

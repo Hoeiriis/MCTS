@@ -1,4 +1,4 @@
-add_library(Core SearchNode.cpp)
+add_library(Core SearchNode.cpp )
 
 target_include_directories(Core
         PUBLIC
@@ -8,5 +8,6 @@ target_include_directories(Core
         ${CMAKE_CURRENT_SOURCE_DIR}
         )
 
+target_link_libraries(Core Environment)
 add_subdirectory(tree_policies)
 add_subdirectory(mcts)

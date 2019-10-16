@@ -20,8 +20,7 @@ std::vector<State<BoardState>> TicTacToeEnv::GetValidChildStates(State<BoardStat
   std::vector<State<BoardState>> result;
   int board_pieces = 0;
   int player_turn;
-  for (BoardPiece symbol : bState) {
-    board_pieces += symbol > 0;
+  for (BoardPiece symbol : bState) {board_pieces += symbol > 0;
   }
   // Player 1 if an even number of pieces is on the board
   // Otherwise player 2
