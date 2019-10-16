@@ -26,6 +26,10 @@ target_link_libraries(main Core)
 
 # compile_commands.json needs to be in the project root for my auto-completion
 # to work properly #
+set(PROJECT_ROOT "${PROJECT_SOURCE_DIR}/..")
+EXECUTE_PROCESS(COMMAND "readlink" "-f" "-n" "${PROJECT_ROOT}" 
+                OUTPUT_VARIABLE PROJECT_ROOT)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 if(EXISTS "${PROJECT_SOURCE_DIR}/compile_commands.json")
   file(COPY "${PROJECT_SOURCE_DIR}/compile_commands.json"

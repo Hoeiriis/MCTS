@@ -26,8 +26,7 @@ public:
   State GetStartState();
 
   std::vector<State> GetValidChildStates(State &state);
-
-  /**
+/**
    * @brief      Evaluate whether a state is terminal
    *
    * @details    Checks vertical, horizontal, and diagonally whether one player
