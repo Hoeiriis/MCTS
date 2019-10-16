@@ -1,3 +1,14 @@
+/** @file */
+/**
+ * @file TicTacToeEnvironment.h
+ * @author Alexander Larsen
+ * @date 16 Oct 2019
+ * @brief Environment subclass for tic tac toe
+ *
+ * @details Implements the required members for an environment for a nice game of tic tac toe
+ *
+ */
+
 #ifndef TICTACENVIRONMENT_H
 #define TICTACENVIRONMENT_H
 #include <EnvironmentBase.h>
@@ -5,7 +16,7 @@
 enum BoardPiece { None = 0, Cross = 1, Circle = 2 };
 typedef std::vector<BoardPiece> BoardState;
 
-/**
+/*
  * @brief      Environment implementing the game tictactoe
  *
  * @details    Implements barebones functionality of the game - defines legal
@@ -14,6 +25,7 @@ typedef std::vector<BoardPiece> BoardState;
  *
  * @return     TicTacToeEnv
  */
+
 class TicTacToeEnv : public EnvironmentBase<BoardState> {
 public:
   TicTacToeEnv();

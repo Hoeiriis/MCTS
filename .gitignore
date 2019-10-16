@@ -145,6 +145,7 @@ Doxyfile
 html/
 latex/
 CMakeDoxygenDefaults.cmake
+Doxyfile.in.bak
 
 ## emacs
 .dir-locals.el
