@@ -3,29 +3,24 @@
 
 #include <TicTacToeEnvironment.h>
 #include <State.h>
+#include <boost/function.hpp>
+#include <boost/any.hpp>
 
-typedef std::vector<State> States;
-using namespace boost;
+typedef std::vector<State<boost::any>> States;
 
-//TODO check environment functions 
-//     check boost function
 class DefaultPolicyBase
 {
-    boost::function<vector>
     public:
-        //BoardState-->State ?
-        DefaultPolicyBase(function<States(State&)>& getValidChildStates,
-                          function<Reward(State&)>& evaluateTerminalState);
+        DefaultPolicyBase(boost::function<States(State<boost::any>&)>& getValidChildStates,
+                          boost::function<Reward(State<boost::any>&)>& evaluateTerminalState);
         ~DefaultPolicyBase();
 
-        virtual double defaultPolicy()=0;
-        
+        virtual double defaultPolicy(State<boost::any>)=0;
+
     protected:
-        function<States(State&)> getValidChildStates;
-        function<Reward(State&)> evaluateTerminalState;
+        boost::function<States(State<boost::any>&)> getValidChildStates;
+        boost::function<Reward(State<boost::any>&)> evaluateTerminalState;
 
-}
-
-
+};
 
 #endif //MCTS_LIBRARY_DEFAULTPOLICYBASE_H
