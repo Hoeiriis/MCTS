@@ -5,9 +5,6 @@
 enum BoardPiece { None = 0, Cross = 1, Circle = 2 };
 typedef std::vector<BoardPiece> BoardState;
 
-<<<<<<< Updated upstream
-class TicTacToeEnv : public EnvironmentBase<BoardState> {
-=======
 class TicTacToeState : public State {
 public:
   TicTacToeState(BoardState state) : data(state){};
@@ -23,8 +20,7 @@ public:
  *
  * @return     TicTacToeEnv
  */
-class TicTacToeEnv : public EnvironmentBase {
->>>>>>> Stashed changes
+class TicTacToeEnv : public EnvironmentBase<BoardState> {
 public:
   TicTacToeEnv();
 
