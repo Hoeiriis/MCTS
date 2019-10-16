@@ -7,17 +7,20 @@ std::vector<std::vector<int>> WinConditions = {
                                                {0, 3, 6}, {1, 4, 6}, {2, 5, 8}, // columns
                                                {0, 4, 8}, {2, 4, 6}};           // diagonals
 
-BoardState TicTacToeEnv::GetStartState() {
-  BoardState result(9, None);
+State TicTacToeEnv::GetStartState() {
+  BoardState state(9, None);
+  TicTacToeState result = TicTacToeState(state);
 
   return result;
 }
 
-std::vector<BoardState> TicTacToeEnv::GetValidChildStates(BoardState &state) {
-  std::vector<BoardState> result;
+std::vector<State> TicTacToeEnv::GetValidChildStates(State &state) {
+  TicTacToeState tttstate = (TicTacToeState&)state;
+  BoardState bState = tttstate.data;
+  std::vector<State> result;
   int board_pieces = 0;
   int player_turn;
-  for (BoardPiece symbol : state) {
+  for (BoardPiece symbol : bState) {
     board_pieces += symbol > 0;
   }
   // Player 1 if an even number of pieces is on the board
@@ -25,25 +28,25 @@ std::vector<BoardState> TicTacToeEnv::GetValidChildStates(BoardState &state) {
   player_turn = board_pieces % 2;
   BoardPiece piece = player_turn ? Circle : Cross;
 
-  for (int i = 0; i < state.size(); i++) {
-    if (state[i] == None) {
+  for (int i = 0; i < bState.size(); i++) {
+    if (bState[i] == None) {
 
-      BoardState childState(state);
+      BoardState childState(bState);
       childState[i] = piece;
-      result.push_back(childState);
+      result.push_back(TicTacToeState(childState));
     }
   }
 
   return result;
 }
 
-Reward TicTacToeEnv::EvaluateTerminalState(BoardState &state) {
+Reward TicTacToeEnv::EvaluateTerminalState(TicTacToeState &tttstate) {
   /*
     Return 1 if player one has won;
     Return -1 if player two has won;
     Return 0 otherwise
   */
-
+  BoardState state = tttstate.state;
   Reward reward = 0;
 
   for (auto &condition : WinConditions) {

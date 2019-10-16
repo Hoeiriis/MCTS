@@ -6,14 +6,14 @@
 #define MCTS_LIBRARY_MCTSBASE_H
 
 #include <boost/function.hpp>
-#include "../../include/State.h"
+#include <State.h>
+#include <SearchNode.h>
 #include <EnvironmentBase.h>
 
 class MCTSBase
 {    
     public:
         MCTSBase(EnvironmentBase& environment, boost::function<int(State)> default_policy);
-        ~MCTSBase();
 
         virtual void run()=0;
 
@@ -21,7 +21,9 @@ class MCTSBase
     protected:
         virtual void search()=0;
 
-        EnvironmentBase& env; 
+        EnvironmentBase& env;
+        SearchNode root;
+
 };
 
 

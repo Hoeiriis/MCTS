@@ -4,7 +4,7 @@
 class State
 {
     public:
-        State();
+        State(){};
 };
 
 #endif

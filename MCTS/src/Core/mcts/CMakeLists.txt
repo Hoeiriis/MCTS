@@ -8,4 +8,4 @@ target_include_directories(mcts
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${Boost_INCLUDE_DIRS}
         )
-#target_link_libraries(mcts boost::functions)
+target_link_libraries(mcts Environment Core)
