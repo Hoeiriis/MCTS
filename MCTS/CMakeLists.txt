@@ -32,15 +32,21 @@ execute_process(COMMAND "readlink"
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
-add_custom_target(move_compile_commands
-                  COMMAND -E file
-                          (COPY
-                           "${PROJECT_SOURCE_DIR}/compile_commands.json"
-                           DESTINATION
-                           "${PROJECT_ROOT}")
-                  COMMENT "Moving compile_commands"
-                  DEPENDS main)
+# ##############################################################################
+# Hackish solution to always move compile_commands.json to project root. Only
+# guaranteed to run with make -k is given From the docs:
+#
+# -k, --keep-going
+# Continue as much as possible after an error.  While the
+# target that failed, and those that depend on it, cannot be remade, the other
+# dependencies of these targets can be processed all the same. #
+# ##############################################################################
 
-# if(EXISTS "${PROJECT_SOURCE_DIR}/compile_commands.json") file(COPY
-# "${PROJECT_SOURCE_DIR}/compile_commands.json" DESTINATION "${PROJECT_ROOT}")
-# endif()
+add_custom_target(dummy_target ALL DEPENDS move_compile_commands)
+
+add_custom_command(OUTPUT move_compile_commands
+                   COMMAND mv ${PROJECT_SOURCE_DIR}/compile_commands.json
+                           ${PROJECT_ROOT}/compile_commands.json
+                   DEPENDS always_rebuild)
+
+add_custom_command(OUTPUT always_rebuild COMMAND cmake -E echo)
