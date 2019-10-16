@@ -36,8 +36,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 # Hackish solution to always move compile_commands.json to project root. Only
 # guaranteed to run with make -k is given From the docs:
 #
-# -k, --keep-going
-# Continue as much as possible after an error.  While the
+# -k, --keep-going Continue as much as possible after an error.  While the
 # target that failed, and those that depend on it, cannot be remade, the other
 # dependencies of these targets can be processed all the same. #
 # ##############################################################################
@@ -50,3 +49,16 @@ add_custom_command(OUTPUT move_compile_commands
                    DEPENDS always_rebuild)
 
 add_custom_command(OUTPUT always_rebuild COMMAND cmake -E echo)
+
+# Build doxygen documentation if possible #####################################
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
+                 ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+
+  add_custom_target(doc ${DOXYGEN_EXECUTABLE}
+                    ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+                    WORKING_DIRECTORY ${PROJECT_ROOT}/doc
+                    COMMENT "Generating API documentation with Doxygen"
+                    VERBATIM)
+endif(DOXYGEN_FOUND)
