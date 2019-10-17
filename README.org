@@ -2,8 +2,8 @@
 This repository contains two implementations of the Monte Carlo Tree
 Search UCT algorithm for single- and two-player environments.
 
-A python is based in MCTS_Prototyping
-A C++ implementation is based in MCTS
+A python implementation is rooted in MCTS\_Prototyping
+A C++ implementation is rooted in MCTS
 
 Both implementations are intended to be generic enough that a user can
 derive their own environment from the base classes provided and solve
