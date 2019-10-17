@@ -1,18 +1,18 @@
 # Table of Contents
 
-1.  [Introduction](#org77c0a10)
-2.  [Dependencies](#org00301ce)
-    1.  [Python](#orge1df5b1)
-    2.  [C++](#org7764326)
-        1.  [Cmake >=3.8](#org27264ae)
-        2.  [make](#org470f8a4)
-        3.  [Boost >= 1.69](#org9390698)
-    3.  [Documentation](#org7dcab04)
-3.  [Compiling](#orga1eb4a2)
+1.  [Introduction](#orgc417155)
+2.  [Dependencies](#orgcf2d0e6)
+    1.  [Python](#orga66e856)
+    2.  [C++](#orgfff493c)
+        1.  [Cmake >=3.8](#orgb2ea5f4)
+        2.  [make](#orga08e91e)
+        3.  [Boost >= 1.69](#orgf35d9ba)
+    3.  [Documentation](#orgd4ee22b)
+3.  [Compiling](#org09bcc80)
 
 
 
-<a id="org77c0a10"></a>
+<a id="orgc417155"></a>
 
 # Introduction
 
@@ -20,6 +20,7 @@ This repository contains two implementations of the Monte Carlo Tree
 Search UCT algorithm for single- and two-player environments.
 
 A python implementation is rooted in MCTS\_Prototyping
+
 A C++ implementation is rooted in MCTS
 
 Both implementations are intended to be generic enough that a user can
@@ -27,7 +28,7 @@ derive their own environment from the base classes provided and solve
 that environment with the core engine.
 
 
-<a id="org00301ce"></a>
+<a id="orgcf2d0e6"></a>
 
 # Dependencies
 
@@ -36,7 +37,7 @@ provided as of now. However, this should be applicable to other
 platforms as well.
 
 
-<a id="orge1df5b1"></a>
+<a id="orga66e856"></a>
 
 ## Python
 
@@ -44,24 +45,24 @@ The python code is straight forward; install numpy and anytree, and
 you should be good to go.
 
 
-<a id="org7764326"></a>
+<a id="orgfff493c"></a>
 
 ## C++
 
 Current requirements are as follows:
 
 
-<a id="org27264ae"></a>
+<a id="orgb2ea5f4"></a>
 
 ### Cmake >=3.8
 
 
-<a id="org470f8a4"></a>
+<a id="orga08e91e"></a>
 
 ### make
 
 
-<a id="org9390698"></a>
+<a id="orgf35d9ba"></a>
 
 ### Boost >= 1.69
 
@@ -72,7 +73,7 @@ BOOST\_ROOT="/path/to/your/boost/root", and the CMake script should
 prioritize that install.
 
 
-<a id="org7dcab04"></a>
+<a id="orgd4ee22b"></a>
 
 ## Documentation
 
@@ -80,7 +81,7 @@ This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
 
-<a id="orga1eb4a2"></a>
+<a id="org09bcc80"></a>
 
 # Compiling
 
