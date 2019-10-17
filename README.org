@@ -1,3 +1,4 @@
+#+OPTIONS: ^:nil
 * Introduction
 This repository contains two implementations of the Monte Carlo Tree
 Search UCT algorithm for single- and two-player environments.

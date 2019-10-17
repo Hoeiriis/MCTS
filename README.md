@@ -1,24 +1,25 @@
 # Table of Contents
 
-1.  [Introduction](#org9ead8c0)
-2.  [Dependencies](#org6a4c09a)
-    1.  [Python](#org0196971)
-    2.  [C++](#org4e9291d)
-        1.  [Cmake >=3.8](#org1ef5b6d)
-        2.  [make](#org5d7e3c3)
-        3.  [Boost >= 1.69](#org04db1ef)
-    3.  [Documentation](#org8bdb8cd)
-3.  [Compiling](#org4bd0a95)
+1.  [Introduction](#orgf0a6cc7)
+2.  [Dependencies](#orgf83bd06)
+    1.  [Python](#orgd54e894)
+    2.  [C++](#org92febb7)
+        1.  [Cmake >=3.8](#orgc9159f7)
+        2.  [make](#org66308e1)
+        3.  [Boost >= 1.69](#org8ffc9f2)
+    3.  [Documentation](#orgfe55809)
+3.  [Compiling](#orgb0bf28f)
 
 
-<a id="org9ead8c0"></a>
+
+<a id="orgf0a6cc7"></a>
 
 # Introduction
 
 This repository contains two implementations of the Monte Carlo Tree
 Search UCT algorithm for single- and two-player environments.
 
-A python implementation is rooted in MCTS\\<sub>Prototyping</sub>
+A python implementation is rooted in MCTS\\\_Prototyping
 A C++ implementation is rooted in MCTS
 
 Both implementations are intended to be generic enough that a user can
@@ -26,7 +27,7 @@ derive their own environment from the base classes provided and solve
 that environment with the core engine.
 
 
-<a id="org6a4c09a"></a>
+<a id="orgf83bd06"></a>
 
 # Dependencies
 
@@ -35,7 +36,7 @@ provided as of now. However, this should be applicable to other
 platforms as well.
 
 
-<a id="org0196971"></a>
+<a id="orgd54e894"></a>
 
 ## Python
 
@@ -43,35 +44,35 @@ The python code is straight forward; install numpy and anytree, and
 you should be good to go.
 
 
-<a id="org4e9291d"></a>
+<a id="org92febb7"></a>
 
 ## C++
 
 Current requirements are as follows:
 
 
-<a id="org1ef5b6d"></a>
+<a id="orgc9159f7"></a>
 
 ### Cmake >=3.8
 
 
-<a id="org5d7e3c3"></a>
+<a id="org66308e1"></a>
 
 ### make
 
 
-<a id="org04db1ef"></a>
+<a id="org8ffc9f2"></a>
 
 ### Boost >= 1.69
 
 This should all be available in your distribution's package manager.
 If you wish to use a local installation of boost in a non-standard
 install location, you can set the environment variable
-BOOST<sub>ROOT</sub>="/path/to/your/boost/root", and the CMake script should
+BOOST\_ROOT="/path/to/your/boost/root", and the CMake script should
 prioritize that install.
 
 
-<a id="org8bdb8cd"></a>
+<a id="orgfe55809"></a>
 
 ## Documentation
 
@@ -79,7 +80,7 @@ This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
 
-<a id="org4bd0a95"></a>
+<a id="orgb0bf28f"></a>
 
 # Compiling
 
