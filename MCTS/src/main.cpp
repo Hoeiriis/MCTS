@@ -10,8 +10,10 @@
 
 
 #include <iostream>
+#include <TicTacToeEnvironment.h>
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
+    TicTacToeEnv env;
     return 0;
 }

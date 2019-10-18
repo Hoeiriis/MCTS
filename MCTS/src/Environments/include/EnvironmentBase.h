@@ -25,8 +25,8 @@ public:
    * @return     State
    */
   virtual State<T> GetStartState() = 0;
-  virtual std::vector<State<T>> GetValidChildStates(State<T>) = 0;
-  virtual Reward EvaluateTerminalState() = 0;
+  virtual std::vector<State<T>> GetValidChildStates(State<T> &state) = 0;
+  virtual Reward EvaluateTerminalState(State<T> &state) = 0;
 };
 
 #endif // MCTS_LIBRARY_ENVIRONMENTBASE_H
