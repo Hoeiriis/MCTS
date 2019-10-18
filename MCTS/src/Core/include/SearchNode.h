@@ -2,6 +2,7 @@
 #define MCTS_LIBRARY_SEARCHNODE_H
 #include <State.h>
 #include <boost/any.hpp>
+#include <vector>
 
 class SearchNode {
     public:

@@ -6,6 +6,7 @@ target_include_directories(Core
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
+        ${Boost_INCLUDE_DIRS}
         )
 
 target_link_libraries(Core Environment)
