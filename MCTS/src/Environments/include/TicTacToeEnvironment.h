@@ -54,7 +54,7 @@ public:
    *
    * @return     vector<state>
    */
-  std::vector<State<BoardState>> GetValidChildStates(State<BoardState> &state);
+  std::vector<State<BoardState>> GetValidChildStates(State<BoardState> &state) ;
   /**
    * @brief      Evaluate whether a state is terminal
    *

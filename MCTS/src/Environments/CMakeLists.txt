@@ -9,6 +9,7 @@ target_include_directories(Environment
   )
 
 add_library(TicTacToe TicTacToeEnvironment.cpp)
+
 target_link_libraries(TicTacToe Environment)
 target_include_directories(TicTacToe
   PUBLIC

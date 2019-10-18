@@ -27,7 +27,7 @@ add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
 add_executable(main src/main.cpp)
-target_link_libraries(main Core mcts)
+target_link_libraries(main Environment )
 
 # compile_commands.json needs to be in the project root for my auto-completion
 # to work properly #
@@ -72,4 +72,4 @@ if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
                     VERBATIM)
 endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
 
-add_subdirectory(test)
+# add_subdirectory(test)
