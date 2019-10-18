@@ -14,6 +14,6 @@
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    TicTacToeEnv<BoardPiece> env;
+    TicTacToeEnv env;
     return 0;
 }
