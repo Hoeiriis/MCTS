@@ -4,11 +4,11 @@ TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(boost::function<States(State<boos
                                                boost::function<Reward(State<boost::any>&)>& evaluateTerminalState):
                                                DefaultPolicyBase(getValidChildStates,evaluateTerminalState){};
 
-double TicTacToeDefaultPolicy::defaultPolicy(State<boost::any> state){
+Reward TicTacToeDefaultPolicy::defaultPolicy(State<boost::any> state){
     States validStates = this->getValidChildStates(state);
     States validChildStates;
-    //TODO how to init?
-    State<boost::any> tempState=state;
+    //TODO check the init of tempstate
+    State<boost::any> tempState(NULL);
 
     std::srand((int)time(0));
 

@@ -12,7 +12,7 @@ class RandomDefaultPolicy:DefaultPolicyBase
                             boost::function<Reward(State<boost::any>&)>& evaluateTerminalState);
         ~RandomDefaultPolicy();
 
-        double defaultPolicy(State<boost::any>) override;
+        virtual Reward defaultPolicy(State<boost::any>) override;
 
     private:
         States validStates;
