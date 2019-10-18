@@ -1,5 +1,23 @@
-#ifndef MCTS_LIBRARY_ENVIRONMENTBASE_H
-#define MCTS_LIBRARY_ENVIRONMENTBASE_H
+/**
+ *
+ * @file EnvironmentBase.h
+ *
+ * @author Alexander Larsen
+ *
+ * @date 18 Oct 2019
+ *
+ * @brief Defines the minimum requirements for an environment
+ *
+ * @details Minimum requirements are as follows: evaluate whether a
+ * state is terminal; get the initial configuration of the environment
+ * and; get all possible child configurations of a given
+ * configuration.
+ *
+ */
+
+#ifndef ENVIRONMENTBASE_H
+#define ENVIRONMENTBASE_H
+
 #include <State.h>
 #include <stdexcept>
 #include <vector>
@@ -15,7 +33,7 @@ typedef double Reward;
  */
 template <typename T> class EnvironmentBase {
 public:
-  EnvironmentBase();
+  // EnvironmentBase();
 
   /**
    * @brief      Get the initial environment state
@@ -29,4 +47,4 @@ public:
   virtual Reward EvaluateTerminalState(State<T> &state) = 0;
 };
 
-#endif // MCTS_LIBRARY_ENVIRONMENTBASE_H
+#endif // ENVIRONMENTBASE_H

@@ -32,6 +32,8 @@ prioritize that install.
 This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
+** C++ tests
+CMake clones googletests from the official git repo and installs it in ~GIT_ROOT/External_Libs/GTest~
 
 * Compiling
   Compiling the C++ code is straight forward after installing the above dependencies;
@@ -48,4 +50,9 @@ Optionally, if you wish to build the documentation:
 
  ~make doc~
 
- Html and latex documentation will be generated in ~GIT_ROOT/doc~
+Html and latex documentation will be generated in ~GIT_ROOT/doc~
+
+CMake builds test unless explicitly told otherwise (~cmake . -DTESTING=NO~)
+Run tests with
+
+~make test~

@@ -16,7 +16,7 @@ State<BoardState> TicTacToeEnv::GetStartState() {
 }
 
 std::vector<State<BoardState>> TicTacToeEnv::GetValidChildStates(State<BoardState> &state) {
-  BoardState bState = state.data;
+  BoardState bState = state.m_data;
   std::vector<State<BoardState>> result;
   int board_pieces = 0;
   int player_turn;
@@ -45,7 +45,7 @@ Reward TicTacToeEnv::EvaluateTerminalState(State<BoardState> &state) {
     Return -1 if player two has won;
     Return 0 otherwise
   */
-  BoardState bstate = state.data;
+  BoardState bstate = state.m_data;
   Reward reward = 0;
 
   for (auto &condition : WinConditions) {
@@ -63,7 +63,7 @@ Reward TicTacToeEnv::EvaluateTerminalState(State<BoardState> &state) {
 }
 
 void TicTacToeEnv::PrintBoard(State<BoardState> &state) {
-  BoardState bstate = state.data;
+  BoardState bstate = state.m_data;
 
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {

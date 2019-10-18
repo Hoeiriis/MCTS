@@ -1,8 +1,32 @@
-enable_testing()
-find_package(GTest REQUIRED)
+find_package(Threads REQUIRED)
 
-add_executable(the_target_testing_main test_main.cpp)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/test_binaries)
 
-target_link_libraries(the_target_testing_main GTest::GTest GTest::Main TicTacToe)
+include(ExternalProject)
 
-add_test(NAME "the thing testing main" COMMAND the_target_testing_main)
+# Necessary for CMake to find this specific GTest install
+set(GTEST_ROOT "${EXTERNAL_INSTALL_LOCATION}/GTest")
+set(GTEST_DIR "${GTEST_ROOT}/lib/cmake")
+
+ExternalProject_Add(googletest
+                    TMP_DIR "/tmp/gtest"
+                    INSTALL_DIR "${GTEST_ROOT}/install_prefix"
+                    GIT_REPOSITORY https://github.com/google/googletest
+                    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${GTEST_ROOT})
+
+find_package(GTest QUIET)
+
+if(GTest_FOUND)
+  include_directories(${GTEST_ROOT}/include)
+  link_directories(${GTEST_ROOT}/lib)
+  include(GoogleTest)
+
+  add_subdirectory(test_environments)
+
+else()
+
+  message(WARNING "\nGTest not found.\n\
+It will probably be found after you have run `make` and then cmake again.\n\
+If this warning persists I messed up.")
+
+endif(GTest_FOUND)

@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
+
 project("MCTS Library" LANGUAGES "CXX" VERSION 0.1.0)
 
 execute_process(COMMAND "git" "rev-parse" "HEAD"
@@ -8,6 +9,13 @@ execute_process(COMMAND "git" "rev-parse" "HEAD"
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
 string(TOUPPER "${PACKAGE_REVISION}" PACKAGE_REVISION)
 set(PACKAGE_REVISION "rev. ${PACKAGE_REVISION}")
+
+set(PROJECT_ROOT "${PROJECT_SOURCE_DIR}/..")
+execute_process(COMMAND "readlink"
+                        "-f"
+                        "-n"
+                        "${PROJECT_ROOT}"
+                OUTPUT_VARIABLE PROJECT_ROOT)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -22,23 +30,16 @@ set(OUTPUT_DIR "${PROJECT_SOURCE_DIR}/build")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
+set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
 
 add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
 add_executable(main src/main.cpp)
-target_link_libraries(main Environment )
+target_link_libraries(main TicTacToe)
 
 # compile_commands.json needs to be in the project root for my auto-completion
 # to work properly #
-set(PROJECT_ROOT "${PROJECT_SOURCE_DIR}/..")
-execute_process(COMMAND "readlink"
-                        "-f"
-                        "-n"
-                        "${PROJECT_ROOT}"
-                OUTPUT_VARIABLE PROJECT_ROOT)
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 # ##############################################################################
 # Hackish solution to always move compile_commands.json to project root. Only
@@ -72,4 +73,12 @@ if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
                     VERBATIM)
 endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
 
-# add_subdirectory(test)
+if(NOT TESTING)
+  set(TESTING YES)
+endif(NOT TESTING)
+
+
+if("${TESTING}" STREQUAL "YES")
+  enable_testing()
+  add_subdirectory(test)
+endif("${TESTING}" STREQUAL "YES")

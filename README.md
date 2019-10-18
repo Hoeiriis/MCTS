@@ -1,18 +1,19 @@
 # Table of Contents
 
-1.  [Introduction](#orgc417155)
-2.  [Dependencies](#orgcf2d0e6)
-    1.  [Python](#orga66e856)
-    2.  [C++](#orgfff493c)
-        1.  [Cmake >=3.8](#orgb2ea5f4)
-        2.  [make](#orga08e91e)
-        3.  [Boost >= 1.69](#orgf35d9ba)
-    3.  [Documentation](#orgd4ee22b)
-3.  [Compiling](#org09bcc80)
+1.  [Introduction](#orgbc5476a)
+2.  [Dependencies](#orgbb47b02)
+    1.  [Python](#org8b2113f)
+    2.  [C++](#org243ebe7)
+        1.  [Cmake >=3.8](#org57b278a)
+        2.  [make](#orgd980967)
+        3.  [Boost >= 1.69](#org2dd502b)
+    3.  [Documentation](#orgbd74fda)
+    4.  [C++ tests](#orgadb7f7e)
+3.  [Compiling](#org89ce5fb)
 
 
 
-<a id="orgc417155"></a>
+<a id="orgbc5476a"></a>
 
 # Introduction
 
@@ -28,7 +29,7 @@ derive their own environment from the base classes provided and solve
 that environment with the core engine.
 
 
-<a id="orgcf2d0e6"></a>
+<a id="orgbb47b02"></a>
 
 # Dependencies
 
@@ -37,7 +38,7 @@ provided as of now. However, this should be applicable to other
 platforms as well.
 
 
-<a id="orga66e856"></a>
+<a id="org8b2113f"></a>
 
 ## Python
 
@@ -45,24 +46,24 @@ The python code is straight forward; install numpy and anytree, and
 you should be good to go.
 
 
-<a id="orgfff493c"></a>
+<a id="org243ebe7"></a>
 
 ## C++
 
 Current requirements are as follows:
 
 
-<a id="orgb2ea5f4"></a>
+<a id="org57b278a"></a>
 
 ### Cmake >=3.8
 
 
-<a id="orga08e91e"></a>
+<a id="orgd980967"></a>
 
 ### make
 
 
-<a id="orgf35d9ba"></a>
+<a id="org2dd502b"></a>
 
 ### Boost >= 1.69
 
@@ -73,7 +74,7 @@ BOOST\_ROOT="/path/to/your/boost/root", and the CMake script should
 prioritize that install.
 
 
-<a id="orgd4ee22b"></a>
+<a id="orgbd74fda"></a>
 
 ## Documentation
 
@@ -81,7 +82,14 @@ This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
 
-<a id="org09bcc80"></a>
+<a id="orgadb7f7e"></a>
+
+## C++ tests
+
+CMake clones googletests from the official git repo and installs it in `GIT_ROOT/External_Libs/GTest`
+
+
+<a id="org89ce5fb"></a>
 
 # Compiling
 
@@ -100,3 +108,8 @@ Optionally, if you wish to build the documentation:
 `make doc`
 
 Html and latex documentation will be generated in `GIT_ROOT/doc`
+
+CMake builds test unless explicitly told otherwise (`cmake . -DTESTING=NO`)
+Run tests with
+
+`make test`
