@@ -221,3 +221,4 @@ ExternalLibs/
 googletest-prefix/
 CTestTestfile.cmake
 Testing/
+test_binaries/
