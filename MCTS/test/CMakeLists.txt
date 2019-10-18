@@ -14,22 +14,19 @@ ExternalProject_Add(googletest
                     GIT_REPOSITORY https://github.com/google/googletest
                     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${GTEST_ROOT})
 
-include_directories(${GTEST_ROOT}/include)
-link_directories(${GTEST_ROOT}/lib)
+find_package(GTest QUIET)
 
-find_package(GTest)
-include(GoogleTest)
+if(GTest_FOUND)
+  include_directories(${GTEST_ROOT}/include)
+  link_directories(${GTEST_ROOT}/lib)
+  include(GoogleTest)
 
-add_subdirectory(test_environments)
+  add_subdirectory(test_environments)
 
-# gtest_discover_tests(test_main)
+else()
 
-# add_executable(FirstTest test_main.cpp) add_dependencies(FirstTest googletest)
-# target_link_libraries(FirstTest gtest gtest_main TicTacToe pthread)
+  message(WARNING "\nGTest not found.\n\
+It will probably be found after you have run `make` and then cmake again.\n\
+If this warning persists I messed up.")
 
-# add_executable(the_target_testing_main test_main.cpp)
-
-# target_link_libraries(the_target_testing_main GTest::GTest GTest::Main
-# TicTacToe)
-
-# add_test(NAME "the thing testing main" COMMAND the_target_testing_main)
+endif(GTest_FOUND)
