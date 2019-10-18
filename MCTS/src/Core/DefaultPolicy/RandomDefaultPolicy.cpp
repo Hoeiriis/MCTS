@@ -5,7 +5,7 @@ RandomDefaultPolicy::RandomDefaultPolicy(boost::function<States(State<boost::any
                                          boost::function<Reward(State<boost::any>&)>& evaluateTerminalState):
                                          DefaultPolicyBase(getValidChildStates,evaluateTerminalState){};
 
-double RandomDefaultPolicy::defaultPolicy(State<boost::any> state){
+Reward RandomDefaultPolicy::defaultPolicy(State<boost::any> state){
     States validStates = this->getValidChildStates(state);
     int i;
     std::srand((int)time(0));

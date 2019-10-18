@@ -10,7 +10,7 @@ class TicTacToeDefaultPolicy:DefaultPolicyBase
                                boost::function<Reward(State<boost::any>&)>& evaluateTerminalState);
         ~TicTacToeDefaultPolicy();
 
-        virtual double defaultPolicy(State<boost::any>) override;
+        virtual Reward defaultPolicy(State<boost::any>) override;
 
     private:
         States validStates;
