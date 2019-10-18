@@ -71,3 +71,5 @@ if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
                     COMMENT "Generating API documentation with Doxygen"
                     VERBATIM)
 endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
+
+add_subdirectory(test)

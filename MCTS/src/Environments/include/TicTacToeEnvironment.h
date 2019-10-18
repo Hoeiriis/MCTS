@@ -1,13 +1,17 @@
-/** @file */
 /**
+ *
  * @file TicTacToeEnvironment.h
  * @author Alexander Larsen
  * @date 16 Oct 2019
- * @brief Environment subclass for tic tac toe
+ * @brief Provides an environment for tictactoe
  *
- * @details Implements the required members for an environment for a nice game of tic tac toe
+ * @details Implements board states as a vector of size 9 representing
+ * the state of each position in the grid; a value of 0 means the
+ * position is not occupied; 1 means player one occupies it; 2 means
+ * player 2 occupies it.
  *
  */
+
 
 #ifndef TICTACENVIRONMENT_H
 #define TICTACENVIRONMENT_H
