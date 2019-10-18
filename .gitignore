@@ -215,3 +215,4 @@ compile_commands.json
 # CMake
 cmake-build-*/
 CMakeFiles/
+Testing/
