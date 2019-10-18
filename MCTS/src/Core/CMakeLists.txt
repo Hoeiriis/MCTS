@@ -11,3 +11,4 @@ target_include_directories(Core
 target_link_libraries(Core Environment)
 add_subdirectory(tree_policies)
 add_subdirectory(mcts)
+add_subdirectory(DefaultPolicy)
