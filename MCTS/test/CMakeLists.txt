@@ -14,7 +14,7 @@ ExternalProject_Add(googletest
 include_directories(${GTEST_ROOT}/include)
 link_directories(${GTEST_ROOT}/lib)
 
-find_package(GTest REQUIRED)
+find_package(GTest)
 include(GoogleTest)
 
 add_subdirectory(test_environments)
