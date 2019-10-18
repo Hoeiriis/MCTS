@@ -32,6 +32,11 @@ prioritize that install.
 This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
+** C++ tests
+
+*** googletest
+
+*** libgtest-dev
 
 * Compiling
   Compiling the C++ code is straight forward after installing the above dependencies;

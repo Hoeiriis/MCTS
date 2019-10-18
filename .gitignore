@@ -215,4 +215,10 @@ compile_commands.json
 # CMake
 cmake-build-*/
 CMakeFiles/
+
+## GTest
+ExternalLibs/
+googletest-prefix/
+CTestTestfile.cmake
+test/tests
 Testing/
