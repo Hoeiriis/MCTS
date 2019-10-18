@@ -13,8 +13,7 @@ typedef double Reward;
  *
  * @return     Environmentbase
  */
-template <typename T>
-class EnvironmentBase {
+template <typename T> class EnvironmentBase {
 public:
   EnvironmentBase();
 
@@ -25,8 +24,8 @@ public:
    *
    * @return     State
    */
-    virtual State<T> GetStartState() = 0;
-    virtual std::vector<State<T>> GetValidChildStates(State<T>) = 0;
+  virtual State<T> GetStartState() = 0;
+  virtual std::vector<State<T>> GetValidChildStates(State<T>) = 0;
   virtual Reward EvaluateTerminalState() = 0;
 };
 
