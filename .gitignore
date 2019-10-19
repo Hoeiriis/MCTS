@@ -142,8 +142,7 @@ build/
 # doxygen generated files
 CMakeDoxyfile.in
 Doxyfile
-html/
-latex/
+doc/
 CMakeDoxygenDefaults.cmake
 Doxyfile.in.bak
 

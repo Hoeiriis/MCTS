@@ -86,7 +86,7 @@ Run tests with
   ~GIT_ROOT/MCTS/src/doxygen_example.cpp~ for an example of the
   syntax.
 
-See the [manual](http://www.doxygen.nl/manual/) for details.
+See the official doxygen [documentation](http://www.doxygen.nl/manual/) for details.
 
 * Writing tests
 You can use ~GIT_ROOT/MCTS/test/test_environments~ as a template for
@@ -103,13 +103,13 @@ In order to add tests for a feature:
    a number of macros. For most tests you just need ~TEST~,
    ~EXPECT_EQ~, and ~EXPECT_DOUBLE_EQ~. Define a test with
 
-# ``` C++
 #+BEGIN_SRC -n
+``` C++
 TEST(NameOfFunctionBeingTested, PropertyBeingTested){
     EXPECT_EQ(function_output, expected_output);
 }
+```
 #+END_SRC
-# ```
 
 Add your source file as an executable target in CMakeLists.txt as usual,
 and link the target against GTest and the feature itself if applicable:

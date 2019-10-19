@@ -7,15 +7,14 @@ execute_process(COMMAND "git" "rev-parse" "HEAD"
                 WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
                 OUTPUT_VARIABLE PACKAGE_REVISION
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
+
 string(TOUPPER "${PACKAGE_REVISION}" PACKAGE_REVISION)
 set(PACKAGE_REVISION "rev. ${PACKAGE_REVISION}")
 
-set(PROJECT_ROOT "${PROJECT_SOURCE_DIR}/..")
-execute_process(COMMAND "readlink"
-                        "-f"
-                        "-n"
-                        "${PROJECT_ROOT}"
-                OUTPUT_VARIABLE PROJECT_ROOT)
+
+execute_process(COMMAND "git" "rev-parse" "--show-toplevel"
+                OUTPUT_VARIABLE PROJECT_ROOT
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -63,12 +62,13 @@ add_custom_command(OUTPUT always_rebuild COMMAND cmake -E echo)
 find_package(Doxygen)
 if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
   set(DOC_OUTPUT_DIR "${PROJECT_ROOT}/doc")
+
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
                  ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
 
   add_custom_target(doc ${DOXYGEN_EXECUTABLE}
                     ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src
+                    WORKING_DIRECTORY ${PROJECT_ROOT}
                     COMMENT "Generating API documentation with Doxygen"
                     VERBATIM)
 endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)

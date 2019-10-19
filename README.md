@@ -1,21 +1,21 @@
 # Table of Contents
 
-1.  [Introduction](#org7616c1d)
-2.  [Dependencies](#orgfe56128)
-    1.  [Python](#orgf989328)
-    2.  [C++](#orgdaeaca0)
-        1.  [Cmake >=3.8](#orgbaba4ab)
-        2.  [make](#org108c99c)
-        3.  [Boost >= 1.69](#org3a784f3)
-    3.  [Documentation](#orgba6cbd3)
-    4.  [C++ tests](#org272aa6a)
-3.  [Compiling](#orgf4c052a)
-4.  [Writing documentation](#org3c2556e)
-5.  [Writing tests](#orgbdfb5a7)
+1.  [Introduction](#orgff73277)
+2.  [Dependencies](#orgcfab69e)
+    1.  [Python](#orge95fa92)
+    2.  [C++](#org34dc7da)
+        1.  [Cmake >=3.8](#org5f4570d)
+        2.  [make](#orgdb6d1a5)
+        3.  [Boost >= 1.69](#orgdb168e9)
+    3.  [Documentation](#orgccff626)
+    4.  [C++ tests](#org33ec5e0)
+3.  [Compiling](#orgbf2940c)
+4.  [Writing documentation](#orge1b7262)
+5.  [Writing tests](#org4304b1a)
 
 
 
-<a id="org7616c1d"></a>
+<a id="orgff73277"></a>
 
 # Introduction
 
@@ -31,7 +31,7 @@ derive their own environment from the base classes provided and solve
 that environment with the core engine.
 
 
-<a id="orgfe56128"></a>
+<a id="orgcfab69e"></a>
 
 # Dependencies
 
@@ -40,7 +40,7 @@ provided as of now. However, this should be applicable to other
 platforms as well.
 
 
-<a id="orgf989328"></a>
+<a id="orge95fa92"></a>
 
 ## Python
 
@@ -48,24 +48,24 @@ The python code is straight forward; install numpy and anytree, and
 you should be good to go.
 
 
-<a id="orgdaeaca0"></a>
+<a id="org34dc7da"></a>
 
 ## C++
 
 Current requirements are as follows:
 
 
-<a id="orgbaba4ab"></a>
+<a id="org5f4570d"></a>
 
 ### Cmake >=3.8
 
 
-<a id="org108c99c"></a>
+<a id="orgdb6d1a5"></a>
 
 ### make
 
 
-<a id="org3a784f3"></a>
+<a id="orgdb168e9"></a>
 
 ### Boost >= 1.69
 
@@ -76,7 +76,7 @@ BOOST\_ROOT="/path/to/your/boost/root", and the CMake script should
 prioritize that install.
 
 
-<a id="orgba6cbd3"></a>
+<a id="orgccff626"></a>
 
 ## Documentation
 
@@ -84,7 +84,7 @@ This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
 
-<a id="org272aa6a"></a>
+<a id="org33ec5e0"></a>
 
 ## C++ tests
 
@@ -104,7 +104,7 @@ After this sequence of commands as been run, the tests will be
 compiled properly on each invocation of make.
 
 
-<a id="orgf4c052a"></a>
+<a id="orgbf2940c"></a>
 
 # Compiling
 
@@ -130,7 +130,7 @@ Run tests with
 `make test`
 
 
-<a id="org3c2556e"></a>
+<a id="orge1b7262"></a>
 
 # Writing documentation
 
@@ -148,10 +148,10 @@ annotated. See `TicTacToeEnvironment.h` or
 `GIT_ROOT/MCTS/src/doxygen_example.cpp` for an example of the
 syntax.
 
-See the [manual](<http://www.doxygen.nl/manual/>) for details.
+See the official doxygen [documentation](<http://www.doxygen.nl/manual/>) for details.
 
 
-<a id="orgbdfb5a7"></a>
+<a id="org4304b1a"></a>
 
 # Writing tests
 
@@ -170,11 +170,11 @@ In order to add tests for a feature:
     a number of macros. For most tests you just need `TEST`,
     `EXPECT_EQ`, and `EXPECT_DOUBLE_EQ`. Define a test with
 
-``` C++
+    ``` C++
     TEST(NameOfFunctionBeingTested, PropertyBeingTested){
         EXPECT_EQ(function_output, expected_output);
     }
-```
+    ```
 
 Add your source file as an executable target in CMakeLists.txt as usual,
 and link the target against GTest and the feature itself if applicable:
