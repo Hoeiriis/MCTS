@@ -38,11 +38,13 @@ CMake clones googletests from the official git repo and installs it in
 AND generate tests on the first run. When building from a clean clone
 you should run the following sequence of commands before the tests
 will be compiled:
+
 1. cmake
 2. make
 3. cmake
 4. make
 5. make test
+
 After this sequence of commands as been run, the tests will be
 compiled properly on each invocation of make.
 
@@ -101,11 +103,13 @@ In order to add tests for a feature:
    a number of macros. For most tests you just need ~TEST~,
    ~EXPECT_EQ~, and ~EXPECT_DOUBLE_EQ~. Define a test with
 
-~TEST(NameOfFunctionBeingTested, PropertyBeingTested){~
-
-    ~EXPECT_EQ(function_output, expected_output);~
-
-~}~
+# ``` C++
+#+BEGIN_SRC -n
+TEST(NameOfFunctionBeingTested, PropertyBeingTested){
+    EXPECT_EQ(function_output, expected_output);
+}
+#+END_SRC
+# ```
 
 Add your source file as an executable target in CMakeLists.txt as usual,
 and link the target against GTest and the feature itself if applicable:
