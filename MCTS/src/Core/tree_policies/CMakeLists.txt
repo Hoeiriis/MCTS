@@ -8,5 +8,5 @@ target_include_directories(tree_policies
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${Boost_INCLUDE_DIRS}
         )
-#target_link_libraries(tree_policies boost::functions)
 
+target_link_libraries(tree_policies  Core)

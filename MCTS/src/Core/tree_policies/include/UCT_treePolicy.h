@@ -5,7 +5,7 @@
 #ifndef MCTS_LIBRARY_UCT_TREEPOLICY_H
 #define MCTS_LIBRARY_UCT_TREEPOLICY_H
 
-#include "include/TreePolicyBase.h"
+#include <TreePolicyBase.h>
 
 class UCT_treePolicy:TreePolicyBase {
 

@@ -12,7 +12,7 @@
 #include <EnvironmentBase.h>
 
 class MCTSBase
-{    
+{
     public:
         MCTSBase(EnvironmentBase<boost::any>& environment, boost::function<int(State<boost::any>)> default_policy);
 

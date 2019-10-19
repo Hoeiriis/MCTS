@@ -32,19 +32,20 @@ typedef double Reward;
  * @return     Environmentbase
  */
 template <typename T> class EnvironmentBase {
-public:
-  // EnvironmentBase();
 
-  /**
-   * @brief      Get the initial environment state
-   *
-   * @details    Every environment must define a starting state
-   *
-   * @return     State
-   */
-  virtual State<T> GetStartState() = 0;
-  virtual std::vector<State<T>> GetValidChildStates(State<T> &state) = 0;
-  virtual Reward EvaluateTerminalState(State<T> &state) = 0;
+  public:
+    // EnvironmentBase();
+
+    /**
+     * @brief      Get the initial environment state
+     *
+     * @details    Every environment must define a starting state
+     *
+     * @return     State
+     */
+    virtual State<T> GetStartState() = 0;
+    virtual std::vector<State<T>> GetValidChildStates(State<T> &state) = 0;
+    virtual Reward EvaluateTerminalState(State<T> &state) = 0;
 };
 
 #endif // ENVIRONMENTBASE_H
