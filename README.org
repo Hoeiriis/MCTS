@@ -102,7 +102,9 @@ In order to add tests for a feature:
    ~EXPECT_EQ~, and ~EXPECT_DOUBLE_EQ~. Define a test with
 
 ~TEST(NameOfFunctionBeingTested, PropertyBeingTested){~
+
     ~EXPECT_EQ(function_output, expected_output);~
+
 ~}~
 
 Add your source file as an executable target in CMakeLists.txt as usual,
