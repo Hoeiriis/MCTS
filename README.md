@@ -1,21 +1,21 @@
 # Table of Contents
 
-1.  [Introduction](#orgff73277)
-2.  [Dependencies](#orgcfab69e)
-    1.  [Python](#orge95fa92)
-    2.  [C++](#org34dc7da)
-        1.  [Cmake >=3.8](#org5f4570d)
-        2.  [make](#orgdb6d1a5)
-        3.  [Boost >= 1.69](#orgdb168e9)
-    3.  [Documentation](#orgccff626)
-    4.  [C++ tests](#org33ec5e0)
-3.  [Compiling](#orgbf2940c)
-4.  [Writing documentation](#orge1b7262)
-5.  [Writing tests](#org4304b1a)
+1.  [Introduction](#org58e8438)
+2.  [Dependencies](#org3e7c749)
+    1.  [Python](#orgad0b1a5)
+    2.  [C++](#org25d6194)
+        1.  [Cmake >=3.8](#org4d316af)
+        2.  [make](#orgc8eeb52)
+        3.  [Boost >= 1.69](#org7686fb3)
+    3.  [Documentation](#org482a5fd)
+    4.  [C++ tests](#org27aa031)
+3.  [Compiling](#org7adea78)
+4.  [Writing documentation](#org5768375)
+5.  [Writing tests](#orge028cac)
 
 
 
-<a id="orgff73277"></a>
+<a id="org58e8438"></a>
 
 # Introduction
 
@@ -31,7 +31,7 @@ derive their own environment from the base classes provided and solve
 that environment with the core engine.
 
 
-<a id="orgcfab69e"></a>
+<a id="org3e7c749"></a>
 
 # Dependencies
 
@@ -40,7 +40,7 @@ provided as of now. However, this should be applicable to other
 platforms as well.
 
 
-<a id="orge95fa92"></a>
+<a id="orgad0b1a5"></a>
 
 ## Python
 
@@ -48,24 +48,24 @@ The python code is straight forward; install numpy and anytree, and
 you should be good to go.
 
 
-<a id="org34dc7da"></a>
+<a id="org25d6194"></a>
 
 ## C++
 
 Current requirements are as follows:
 
 
-<a id="org5f4570d"></a>
+<a id="org4d316af"></a>
 
 ### Cmake >=3.8
 
 
-<a id="orgdb6d1a5"></a>
+<a id="orgc8eeb52"></a>
 
 ### make
 
 
-<a id="orgdb168e9"></a>
+<a id="org7686fb3"></a>
 
 ### Boost >= 1.69
 
@@ -76,7 +76,7 @@ BOOST\_ROOT="/path/to/your/boost/root", and the CMake script should
 prioritize that install.
 
 
-<a id="orgccff626"></a>
+<a id="org482a5fd"></a>
 
 ## Documentation
 
@@ -84,7 +84,7 @@ This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
 
-<a id="org33ec5e0"></a>
+<a id="org27aa031"></a>
 
 ## C++ tests
 
@@ -104,7 +104,7 @@ After this sequence of commands as been run, the tests will be
 compiled properly on each invocation of make.
 
 
-<a id="orgbf2940c"></a>
+<a id="org7adea78"></a>
 
 # Compiling
 
@@ -130,7 +130,7 @@ Run tests with
 `make test`
 
 
-<a id="orge1b7262"></a>
+<a id="org5768375"></a>
 
 # Writing documentation
 
@@ -151,7 +151,7 @@ syntax.
 See the official doxygen [documentation](<http://www.doxygen.nl/manual/>) for details.
 
 
-<a id="org4304b1a"></a>
+<a id="orge028cac"></a>
 
 # Writing tests
 
@@ -185,7 +185,7 @@ and link the target against GTest and the feature itself if applicable:
 
 And then have gtest detect the test cases and add them:
 
-`gtest_add_tests(TARGET test_my_awesome_feature)`
+`gtest_discover_tests(test_my_awesome_feature)`
 
 For details and more advanced use, check the official documentation:
 

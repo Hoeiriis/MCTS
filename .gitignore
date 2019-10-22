@@ -221,3 +221,5 @@ googletest-prefix/
 CTestTestfile.cmake
 Testing/
 test_binaries/
+*_include.cmake
+*_tests.cmake

@@ -120,7 +120,7 @@ and link the target against GTest and the feature itself if applicable:
 
 And then have gtest detect the test cases and add them:
 
-~gtest_add_tests(TARGET test_my_awesome_feature)~
+~gtest_discover_tests(test_my_awesome_feature)~
 
 For details and more advanced use, check the official documentation:
 
