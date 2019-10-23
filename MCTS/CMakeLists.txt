@@ -30,6 +30,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
 set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
+set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
+
+message(STATUS "Prefix=${PREFIX_LOCATION}")
 
 add_subdirectory(src/Environments)
 add_subdirectory(src/Core)

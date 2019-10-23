@@ -10,6 +10,7 @@ set(GTEST_DIR "${GTEST_ROOT}/lib/cmake")
 
 ExternalProject_Add(googletest
                     INSTALL_DIR "${GTEST_ROOT}/install_prefix"
+                    PREFIX "${PREFIX_LOCATION}/gtest"
                     GIT_REPOSITORY https://github.com/google/googletest
                     GIT_TAG v1.10.x
                     TIMEOUT 30
