@@ -16,7 +16,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-            - boost1.67
+            - boost1.70
 
 script:
         - cmake .
