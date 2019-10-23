@@ -20,7 +20,7 @@ matrix:
 
 script:
         - cmake .
-        - make
+        - make googletest
         - cmake .
         - make
         - make test
