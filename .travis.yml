@@ -1,23 +1,23 @@
 language: cpp
 compiler: gcc
+dist: bionic
+os: linux
 
 matrix:
   include:
-    # works on Precise and Trusty
-    - os: linux
+    - env: COMPILER=g++-7 BUILD=Release STANDARD=17
+      compiler: gcc
       addons:
         apt:
+          update: true
           sources:
+            - sourceline: 'ppa:mhier/libboost-latest'
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-
-before_install:
-    - eval "${MATRIX_EVAL}G
+            - boost1.69
 
 script:
         - cmake .
         - make
-        - ctest
+        - make test
