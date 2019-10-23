@@ -9,9 +9,10 @@ set(GTEST_ROOT "${EXTERNAL_INSTALL_LOCATION}/GTest")
 set(GTEST_DIR "${GTEST_ROOT}/lib/cmake")
 
 ExternalProject_Add(googletest
-                    TMP_DIR "/tmp/gtest"
                     INSTALL_DIR "${GTEST_ROOT}/install_prefix"
                     GIT_REPOSITORY https://github.com/google/googletest
+                    GIT_TAG v1.10.x
+                    TIMEOUT 30
                     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${GTEST_ROOT})
 
 find_package(GTest QUIET)
