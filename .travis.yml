@@ -2,6 +2,7 @@ language: cpp
 compiler: gcc
 dist: bionic
 os: linux
+sudo: false
 
 matrix:
   include:
@@ -15,7 +16,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-            - libboost-1.70
+            - boost1.67
 
 script:
         - cmake .
