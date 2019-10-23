@@ -38,28 +38,7 @@ add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
 add_executable(main src/main.cpp)
-target_link_libraries(main TicTacToe)
-
-# compile_commands.json needs to be in the project root for my auto-completion
-# to work properly #
-
-# ##############################################################################
-# Hackish solution to always move compile_commands.json to project root. Only
-# guaranteed to run with make -k is given From the docs:
-#
-# -k, --keep-going Continue as much as possible after an error.  While the
-# target that failed, and those that depend on it, cannot be remade, the other
-# dependencies of these targets can be processed all the same. #
-# ##############################################################################
-
-add_custom_target(dummy_target ALL DEPENDS move_compile_commands)
-
-add_custom_command(OUTPUT move_compile_commands
-                   COMMAND cp ${PROJECT_SOURCE_DIR}/compile_commands.json
-                           ${PROJECT_ROOT}/compile_commands.json
-                   DEPENDS always_rebuild)
-
-add_custom_command(OUTPUT always_rebuild COMMAND cmake -E echo)
+target_link_libraries(main TicTacToe) 
 
 # Build doxygen documentation if possible #####################################
 find_package(Doxygen)
