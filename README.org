@@ -1,23 +1,16 @@
 #+OPTIONS: ^:nil
 * Introduction
-This repository contains two implementations of the Monte Carlo Tree
-Search UCT algorithm for single- and two-player environments.
+This repository contains a C++ implementation of the UCT Monte Carlo Tree
+Search algorithm for single- and two-player environments.
 
-A python implementation is rooted in MCTS_Prototyping
-
-A C++ implementation is rooted in MCTS
-
-Both implementations are intended to be generic enough that a user can
-derive their own environment from the base classes provided and solve
+The implementation is intended to be generic enough that a user can
+derive their own environment from the provided base classes and solve
 that environment with the core engine.
 
 * Dependencies
 As this is being developed on Linux, only Linux instructions will be
 provided as of now. However, this should be applicable to other
 platforms as well.
-** Python
-The python code is straight forward; install numpy and anytree, and
-you should be good to go.
 ** C++
 Current requirements are as follows:
 *** Cmake >=3.8

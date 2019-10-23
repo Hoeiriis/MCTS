@@ -1,37 +1,32 @@
 # Table of Contents
 
-1.  [Introduction](#org58e8438)
-2.  [Dependencies](#org3e7c749)
-    1.  [Python](#orgad0b1a5)
-    2.  [C++](#org25d6194)
-        1.  [Cmake >=3.8](#org4d316af)
-        2.  [make](#orgc8eeb52)
-        3.  [Boost >= 1.69](#org7686fb3)
-    3.  [Documentation](#org482a5fd)
-    4.  [C++ tests](#org27aa031)
-3.  [Compiling](#org7adea78)
-4.  [Writing documentation](#org5768375)
-5.  [Writing tests](#orge028cac)
+1.  [Introduction](#org5b72741)
+2.  [Dependencies](#org1aac33d)
+    1.  [C++](#org5ed83e5)
+        1.  [Cmake >=3.8](#orgba52506)
+        2.  [make](#org907efcd)
+        3.  [Boost >= 1.69](#orga45ddaf)
+    2.  [Documentation](#orge3e94b3)
+    3.  [C++ tests](#org07e97bb)
+3.  [Compiling](#org3a280cc)
+4.  [Writing documentation](#orgbadfffd)
+5.  [Writing tests](#orgbe1bbba)
 
 
 
-<a id="org58e8438"></a>
+<a id="org5b72741"></a>
 
 # Introduction
 
-This repository contains two implementations of the Monte Carlo Tree
-Search UCT algorithm for single- and two-player environments.
+This repository contains a C++ implementation of the UCT Monte Carlo Tree
+Search algorithm for single- and two-player environments.
 
-A python implementation is rooted in MCTS\_Prototyping
-
-A C++ implementation is rooted in MCTS
-
-Both implementations are intended to be generic enough that a user can
-derive their own environment from the base classes provided and solve
+The implementation is intended to be generic enough that a user can
+derive their own environment from the provided base classes and solve
 that environment with the core engine.
 
 
-<a id="org3e7c749"></a>
+<a id="org1aac33d"></a>
 
 # Dependencies
 
@@ -40,32 +35,24 @@ provided as of now. However, this should be applicable to other
 platforms as well.
 
 
-<a id="orgad0b1a5"></a>
-
-## Python
-
-The python code is straight forward; install numpy and anytree, and
-you should be good to go.
-
-
-<a id="org25d6194"></a>
+<a id="org5ed83e5"></a>
 
 ## C++
 
 Current requirements are as follows:
 
 
-<a id="org4d316af"></a>
+<a id="orgba52506"></a>
 
 ### Cmake >=3.8
 
 
-<a id="orgc8eeb52"></a>
+<a id="org907efcd"></a>
 
 ### make
 
 
-<a id="org7686fb3"></a>
+<a id="orga45ddaf"></a>
 
 ### Boost >= 1.69
 
@@ -76,7 +63,7 @@ BOOST\_ROOT="/path/to/your/boost/root", and the CMake script should
 prioritize that install.
 
 
-<a id="org482a5fd"></a>
+<a id="orge3e94b3"></a>
 
 ## Documentation
 
@@ -84,7 +71,7 @@ This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
 
-<a id="org27aa031"></a>
+<a id="org07e97bb"></a>
 
 ## C++ tests
 
@@ -104,7 +91,7 @@ After this sequence of commands as been run, the tests will be
 compiled properly on each invocation of make.
 
 
-<a id="org7adea78"></a>
+<a id="org3a280cc"></a>
 
 # Compiling
 
@@ -130,7 +117,7 @@ Run tests with
 `make test`
 
 
-<a id="org5768375"></a>
+<a id="orgbadfffd"></a>
 
 # Writing documentation
 
@@ -151,7 +138,7 @@ syntax.
 See the official doxygen [documentation](<http://www.doxygen.nl/manual/>) for details.
 
 
-<a id="orge028cac"></a>
+<a id="orgbe1bbba"></a>
 
 # Writing tests
 
