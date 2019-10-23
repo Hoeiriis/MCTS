@@ -1,20 +1,20 @@
 # Table of Contents
 
-1.  [Introduction](#org5b72741)
-2.  [Dependencies](#org1aac33d)
-    1.  [C++](#org5ed83e5)
-        1.  [Cmake >=3.8](#orgba52506)
-        2.  [make](#org907efcd)
-        3.  [Boost >= 1.69](#orga45ddaf)
-    2.  [Documentation](#orge3e94b3)
-    3.  [C++ tests](#org07e97bb)
-3.  [Compiling](#org3a280cc)
-4.  [Writing documentation](#orgbadfffd)
-5.  [Writing tests](#orgbe1bbba)
+1.  [Introduction](#orgb122b4e)
+2.  [Dependencies](#orga29a715)
+    1.  [C++](#orgcc7cf4b)
+        1.  [Cmake >=3.8](#org9ee80cc)
+        2.  [make](#orga53c588)
+        3.  [Boost >= 1.69](#org575e90f)
+    2.  [Documentation](#orgbaf8d75)
+    3.  [C++ tests](#orgf5cdb1c)
+3.  [Compiling](#org6145dc7)
+4.  [Writing documentation](#orgeceebe6)
+5.  [Writing tests](#org4e63229)
 
 
 
-<a id="org5b72741"></a>
+<a id="orgb122b4e"></a>
 
 # Introduction
 
@@ -26,7 +26,7 @@ derive their own environment from the provided base classes and solve
 that environment with the core engine.
 
 
-<a id="org1aac33d"></a>
+<a id="orga29a715"></a>
 
 # Dependencies
 
@@ -35,24 +35,24 @@ provided as of now. However, this should be applicable to other
 platforms as well.
 
 
-<a id="org5ed83e5"></a>
+<a id="orgcc7cf4b"></a>
 
 ## C++
 
 Current requirements are as follows:
 
 
-<a id="orgba52506"></a>
+<a id="org9ee80cc"></a>
 
 ### Cmake >=3.8
 
 
-<a id="org907efcd"></a>
+<a id="orga53c588"></a>
 
 ### make
 
 
-<a id="orga45ddaf"></a>
+<a id="org575e90f"></a>
 
 ### Boost >= 1.69
 
@@ -63,7 +63,7 @@ BOOST\_ROOT="/path/to/your/boost/root", and the CMake script should
 prioritize that install.
 
 
-<a id="orge3e94b3"></a>
+<a id="orgbaf8d75"></a>
 
 ## Documentation
 
@@ -71,7 +71,7 @@ This project uses Doxygen to generate documentation. If you wish to
 build the documentation pages, please install Doxygen and Graphviz.
 
 
-<a id="org07e97bb"></a>
+<a id="orgf5cdb1c"></a>
 
 ## C++ tests
 
@@ -91,7 +91,7 @@ After this sequence of commands as been run, the tests will be
 compiled properly on each invocation of make.
 
 
-<a id="org3a280cc"></a>
+<a id="org6145dc7"></a>
 
 # Compiling
 
@@ -103,7 +103,7 @@ Compiling the C++ code is straight forward after installing the above dependenci
 
 `make`
 
-The binaries will be in `GIT_ROOT/MCTS/build/bin`
+The binaries will be in `GIT_ROOT/build/bin`
 
 Optionally, if you wish to build the documentation:
 
@@ -117,7 +117,7 @@ Run tests with
 `make test`
 
 
-<a id="orgbadfffd"></a>
+<a id="orgeceebe6"></a>
 
 # Writing documentation
 
@@ -132,25 +132,25 @@ Doxygen will not include documentation for your functions if the
 encapsulating class is not documented, and it will not include
 documentation for your class if the containing file is not
 annotated. See `TicTacToeEnvironment.h` or
-`GIT_ROOT/MCTS/src/doxygen_example.cpp` for an example of the
+`GIT_ROOT/src/doxygen_example.cpp` for an example of the
 syntax.
 
 See the official doxygen [documentation](<http://www.doxygen.nl/manual/>) for details.
 
 
-<a id="orgbe1bbba"></a>
+<a id="org4e63229"></a>
 
 # Writing tests
 
-You can use `GIT_ROOT/MCTS/test/test_environments` as a template for
+You can use `GIT_ROOT/test/test_environments` as a template for
 setting up your tests.
 
 In order to add tests for a feature:
 
-1.  Create a subdirectory for the feature `GIT_ROOT/MCTS/test/`, e.g.
-    `GIT_ROOT/MCTS/test/my_awesome_feature/`
+1.  Create a subdirectory for the feature `GIT_ROOT/test/`, e.g.
+    `GIT_ROOT/test/my_awesome_feature/`
 2.  Add `add_subdirectory(my_awesome_feature)` to
-    `GIT_ROOT/MCTS/test/CMakeLists.txt`
+    `GIT_ROOT/test/CMakeLists.txt`
 3.  Add test source files for your feature in your directory, e.g.
     test\_my\_awesome\_feature.cpp. Include GTest and necessary headers,
     (`#include <gtest/gtest.h>`) and start writing tests. GTest defines

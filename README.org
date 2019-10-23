@@ -50,7 +50,7 @@ compiled properly on each invocation of make.
 
 ~make~
 
-The binaries will be in ~GIT_ROOT/MCTS/build/bin~
+The binaries will be in ~GIT_ROOT/build/bin~
 
 Optionally, if you wish to build the documentation:
 
@@ -76,20 +76,20 @@ Run tests with
   encapsulating class is not documented, and it will not include
   documentation for your class if the containing file is not
   annotated. See ~TicTacToeEnvironment.h~ or
-  ~GIT_ROOT/MCTS/src/doxygen_example.cpp~ for an example of the
+  ~GIT_ROOT/src/doxygen_example.cpp~ for an example of the
   syntax.
 
 See the official doxygen [documentation](http://www.doxygen.nl/manual/) for details.
 
 * Writing tests
-You can use ~GIT_ROOT/MCTS/test/test_environments~ as a template for
+You can use ~GIT_ROOT/test/test_environments~ as a template for
 setting up your tests.
 
 In order to add tests for a feature:
-1. Create a subdirectory for the feature ~GIT_ROOT/MCTS/test/~, e.g.
-   ~GIT_ROOT/MCTS/test/my_awesome_feature/~
+1. Create a subdirectory for the feature ~GIT_ROOT/test/~, e.g.
+   ~GIT_ROOT/test/my_awesome_feature/~
 2. Add ~add_subdirectory(my_awesome_feature)~ to
-   ~GIT_ROOT/MCTS/test/CMakeLists.txt~
+   ~GIT_ROOT/test/CMakeLists.txt~
 3. Add test source files for your feature in your directory, e.g.
    test_my_awesome_feature.cpp. Include GTest and necessary headers,
    (~#include <gtest/gtest.h>~) and start writing tests. GTest defines
