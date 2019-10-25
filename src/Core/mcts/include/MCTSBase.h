@@ -5,27 +5,23 @@
 #ifndef MCTS_LIBRARY_MCTSBASE_H
 #define MCTS_LIBRARY_MCTSBASE_H
 
-#include <boost/function.hpp>
-#include <boost/any.hpp>
-#include <State.h>
-#include <SearchNode.h>
 #include <EnvironmentBase.h>
+#include <SearchNode.h>
+#include <State.h>
+#include <boost/any.hpp>
+#include <boost/function.hpp>
 
-class MCTSBase
-{
-    public:
-        MCTSBase(EnvironmentBase<boost::any>& environment, boost::function<int(State<boost::any>)> default_policy);
+class MCTSBase {
+  public:
+    MCTSBase(EnvironmentBase<boost::any> &environment, boost::function<int(State<boost::any>)> default_policy);
 
-        virtual void run(int n_searches)=0;
+    void run(int n_searches);
 
+  protected:
+    virtual SearchNode search(int n_searches) = 0;
 
-    protected:
-        virtual void search()=0;
-
-        EnvironmentBase<boost::any>& env;
-        SearchNode root;
-
+    EnvironmentBase<boost::any> &m_environment;
+    SearchNode m_root;
 };
 
-
-#endif //MCTS_LIBRARY_MCTSBASE_H
+#endif // MCTS_LIBRARY_MCTSBASE_H
