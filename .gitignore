@@ -224,3 +224,4 @@ test_binaries/
 *_include.cmake
 *_tests.cmake
 .prefixes/
+.vscode/

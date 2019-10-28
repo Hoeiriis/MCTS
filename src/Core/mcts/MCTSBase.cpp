@@ -9,20 +9,18 @@
 
 State<boost::any> state_hack(1);
 
-MCTSBase::MCTSBase(
-    EnvironmentBase<boost::any> &environment,
-    boost::function<SearchNode(SearchNode)> &tree_policy,
-    boost::function<int(State<boost::any>)> &default_policy,
-    boost::function<void(SearchNode, int)> &backpropagation)
-    : m_environment(environment), m_root(SearchNode(NULL, state_hack)),
-    m_tree_policy(tree_policy), m_default_policy(default_policy),
-    m_backpropagation(backpropagation){};
+MCTSBase::MCTSBase(EnvironmentBase<boost::any> &environment, boost::function<SearchNode(SearchNode)> &tree_policy,
+                   boost::function<int(State<boost::any>)> &default_policy,
+                   boost::function<void(SearchNode, int)> &backpropagation)
+    : m_environment(environment), m_root(SearchNode(NULL, state_hack)), m_tree_policy(tree_policy),
+      m_default_policy(default_policy), m_backpropagation(backpropagation){};
 
 void MCTSBase::run(int n_searches) {
     State<boost::any> initialState = m_environment.GetStartState();
+    std::vector<State<boost::any>> unvisited_child_states = m_environment.GetValidChildStates(initialState);
     m_root = SearchNode(NULL, initialState);
 
-    while (m_environment.GetValidChildStates(m_root.state).size() != 0) {
+    while (m_environment.GetValidChildStates(m_root.m_state).size() != 0) {
         m_root = search(n_searches);
     }
 }
@@ -30,5 +28,13 @@ void MCTSBase::run(int n_searches) {
 SearchNode MCTSBase::search(int n_searches) {
 
     for (int i = 0; i < n_searches; i++) {
+        // TreePolicy runs to find an unexpanded node to expand
+        SearchNode node_to_expand = m_tree_policy(m_root);
+        // From the unexpanded node, a simulation runs that returns a score
+        int simulation_score = m_default_policy(node_to_expand.m_state);
+        // The score is backpropagated up through the search tree
+        m_backpropagation(node_to_expand, simulation_score);
     }
+
+    
 }
