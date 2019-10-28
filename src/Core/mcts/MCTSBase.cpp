@@ -9,14 +9,26 @@
 
 State<boost::any> state_hack(1);
 
-MCTSBase::MCTSBase(EnvironmentBase<boost::any> &environment, boost::function<int(State<boost::any>)> default_policy)
-    : m_environment(environment), m_root(SearchNode(NULL, state_hack)){};
+MCTSBase::MCTSBase(
+    EnvironmentBase<boost::any> &environment,
+    boost::function<SearchNode(SearchNode)> &tree_policy,
+    boost::function<int(State<boost::any>)> &default_policy,
+    boost::function<void(SearchNode, int)> &backpropagation)
+    : m_environment(environment), m_root(SearchNode(NULL, state_hack)),
+    m_tree_policy(tree_policy), m_default_policy(default_policy),
+    m_backpropagation(backpropagation){};
 
-void MCTSBase::run(int n_searches = 100) {
+void MCTSBase::run(int n_searches) {
     State<boost::any> initialState = m_environment.GetStartState();
     m_root = SearchNode(NULL, initialState);
 
     while (m_environment.GetValidChildStates(m_root.state).size() != 0) {
         m_root = search(n_searches);
+    }
+}
+
+SearchNode MCTSBase::search(int n_searches) {
+
+    for (int i = 0; i < n_searches; i++) {
     }
 }
