@@ -1,15 +1,13 @@
 #include <BasicBackup.h>
 
-BasicBackup::BasicBackup(SearchNode *node, Reward defaultPolicyScore) : BackupBase(node, defaultPolicyScore) {
-    std::vector<SearchNode *> ancestorList = {};
-    this->ancestors = getAncestors(node, ancestorList);
-};
+BasicBackup::BasicBackup(){};
 
-void BasicBackup::backup(){
-    for(SearchNode* currentNode:this->ancestors){
-        currentNode->visits+=1;
-        currentNode->score+=defaultPolicyScore;
-        
+void BasicBackup::backup(SearchNode *node, Reward defaultPolicyScore) {
+    std::vector<SearchNode *> ancestorsList = {};
+    this->ancestors = getAncestors(node, ancestorsList);
 
+    for (SearchNode *currentNode : this->ancestors) {
+        currentNode->visits += 1;
+        currentNode->score += defaultPolicyScore;
     }
-} 
+}

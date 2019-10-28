@@ -2,7 +2,7 @@
 
 class BasicBackup : BackupBase {
   public:
-    BasicBackup(SearchNode *node, Reward defaultPolicyScore);
+    BasicBackup();
     ~BasicBackup();
-    virtual void backup() override;
+    virtual void backup(SearchNode *node, Reward defaultPolicyScore);
 };

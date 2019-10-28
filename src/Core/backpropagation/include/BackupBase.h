@@ -1,17 +1,15 @@
 #include <EnvironmentBase.h>
 #include <SearchNode.h>
 
-// TODO check whether & or *
 class BackupBase {
   public:
-    BackupBase(SearchNode *node, Reward defaultPolicyScore){};
+    BackupBase(){};
     ~BackupBase();
 
-    virtual void backup() = 0;
+    void backup(SearchNode &node, Reward defaultPolicyScore);
+    void backup(SearchNode &node, Reward defaultPolicyScore, double currentPlayer);
 
   protected:
-    SearchNode *node;
-    Reward defaultPolicyScore;
     std::vector<SearchNode *> ancestors = {};
 
     static std::vector<SearchNode *> getAncestors(SearchNode *, std::vector<SearchNode *>);
