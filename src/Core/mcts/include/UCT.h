@@ -1,4 +1,4 @@
-/*#ifndef MCTS_LIBRARY_UCT_H
+#ifndef MCTS_LIBRARY_UCT_H
 #define MCTS_LIBRARY_UCT_H
 
 #include <MCTSBase.h>
@@ -7,7 +7,7 @@
 class UCT:MCTSBase
 {
     private:
-        /* data 
+        /* data */
     public:
         UCT(EnvironmentBase<boost::any>& environement, boost::function<int(State<boost::any>)> default_policy);
         ~UCT();
@@ -17,4 +17,3 @@ class UCT:MCTSBase
 };
 
 #endif //MCTS_LIBRARY_UCT_H
-*/

@@ -13,11 +13,10 @@
 
 class MCTSBase {
   public:
-    MCTSBase(
-    EnvironmentBase<boost::any> &environment,
-    boost::function<SearchNode(SearchNode)> &tree_policy,
-    boost::function<int(State<boost::any>)> &default_policy,
-    boost::function<void(SearchNode, int)> &backpropagation);
+    MCTSBase(EnvironmentBase<boost::any> &environment, boost::function<SearchNode(SearchNode)> &tree_policy,
+             boost::function<int(State<boost::any>)> &default_policy,
+             boost::function<void(SearchNode, int)> &backpropagation,
+             boost::function<SearchNode(SearchNode)> &best_child);
 
     void run(int n_searches);
 
@@ -25,9 +24,10 @@ class MCTSBase {
     SearchNode search(int n_searches);
 
     EnvironmentBase<boost::any> &m_environment;
-    boost::function<SearchNode(SearchNode)> &m_tree_policy;
-    boost::function<int(State<boost::any>)> &m_default_policy;
-    boost::function<void(SearchNode, int)> &m_backpropagation;
+    boost::function<SearchNode(SearchNode)> m_tree_policy;
+    boost::function<int(State<boost::any>)> m_default_policy;
+    boost::function<void(SearchNode, int)> m_backpropagation;
+    boost::function<SearchNode(SearchNode)> m_best_child;
     SearchNode m_root;
 };
 

@@ -11,9 +11,10 @@ State<boost::any> state_hack(1);
 
 MCTSBase::MCTSBase(EnvironmentBase<boost::any> &environment, boost::function<SearchNode(SearchNode)> &tree_policy,
                    boost::function<int(State<boost::any>)> &default_policy,
-                   boost::function<void(SearchNode, int)> &backpropagation)
+                   boost::function<void(SearchNode, int)> &backpropagation,
+                   boost::function<SearchNode(SearchNode)> &best_child)
     : m_environment(environment), m_root(SearchNode(NULL, state_hack)), m_tree_policy(tree_policy),
-      m_default_policy(default_policy), m_backpropagation(backpropagation){};
+      m_default_policy(default_policy), m_backpropagation(backpropagation), m_best_child(best_child){};
 
 void MCTSBase::run(int n_searches) {
     State<boost::any> initialState = m_environment.GetStartState();
@@ -35,6 +36,4 @@ SearchNode MCTSBase::search(int n_searches) {
         // The score is backpropagated up through the search tree
         m_backpropagation(node_to_expand, simulation_score);
     }
-
-    
 }
