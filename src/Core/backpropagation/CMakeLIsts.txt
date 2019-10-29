@@ -1,6 +1,6 @@
-add_library(backpropagation BackupBase.cpp BasicBackup.cpp BackupNegmax.cpp)
+add_library(backpropagation BackupBase.cpp BasicBackup.cpp BackupNegamax.cpp)
 
-target_include_directories(DefaultPolicy
+target_include_directories(backpropagation
     PUBLIC
     $<INSTALL_INTERFACE:include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

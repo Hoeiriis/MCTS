@@ -2,11 +2,11 @@
 
 BasicBackup::BasicBackup(){};
 
-void BasicBackup::backup(SearchNode *node, Reward defaultPolicyScore) {
+void BasicBackup::backup(SearchNode &node, Reward defaultPolicyScore) {
     std::vector<SearchNode *> ancestorsList = {};
-    this->ancestors = getAncestors(node, ancestorsList);
+    getAncestors(&node, ancestorsList);
 
-    for (SearchNode *currentNode : this->ancestors) {
+    for (SearchNode *currentNode : ancestorsList) {
         currentNode->visits += 1;
         currentNode->score += defaultPolicyScore;
     }

@@ -3,14 +3,14 @@
 
 class BackupBase {
   public:
-    BackupBase(){};
+    BackupBase();
     ~BackupBase();
 
     void backup(SearchNode &node, Reward defaultPolicyScore);
     void backup(SearchNode &node, Reward defaultPolicyScore, double currentPlayer);
 
   protected:
-    std::vector<SearchNode *> ancestors = {};
-
-    static std::vector<SearchNode *> getAncestors(SearchNode *, std::vector<SearchNode *>);
+    // std::vector<SearchNode *> ancestors = {};
+    // TODO rename ancestorlist?
+    void getAncestors(SearchNode *, std::vector<SearchNode *> &);
 };

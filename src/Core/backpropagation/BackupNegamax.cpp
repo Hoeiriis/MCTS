@@ -2,11 +2,11 @@
 
 BackupNegmax::BackupNegmax(){};
 
-void BackupNegmax::backup(SearchNode *node, Reward defaultPolicyScore, double currentPlayer) {
+void BackupNegmax::backup(SearchNode &node, Reward defaultPolicyScore, double currentPlayer) {
     std::vector<SearchNode *> ancestorsList = {};
-    this->ancestors = getAncestors(node, ancestorsList);
+    getAncestors(&node,  ancestorsList);
 
-    for (SearchNode *currentNode : this->ancestors) {
+    for (SearchNode *currentNode : ancestorsList) {
         currentNode->visits += 1;
         currentNode->score += defaultPolicyScore;
 
