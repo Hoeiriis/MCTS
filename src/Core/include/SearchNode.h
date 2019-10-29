@@ -7,13 +7,14 @@
 
 class SearchNode {
     public:
-        SearchNode(SearchNode *parent_node, State<boost::any> &state);
+        SearchNode(SearchNode *parent_node, State<boost::any> &state, bool isTerminal);
         int visits;
         double score;
         State<boost::any> state;
         std::vector<State<boost::any>> unvisited_child_states;
         SearchNode *parent;
         std::vector<SearchNode> child_nodes;
+        bool isTerminalState;
         
 
         void add_child(SearchNode &child_node);

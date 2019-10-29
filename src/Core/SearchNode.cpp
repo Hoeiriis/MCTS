@@ -3,8 +3,8 @@
 //
 #include <SearchNode.h>
 
-SearchNode::SearchNode(SearchNode *parent_node, State<boost::any> &in_state)
-    : parent(parent_node), state(in_state), visits(0), score(0) {
+SearchNode::SearchNode(SearchNode *parent_node, State<boost::any> &in_state, bool isTerminal)
+    : parent(parent_node), state(in_state), visits(0), score(0), isTerminalState(isTerminal){
     if (parent_node) {
         parent->add_child(*this);
     }

@@ -1,4 +1,4 @@
-add_library(tree_policies TreePolicyBase.cpp UCT_treePolicy.cpp)
+add_library(tree_policies TreePolicyBase.cpp UCT_TreePolicy.cpp)
 
 target_include_directories(tree_policies
         PUBLIC

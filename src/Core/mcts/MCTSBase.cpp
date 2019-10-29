@@ -9,6 +9,6 @@
 State<boost::any> state_hack(1);
 
 MCTSBase::MCTSBase(EnvironmentBase<boost::any> &environment, boost::function<int(State<boost::any>)> default_policy)
-    : env(environment), root((SearchNode*)NULL, state_hack){};
+    : env(environment), root((SearchNode*)NULL, state_hack, false){};
 
 void MCTSBase::run(int n_searches = 100) { State<boost::any> initialState = env.GetStartState(); }
