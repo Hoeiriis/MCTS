@@ -11,18 +11,18 @@
 #include <boost/any.hpp>
 #include <boost/function.hpp>
 
-class MCTSBase {
+class MCTSInterface {
   public:
-    MCTSBase(EnvironmentBase<boost::any> &environment);
+    MCTSInterface(EnvironmentBase<boost::any> &environment);
 
     void run(int n_searches);
 
   protected:
-    SearchNode search(int n_searches)=0;
+    SearchNode search(int n_searches);
     virtual SearchNode tree_policy(SearchNode &node)=0;
     virtual int default_policy(State<boost::any> &state)=0;
     virtual SearchNode best_child(SearchNode &node)=0;
-    virtual void best_child(SearchNode &node)=0;
+    virtual void backpropagation(SearchNode &node)=0;
 
     EnvironmentBase<boost::any> &m_environment;
 };

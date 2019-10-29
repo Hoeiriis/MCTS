@@ -1,7 +1,7 @@
-/*#include <UCT.h>
+#include <UCT.h>
+#include <UCT_treePolicy.h>
+#include <RandomDefaultPolicy.h>
 
-UCT::UCT(EnvironmentBase<boost::any> &environment, boost::function<int(State<boost::any>)> default_policy)
-    : MCTSBase(environment, default_policy){};
+UCT::UCT(EnvironmentBase<boost::any> &environment) : MCTSInterface(environment){ 
+};
 
-void UCT::run(int n_searches) {}
-*/

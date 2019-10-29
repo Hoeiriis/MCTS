@@ -1,19 +1,14 @@
 #ifndef MCTS_LIBRARY_UCT_H
 #define MCTS_LIBRARY_UCT_H
 
-#include <MCTSBase.h>
+#include <MCTSInterface.h>
 #include <boost/any.hpp>
+#include <UCT_treePolicy.h>
+#include <RandomDefaultPolicy.h>
 
-class UCT:MCTSBase
-{
-    private:
-        /* data */
-    public:
-        UCT(EnvironmentBase<boost::any>& environement, boost::function<int(State<boost::any>)> default_policy);
-        ~UCT();
-
-        void run(int n_searches);
-
+class UCT : MCTSInterface {
+  public:
+    UCT(EnvironmentBase<boost::any> &environement);
 };
 
-#endif //MCTS_LIBRARY_UCT_H
+#endif // MCTS_LIBRARY_UCT_H
