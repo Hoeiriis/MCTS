@@ -3,18 +3,15 @@
 
 #include <DefaultPolicyBase.h>
 
-class TicTacToeDefaultPolicy:DefaultPolicyBase
-{
-    public:
-        TicTacToeDefaultPolicy(boost::function<States(State<boost::any>&)>& getValidChildStates,
-                               boost::function<Reward(State<boost::any>&)>& evaluateTerminalState);
-        ~TicTacToeDefaultPolicy();
+class TicTacToeDefaultPolicy : DefaultPolicyBase {
+  public:
+    TicTacToeDefaultPolicy(boost::function<States(State<boost::any> &)> &getValidChildStates,
+                           boost::function<Reward(State<boost::any> &)> &evaluateTerminalState);
+    ~TicTacToeDefaultPolicy();
+    virtual Reward defaultPolicy(State<boost::any>) override;
 
-        virtual Reward defaultPolicy(State<boost::any>) override;
-
-    private:
-        States validStates;
-
+  private:
+    States validStates;
 };
 
-#endif //MCTS_LIBRARY_TICTACTOEDEFAULTPOLICY_H
+#endif // MCTS_LIBRARY_TICTACTOEDEFAULTPOLICY_H

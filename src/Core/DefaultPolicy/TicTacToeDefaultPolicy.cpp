@@ -14,7 +14,7 @@ Reward TicTacToeDefaultPolicy::defaultPolicy(State<boost::any> state) {
 
     while (childStates.size()) {
 
-        // Check if any of the valid states are terminal (have no valid child states)
+        // Checking if any of the valid states are terminal (have no valid child states)
         for (int i = 0; i < childStates.size(); i++) {
             tempState = childStates[i];
             validChildStates = this->getValidChildStates(tempState);
