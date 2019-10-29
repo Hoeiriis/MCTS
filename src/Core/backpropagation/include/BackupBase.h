@@ -5,12 +5,8 @@ class BackupBase {
   public:
     BackupBase();
     ~BackupBase();
-
-    void backup(SearchNode &node, Reward defaultPolicyScore);
-    void backup(SearchNode &node, Reward defaultPolicyScore, double currentPlayer);
+    virtual void backup(SearchNode &node, Reward defaultPolicyScore) = 0;
 
   protected:
-    // std::vector<SearchNode *> ancestors = {};
-    // TODO rename ancestorlist?
     void getAncestors(SearchNode *, std::vector<SearchNode *> &);
 };

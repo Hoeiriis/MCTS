@@ -9,7 +9,6 @@ void BackupNegmax::backup(SearchNode &node, Reward defaultPolicyScore, double cu
     for (SearchNode *currentNode : ancestorsList) {
         currentNode->visits += 1;
         currentNode->score += defaultPolicyScore;
-
         defaultPolicyScore = -1 * (defaultPolicyScore);
         if (currentPlayer == 1) {
             currentPlayer = 0;

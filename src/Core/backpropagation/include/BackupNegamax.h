@@ -4,7 +4,7 @@ class BackupNegmax : BackupBase {
   public:
     BackupNegmax();
     ~BackupNegmax();
-    void backup(SearchNode &node, Reward defaultPolicyScore, double currentPlayer);
+    virtual void backup(SearchNode &node, Reward defaultPolicyScore, double currentPlayer);
 
   private:
     double currentPlayer;
