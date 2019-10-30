@@ -3,7 +3,7 @@
 class BackupNegmax : BackupBase {
   public:
     BackupNegmax();
-    virtual void backup(SearchNode &node, Reward defaultPolicyScore, double currentPlayer) override;
+    virtual void backup(SearchNode &node, Reward defaultPolicyScore, int currentPlayer);
 
   private:
     int currentPlayer;
