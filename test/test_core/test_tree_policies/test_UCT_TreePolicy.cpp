@@ -1,12 +1,11 @@
 #include <UCT_TreePolicy.h>
 #include <gtest/gtest.h>
 #include <string>
-#include <cstdlib>
 
 class UCT_TreePolicyTest : public ::testing::Test {
   protected:
-    void Setup() override {
-        treePolicy = UCT_TreePolicy(simpleExpand,)
+    void SetUp() override {
+        treePolicy = UCT_TreePolicy(simpleExpand, simpleChild);
 
         // root
         State<string> rootNode = State<string>("rootNode");
@@ -25,7 +24,7 @@ class UCT_TreePolicyTest : public ::testing::Test {
     SearchNode simpleExpand(SearchNode &node){
         State<string> state = node.unvisited_child_states.at(0);
         SearchNode expanded_node = SearchNode(node, state, false);
-        return 
+        return expanded_node;
     }
 
     SearchNode simpleChild(SearchNode &node){
