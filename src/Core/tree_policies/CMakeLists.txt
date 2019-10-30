@@ -9,4 +9,4 @@ target_include_directories(tree_policies
         ${Boost_INCLUDE_DIRS}
         )
 
-target_link_libraries(tree_policies  Core)
+target_link_libraries(tree_policies Core)

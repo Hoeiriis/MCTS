@@ -2,16 +2,15 @@
 
 SearchNode UCT_TreePolicy::treePolicy(SearchNode &node) {
 
-    SearchNode c_node = node;
-    while (c_node.isTerminalState) {
+    SearchNode current_node = node;
+    while (current_node.isTerminalState) {
 
-        if (c_node.unvisited_child_states.size() != 0) {
-            SearchNode expanded_node = m_expand(c_node);
+        if (current_node.unvisited_child_states.size() != 0) {
+            SearchNode expanded_node = m_expand(current_node);
             return expanded_node;
         }
 
-        SearchNode best_child = m_bestChild(node);
-        c_node = best_child;
+        current_node = m_bestChild(current_node);
     }
-    return c_node;
+    return current_node;
 }

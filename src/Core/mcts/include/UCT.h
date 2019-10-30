@@ -14,6 +14,9 @@ class UCT:MCTSBase
 
         void run(int n_searches);
 
+    protected:
+        SearchNode expand(SearchNode &node);
+
 };
 
 #endif //MCTS_LIBRARY_UCT_H
