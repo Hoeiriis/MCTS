@@ -4,7 +4,6 @@
 class BackupBase {
   public:
     BackupBase();
-    ~BackupBase();
     virtual void backup(SearchNode &node, Reward defaultPolicyScore) = 0;
 
   protected:
