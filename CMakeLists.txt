@@ -55,9 +55,12 @@ if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
                     VERBATIM)
 endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
 
-if(NOT TESTING)
+if(NOT "${TESTING}" STREQUAL "NO")
+  message("Testing is ENABLED")
   set(TESTING YES)
-endif(NOT TESTING)
+else()
+  message("Testing is DISABLED")
+endif(NOT "${TESTING}" STREQUAL "NO")
 
 
 if("${TESTING}" STREQUAL "YES")
