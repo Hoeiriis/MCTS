@@ -75,14 +75,14 @@ TEST(EvaluateTerminalState, NonterminalStatesNotTerminal) {
     }
 }
 
-TEST(GetValidChildStates, CorrectNumberOfChildStates){
+TEST(GetValidChildStates, CorrectNumberOfChildStates) {
     TicTacToeEnv env;
     State parent_state = env.GetStartState();
 
-    while (env.EvaluateTerminalState(parent_state)){
-    // for (int i = 0; i < 100; i++){
+    while (env.EvaluateTerminalState(parent_state)) {
+        // for (int i = 0; i < 100; i++){
         int occupied_spots = 0;
-        for(auto& grid : parent_state.getData<BoardState>()){
+        for (auto &grid : parent_state.getData<BoardState>()) {
             occupied_spots += grid > 0;
         }
         int expected_child_states = 9 - occupied_spots;
@@ -92,5 +92,4 @@ TEST(GetValidChildStates, CorrectNumberOfChildStates){
 
         parent_state = child_states[0];
     }
-
 }

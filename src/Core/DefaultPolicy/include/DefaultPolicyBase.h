@@ -6,20 +6,20 @@
 #include <boost/function.hpp>
 #include <boost/any.hpp>
 
-typedef std::vector<State<boost::any>> States;
+typedef std::vector<State> States;
 
 class DefaultPolicyBase
 {
     public:
-        DefaultPolicyBase(boost::function<States(State<boost::any>&)>& getValidChildStates,
-                          boost::function<Reward(State<boost::any>&)>& evaluateTerminalState);
+        DefaultPolicyBase(boost::function<States(State&)>& getValidChildStates,
+                          boost::function<Reward(State&)>& evaluateTerminalState);
         ~DefaultPolicyBase();
 
-        virtual Reward defaultPolicy(State<boost::any>)=0;
+        virtual Reward defaultPolicy(State)=0;
 
     protected:
-        boost::function<States(State<boost::any>&)> getValidChildStates;
-        boost::function<Reward(State<boost::any>&)> evaluateTerminalState;
+        boost::function<States(State&)> getValidChildStates;
+        boost::function<Reward(State&)> evaluateTerminalState;
 
 };
 

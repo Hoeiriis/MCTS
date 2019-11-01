@@ -14,7 +14,7 @@
 class MCTSBase
 {
     public:
-        MCTSBase(EnvironmentBase<boost::any>& environment, boost::function<int(State<boost::any>)> default_policy);
+        MCTSBase(EnvironmentBase& environment, boost::function<int(State)> default_policy);
 
         virtual void run(int n_searches)=0;
 
@@ -22,7 +22,7 @@ class MCTSBase
     protected:
         virtual void search()=0;
 
-        EnvironmentBase<boost::any>& env;
+        EnvironmentBase& env;
         SearchNode root;
 
 };
