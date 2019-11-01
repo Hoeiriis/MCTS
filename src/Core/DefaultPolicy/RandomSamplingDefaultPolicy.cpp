@@ -1,11 +1,11 @@
-#include <RandomDefaultPolicy.h>
+#include <RandomSamplingDefaultPolicy.h>
 #include <vector>
 
-RandomDefaultPolicy::RandomDefaultPolicy(boost::function<States(State<boost::any> &)> &getValidChildStates,
+RandomSamplingDefaultPolicy::RandomSamplingDefaultPolicy(boost::function<States(State<boost::any> &)> &getValidChildStates,
                                          boost::function<Reward(State<boost::any> &)> &evaluateTerminalState)
     : DefaultPolicyBase(getValidChildStates, evaluateTerminalState){};
 
-Reward RandomDefaultPolicy::defaultPolicy(State<boost::any> state) {
+Reward RandomSamplingDefaultPolicy::defaultPolicy(State<boost::any> state) {
     States validStates = this->getValidChildStates(state);
     int i;
     std::srand((int)time(0));
