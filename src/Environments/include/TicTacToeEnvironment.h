@@ -34,7 +34,7 @@ typedef std::vector<BoardPiece> BoardState;
  * @return     TicTacToeEnv
  */
 
-class TicTacToeEnv : public EnvironmentBase<BoardState> {
+class TicTacToeEnv : public EnvironmentBase {
   public:
     TicTacToeEnv();
 
@@ -46,7 +46,7 @@ class TicTacToeEnv : public EnvironmentBase<BoardState> {
      *
      * @return     State
      */
-    State<BoardState> GetStartState();
+    State GetStartState();
 
     /**
      * @brief      Return successor states of a state
@@ -58,7 +58,7 @@ class TicTacToeEnv : public EnvironmentBase<BoardState> {
      *
      * @return     vector<state>
      */
-    std::vector<State<BoardState>> GetValidChildStates(State<BoardState> &state);
+    std::vector<State> GetValidChildStates(State &state);
     /**
      * @brief      Evaluate whether a state is terminal
      *
@@ -70,7 +70,7 @@ class TicTacToeEnv : public EnvironmentBase<BoardState> {
      *
      * @return     double
      */
-    Reward EvaluateTerminalState(State<BoardState> &state);
+    Reward EvaluateTerminalState(State &state);
 
     /**
      * @brief      Display a given state representation
@@ -83,7 +83,7 @@ class TicTacToeEnv : public EnvironmentBase<BoardState> {
      *
      * @return     void
      */
-    void PrintBoard(State<BoardState> &state);
+    void PrintBoard(State &state);
 
   private:
 };
