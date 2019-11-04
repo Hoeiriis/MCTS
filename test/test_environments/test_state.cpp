@@ -23,7 +23,7 @@ TEST(State, TestVariableInput) {
     EXPECT_NO_FATAL_FAILURE(State structState = State(someStruct));
 }
 
-TEST(State, TestInputHandling) {
+TEST(State, TestInputOutputValueEquivalent) {
     // Arange
     int originVal = 10;
 

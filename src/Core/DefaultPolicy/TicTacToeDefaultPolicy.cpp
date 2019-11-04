@@ -1,4 +1,5 @@
 #include <TicTacToeDefaultPolicy.h>
+#include <optional>
 
 TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(boost::function<States(State &)> &getValidChildStates,
                                                boost::function<Reward(State &)> &evaluateTerminalState)
@@ -8,7 +9,7 @@ Reward TicTacToeDefaultPolicy::defaultPolicy(State state) {
     States childStates = this->getValidChildStates(state);
     States validChildStates;
     // TODO check the init of tempstate
-    State tempState(NULL);
+    State tempState(std::nullopt);
 
     std::srand((int)time(0));
 

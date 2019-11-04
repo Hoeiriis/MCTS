@@ -18,11 +18,10 @@
 #include <iostream>
 
 template <typename T> T State::getData() const {
-    // TODO: wrap in try-catch
     try {
         return std::any_cast<T>(m_data->getData());
     } catch (const std::bad_any_cast &e) {
-        std::cout << e.what() << '\n';
+        throw;
     }
 }
 
