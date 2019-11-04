@@ -6,7 +6,6 @@
 #define MCTS_LIBRARY_MCTSBASE_H
 
 #include <boost/function.hpp>
-#include <boost/any.hpp>
 #include <State.h>
 #include <SearchNode.h>
 #include <EnvironmentBase.h>

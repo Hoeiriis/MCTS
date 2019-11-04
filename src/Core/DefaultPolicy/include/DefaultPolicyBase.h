@@ -4,7 +4,6 @@
 #include <TicTacToeEnvironment.h>
 #include <State.h>
 #include <boost/function.hpp>
-#include <boost/any.hpp>
 
 typedef std::vector<State> States;
 

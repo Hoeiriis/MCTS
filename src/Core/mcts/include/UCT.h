@@ -2,7 +2,6 @@
 #define MCTS_LIBRARY_UCT_H
 
 #include <MCTSBase.h>
-#include <boost/any.hpp>
 
 class UCT:MCTSBase
 {
