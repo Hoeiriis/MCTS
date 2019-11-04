@@ -15,9 +15,15 @@
 #ifndef STATE_TCC
 #define STATE_TCC
 
+#include <iostream>
+
 template <typename T> T State::getData() const {
     // TODO: wrap in try-catch
-    return std::any_cast<T>(m_data->getData());
+    try {
+        return std::any_cast<T>(m_data->getData());
+    } catch (const std::bad_any_cast &e) {
+        std::cout << e.what() << '\n';
+    }
 }
 
 #endif // STATE_TCC

@@ -4,7 +4,7 @@
 #include <any>
 #include <memory>
 
-struct Concept { // (5)
+struct Concept {
     virtual ~Concept() {}
     virtual std::any getData() const = 0;
 };
@@ -20,7 +20,7 @@ template <typename T> struct Model : Concept {
 
 class State {
   public:
-    template <typename T> State(T data) : m_data(std::make_shared<Model<T>>(std::move(data))){};
+    template <typename T> State(T data) : m_data(std::make_unique<Model<T>>(std::move(data))){};
 
     template <typename T> T getData() const;
 

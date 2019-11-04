@@ -1,6 +1,3 @@
-// Created by happysun on 01/10/2019.
-//
-
 #include <MCTSBase.h>
 
 // TODO obviously fix this hack, but push to a branch if your code doesn't compile
