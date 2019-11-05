@@ -1,3 +1,4 @@
+set(CMAKE_CXX_STANDARD 17)
 cmake_minimum_required(VERSION 3.8)
 
 project("MCTS Library" LANGUAGES "CXX" VERSION 0.1.0)
@@ -67,3 +68,6 @@ if("${TESTING}" STREQUAL "YES")
   enable_testing()
   add_subdirectory(test)
 endif("${TESTING}" STREQUAL "YES")
+
+
+target_compile_features(main PUBLIC cxx_std_17)
