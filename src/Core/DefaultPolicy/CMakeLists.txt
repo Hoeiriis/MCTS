@@ -1,4 +1,4 @@
-add_library(DefaultPolicy DefaultPolicyBase.cpp RandomDefaultPolicy.cpp TicTacToeDefaultPolicy.cpp)
+add_library(DefaultPolicy DefaultPolicyBase.cpp RandomSamplingDefaultPolicy.cpp TicTacToeDefaultPolicy.cpp)
 
 target_include_directories(DefaultPolicy
     PUBLIC

@@ -5,11 +5,10 @@
 
 typedef std::vector<State<boost::any>> States;
 
-class RandomDefaultPolicy : DefaultPolicyBase {
+class RandomSamplingDefaultPolicy : DefaultPolicyBase {
   public:
-    RandomDefaultPolicy(boost::function<States(State<boost::any> &)> &getValidChildStates,
+    RandomSamplingDefaultPolicy(boost::function<States(State<boost::any> &)> &getValidChildStates,
                         boost::function<Reward(State<boost::any> &)> &evaluateTerminalState);
-    ~RandomDefaultPolicy();
     virtual Reward defaultPolicy(State<boost::any>) override;
 
   private:

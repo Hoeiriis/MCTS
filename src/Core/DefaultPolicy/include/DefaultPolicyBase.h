@@ -12,7 +12,6 @@ class DefaultPolicyBase {
   public:
     DefaultPolicyBase(boost::function<States(State<boost::any> &)> &getValidChildStates,
                       boost::function<Reward(State<boost::any> &)> &evaluateTerminalState);
-    ~DefaultPolicyBase();
     virtual Reward defaultPolicy(State<boost::any>) = 0;
 
   protected:
