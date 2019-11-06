@@ -3,20 +3,20 @@
 
 #include <State.h>
 #include <TicTacToeEnvironment.h>
-#include <boost/any.hpp>
 #include <boost/function.hpp>
 
-typedef std::vector<State<boost::any>> States;
+typedef std::vector<State> States;
 
 class DefaultPolicyBase {
   public:
-    DefaultPolicyBase(boost::function<States(State<boost::any> &)> &getValidChildStates,
-                      boost::function<Reward(State<boost::any> &)> &evaluateTerminalState);
-    virtual Reward defaultPolicy(State<boost::any>) = 0;
+    DefaultPolicyBase(boost::function<States(State &)> &getValidChildStates,
+                      boost::function<Reward(State &)> &evaluateTerminalState);
+
+    virtual Reward defaultPolicy(State) = 0;
 
   protected:
-    boost::function<States(State<boost::any> &)> getValidChildStates;
-    boost::function<Reward(State<boost::any> &)> evaluateTerminalState;
+    boost::function<States(State &)> getValidChildStates;
+    boost::function<Reward(State &)> evaluateTerminalState;
 };
 
 #endif // MCTS_LIBRARY_DEFAULTPOLICYBASE_H

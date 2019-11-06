@@ -3,16 +3,16 @@
 
 TicTacToeEnv::TicTacToeEnv() {}
 
-State<BoardState> TicTacToeEnv::GetStartState() {
+State TicTacToeEnv::GetStartState() {
     BoardState state(9, None);
-    State<BoardState> result = State<BoardState>(state);
+    State result = State(state);
 
     return result;
 }
 
-std::vector<State<BoardState>> TicTacToeEnv::GetValidChildStates(State<BoardState> &state) {
-    BoardState bState = state.m_data;
-    std::vector<State<BoardState>> result;
+std::vector<State> TicTacToeEnv::GetValidChildStates(State &state) {
+    BoardState bState = state.getData<BoardState>();
+    std::vector<State> result;
     int board_pieces = 0;
     int player_turn;
     for (BoardPiece symbol : bState) {
@@ -28,7 +28,7 @@ std::vector<State<BoardState>> TicTacToeEnv::GetValidChildStates(State<BoardStat
 
             BoardState boardState(bState);
             boardState[i] = piece;
-            State<BoardState> childState(boardState);
+            State childState(boardState);
             if (!EvaluateTerminalState(childState)) {
                 result.push_back(childState);
             }
@@ -38,13 +38,13 @@ std::vector<State<BoardState>> TicTacToeEnv::GetValidChildStates(State<BoardStat
     return result;
 }
 
-Reward TicTacToeEnv::EvaluateTerminalState(State<BoardState> &state) {
+Reward TicTacToeEnv::EvaluateTerminalState(State &state) {
     /*
       Return 1 if player one has won;
       Return -1 if player two has won;
       Return 0 otherwise
     */
-    BoardState bstate = state.m_data;
+    BoardState bstate = state.getData<BoardState>();
     Reward reward = 0;
 
     for (auto &condition : TicTacToeWinConditions) {
@@ -61,8 +61,8 @@ Reward TicTacToeEnv::EvaluateTerminalState(State<BoardState> &state) {
     return reward;
 }
 
-void TicTacToeEnv::PrintBoard(State<BoardState> &state) {
-    BoardState bstate = state.m_data;
+void TicTacToeEnv::PrintBoard(State &state) {
+    BoardState bstate = state.getData<BoardState>();
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
