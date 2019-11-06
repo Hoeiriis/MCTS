@@ -1,5 +1,5 @@
 #include <TreePolicyBase.h>
 
-TreePolicyBase::TreePolicyBase(boost::function<SearchNode(SearchNode)> &expand,
-                               boost::function<SearchNode(SearchNode)> &bestChild)
+TreePolicyBase::TreePolicyBase(std::function<std::shared_ptr<SearchNode>(SearchNode&)> &expand,
+                               std::function<std::shared_ptr<SearchNode>(SearchNode&)> &bestChild)
     : m_expand(expand), m_bestChild(bestChild){};

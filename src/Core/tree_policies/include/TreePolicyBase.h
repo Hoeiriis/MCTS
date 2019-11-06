@@ -2,16 +2,17 @@
 #define MCTS_LIBRARY_TREEPOLICYBASE_H
 
 #include <SearchNode.h>
-#include <boost/function.hpp>
+#include <functional>
+#include <memory>
 
 class TreePolicyBase {
   public:
-    TreePolicyBase(boost::function<SearchNode(SearchNode)> &expand, boost::function<SearchNode(SearchNode)> &bestChild);
-    virtual SearchNode treePolicy(SearchNode &node) = 0;
+    TreePolicyBase(std::function<std::shared_ptr<SearchNode>(SearchNode&)> &expand, std::function<std::shared_ptr<SearchNode>(SearchNode&)> &bestChild);
+    virtual std::shared_ptr<SearchNode> treePolicy(SearchNode &node) = 0;
 
   protected:
-    boost::function<SearchNode(SearchNode)> m_expand;
-    boost::function<SearchNode(SearchNode)> m_bestChild;
+    std::function<std::shared_ptr<SearchNode>(SearchNode&)> m_expand;
+    std::function<std::shared_ptr<SearchNode>(SearchNode&)> m_bestChild;
 };
 
 #endif // MCTS_LIBRARY_TREEPOLICYBASE_H
