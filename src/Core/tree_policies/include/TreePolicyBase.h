@@ -7,7 +7,7 @@
 class TreePolicyBase {
   public:
     TreePolicyBase(boost::function<SearchNode(SearchNode)> &expand, boost::function<SearchNode(SearchNode)> &bestChild);
-    virtual SearchNode treePolicy(SearchNode &node);
+    virtual SearchNode treePolicy(SearchNode &node) = 0;
 
   protected:
     boost::function<SearchNode(SearchNode)> m_expand;
