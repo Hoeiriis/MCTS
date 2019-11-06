@@ -2,7 +2,7 @@
 #include <vector>
 
 RandomSamplingDefaultPolicy::RandomSamplingDefaultPolicy(boost::function<States(State &)> &getValidChildStates,
-                                         boost::function<Reward(State &)> &evaluateTerminalState)
+                                                         boost::function<Reward(State &)> &evaluateTerminalState)
     : DefaultPolicyBase(getValidChildStates, evaluateTerminalState){};
 
 Reward RandomSamplingDefaultPolicy::defaultPolicy(State state) {

@@ -8,7 +8,7 @@ typedef std::vector<State> States;
 class RandomSamplingDefaultPolicy : DefaultPolicyBase {
   public:
     RandomSamplingDefaultPolicy(boost::function<States(State &)> &getValidChildStates,
-                        boost::function<Reward(State &)> &evaluateTerminalState);
+                                boost::function<Reward(State &)> &evaluateTerminalState);
     virtual Reward defaultPolicy(State) override;
 
   private:
