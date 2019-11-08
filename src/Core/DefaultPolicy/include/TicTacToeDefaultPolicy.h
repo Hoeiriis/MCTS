@@ -5,12 +5,12 @@
 
 class TicTacToeDefaultPolicy : DefaultPolicyBase {
   public:
-    TicTacToeDefaultPolicy(boost::function<States(State &)> &getValidChildStates,
-                           boost::function<Reward(State &)> &evaluateTerminalState);
+    TicTacToeDefaultPolicy(std::function<std::vector<State>(State &)>&getValidChildStates,
+                           std::function<Reward(State &)>&evaluateTerminalState);
     virtual Reward defaultPolicy(State) override;
 
   private:
-    States validStates;
+    std::vector<State> validStates;
 };
 
 #endif // MCTS_LIBRARY_TICTACTOEDEFAULTPOLICY_H

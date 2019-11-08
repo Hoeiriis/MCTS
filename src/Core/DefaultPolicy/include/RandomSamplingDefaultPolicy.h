@@ -3,16 +3,14 @@
 
 #include <DefaultPolicyBase.h>
 
-typedef std::vector<State> States;
-
 class RandomSamplingDefaultPolicy : DefaultPolicyBase {
   public:
-    RandomSamplingDefaultPolicy(boost::function<States(State &)> &getValidChildStates,
-                                boost::function<Reward(State &)> &evaluateTerminalState);
+    RandomSamplingDefaultPolicy(std::function<std::vector<State>(State &)>&getValidChildStates,
+                                std::function<Reward(State &)>&evaluateTerminalState);
     virtual Reward defaultPolicy(State) override;
 
   private:
-    States validStates;
+    std::vector<State> validStates;
 };
 
 #endif // MCTS_LIBRARY_RANDOMDEFAULTPOLICY_H

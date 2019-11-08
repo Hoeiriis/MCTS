@@ -1,17 +1,16 @@
 #include <TicTacToeDefaultPolicy.h>
 #include <optional>
 
-TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(boost::function<States(State &)> &getValidChildStates,
-                                               boost::function<Reward(State &)> &evaluateTerminalState)
+TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(std::function<std::vector<State>(State &)>&getValidChildStates,
+                                               std::function<Reward(State &)>&evaluateTerminalState)
     : DefaultPolicyBase(getValidChildStates, evaluateTerminalState){};
 
-Reward TicTacToeDefaultPolicy::defaultPolicy(State state) {
-    //States *validChildStates = &(this->getValidChildStates(state));
-    States validChildStates = this->getValidChildStates(state);
+double TicTacToeDefaultPolicy::defaultPolicy(State state) {
+    std::vector<State> validChildStates = this->getValidChildStates(state);
     std::srand((int)time(0));
 
     while (validChildStates.size() != 0) {
-        // Checking if any of the valid states are terminal (have no valid child states)
+        // Checking if any of the valid std::vector<State> are terminal (have no valid child std::vector<State>)
         for (auto& childState : validChildStates) {
             if ((this->getValidChildStates(childState)).size() == 0) {
                 return (this->evaluateTerminalState(childState));

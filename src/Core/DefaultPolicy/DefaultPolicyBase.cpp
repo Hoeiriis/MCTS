@@ -1,5 +1,5 @@
 #include <DefaultPolicyBase.h>
 
-DefaultPolicyBase::DefaultPolicyBase(boost::function<States(State &)> &getValidChildStates,
-                                     boost::function<Reward(State &)> &evaluateTerminalState)
+DefaultPolicyBase::DefaultPolicyBase(std::function<std::vector<State>(State &)>&getValidChildStates,
+                                     std::function<Reward(State &)> &evaluateTerminalState)
     : getValidChildStates(getValidChildStates), evaluateTerminalState(evaluateTerminalState){};
