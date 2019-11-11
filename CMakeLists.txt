@@ -39,7 +39,10 @@ add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
 add_executable(main src/main.cpp)
-target_link_libraries(main TicTacToe) 
+target_link_libraries(main TicTacToe Core tree_policies)
+
+#set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0")
+set(CMAKE_BUILD_TYPE Debug)
 
 # Build doxygen documentation if possible #####################################
 find_package(Doxygen)

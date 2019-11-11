@@ -10,7 +10,10 @@ SearchNode::SearchNode(SearchNode *parent_node, State &in_state, bool isTerminal
     }
 };
 
-void SearchNode::add_child(SearchNode &child_node) { child_nodes.push_back(child_node); }
+void SearchNode::add_child(const SearchNode &child_node) {
+    std::shared_ptr<SearchNode> node = std::make_shared<SearchNode>(child_node);
+    child_nodes.push_back(node);
+}
 
 void SearchNode::set_unvisited_child_states(std::vector<State> &possible_child_states) {
     unvisited_child_states = possible_child_states;
