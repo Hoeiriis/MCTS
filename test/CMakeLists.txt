@@ -27,6 +27,7 @@ if(GTest_FOUND)
   include(GoogleTest)
 
   add_subdirectory(test_environments)
+  add_subdirectory(test_core)
 
 else()
 
