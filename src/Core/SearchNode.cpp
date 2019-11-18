@@ -4,17 +4,26 @@
 #include <SearchNode.h>
 
 SearchNode::SearchNode(SearchNode *parent_node, State &in_state, bool isTerminal)
-    : parent(parent_node), state(in_state), visits(0), score(0), isTerminalState(isTerminal) {
-    if (parent_node) {
-        parent->add_child(*this);
-    }
-};
+    : parent(parent_node), state(in_state), visits(0), score(0), isTerminalState(isTerminal) {};
 
-void SearchNode::add_child(const SearchNode &child_node) {
-    std::shared_ptr<SearchNode> node = std::make_shared<SearchNode>(child_node);
-    child_nodes.push_back(node);
+void SearchNode::add_child(const std::shared_ptr<SearchNode>& child) {
+    child_nodes.push_back(child);
 }
 
 void SearchNode::set_unvisited_child_states(std::vector<State> &possible_child_states) {
     unvisited_child_states = possible_child_states;
+}
+
+std::shared_ptr<SearchNode> SearchNode::create_SearchNode(SearchNode *parent_node, State &state, bool isTerminal) {
+    auto newNode = std::make_shared<SearchNode>(SearchNode(parent_node, state, isTerminal));
+    if(parent_node){
+        parent_node->add_child(newNode);
+    }
+
+    return newNode;
+}
+
+std::shared_ptr<SearchNode>
+SearchNode::create_SearchNode(std::shared_ptr<SearchNode>& parent_node, State &state, bool isTerminal) {
+    return create_SearchNode(parent_node.get(), state, isTerminal);
 }

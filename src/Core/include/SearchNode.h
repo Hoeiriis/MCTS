@@ -5,9 +5,11 @@
 #include <memory>
 #include <vector>
 
-class SearchNode {
-  public:
+class SearchNode{
+  private:
     SearchNode(SearchNode *parent_node, State &state, bool isTerminal);
+
+  public:
     int visits;
     double score;
     State state;
@@ -17,8 +19,10 @@ class SearchNode {
 
     bool isTerminalState;
 
-    void add_child(const SearchNode &child_node);
+    void add_child(const std::shared_ptr<SearchNode>& child);
     void set_unvisited_child_states(std::vector<State> &possible_child_states);
+    static std::shared_ptr<SearchNode> create_SearchNode(SearchNode *parent_node, State &state, bool isTerminal);
+    static std::shared_ptr<SearchNode> create_SearchNode(std::shared_ptr<SearchNode>& parent_node, State &state, bool isTerminal);
     //SearchNode(SearchNode &original) = delete;
 };
 
