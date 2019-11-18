@@ -22,7 +22,7 @@ class MCTSBase
         virtual void search()=0;
 
         EnvironmentBase& env;
-        SearchNode root;
+        std::shared_ptr<SearchNode> root;
 
 };
 

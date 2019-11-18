@@ -6,6 +6,6 @@
 State state_hack(1);
 
 MCTSBase::MCTSBase(EnvironmentBase &environment, boost::function<int(State)> default_policy)
-    : env(environment), root((SearchNode*)NULL, state_hack){};
+    : env(environment), root(SearchNode::create_SearchNode(nullptr, state_hack, false)){};
 
 void MCTSBase::run(int n_searches = 100) { State initialState = env.GetStartState(); }
