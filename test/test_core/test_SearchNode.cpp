@@ -35,3 +35,23 @@ TEST(SearchNode, ParentChildRelationshipTwoLevelsTest) {
     EXPECT_EQ(root.get(), childChild->parent->parent);
     EXPECT_EQ(childChild.get(), root->child_nodes.at(0)->child_nodes.at(0).get());
 }
+
+TEST(SearchNode, SearchNode_SetUnvisitedChildStat_Test) {
+    // arange
+    std::string rootStr = "root";
+    State aState = State(rootStr);
+    auto root = SearchNode::create_SearchNode(nullptr, aState, false);
+
+    std::string childStr = "childState";
+    State bState = State(childStr);
+    std::vector<State> unvisited_child_states{bState};
+
+    // act
+    auto v = root.get();
+    v->set_unvisited_child_states(unvisited_child_states);
+
+    // assert
+    auto ostate1 = root.get()->unvisited_child_states.at(0).getData<std::string>();
+    auto ostate2 = bState.getData<std::string>();
+    EXPECT_EQ(ostate1, ostate2);
+}
