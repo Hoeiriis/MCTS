@@ -16,6 +16,9 @@ ExternalProject_Add(googletest
                     TIMEOUT 30
                     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${GTEST_ROOT})
 
+
+set(TEST_TARGETS GTest::GTest GTest::Main)
+
 find_package(GTest QUIET)
 
 if(GTest_FOUND)
@@ -24,6 +27,7 @@ if(GTest_FOUND)
   include(GoogleTest)
 
   add_subdirectory(test_environments)
+  add_subdirectory(test_core)
 
 else()
 

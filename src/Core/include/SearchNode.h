@@ -2,23 +2,28 @@
 #define MCTS_LIBRARY_SEARCHNODE_H
 
 #include <State.h>
-#include <boost/any.hpp>
+#include <memory>
 #include <vector>
 
-class SearchNode {
-    public:
-        SearchNode(SearchNode *parent_node, State<boost::any> &state);
-        int visits;
-        double score;
-        State<boost::any> state;
-        std::vector<State<boost::any>> unvisited_child_states;
-        SearchNode *parent;
-        std::vector<SearchNode> child_nodes;
-        
+class SearchNode{
+  private:
+    SearchNode(SearchNode *parent_node, State &state, bool isTerminal);
 
-        void add_child(SearchNode &child_node);
-        void set_unvisited_child_states(std::vector<State<boost::any>> &possible_child_states);
+  public:
+    int visits;
+    double score;
+    State state;
+    std::vector<State> unvisited_child_states;
+    SearchNode *parent;
+    std::vector<std::shared_ptr<SearchNode>> child_nodes;
+
+    bool isTerminalState;
+
+    void add_child(const std::shared_ptr<SearchNode>& child);
+    void set_unvisited_child_states(std::vector<State> &possible_child_states);
+    static std::shared_ptr<SearchNode> create_SearchNode(SearchNode *parent_node, State &state, bool isTerminal);
+    static std::shared_ptr<SearchNode> create_SearchNode(std::shared_ptr<SearchNode>& parent_node, State &state, bool isTerminal);
+    //SearchNode(SearchNode &original) = delete;
 };
 
-
-#endif //MCTS_LIBRARY_SEARCHNODE_H
+#endif // MCTS_LIBRARY_SEARCHNODE_H
