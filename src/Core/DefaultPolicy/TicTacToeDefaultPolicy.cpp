@@ -1,8 +1,8 @@
 #include <TicTacToeDefaultPolicy.h>
 #include <optional>
 
-TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(std::function<std::vector<State>(State &)>&getValidChildStates,
-                                               std::function<Reward(State &)>&evaluateTerminalState)
+TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(std::function<std::vector<State>(State &)> &getValidChildStates,
+                                               std::function<Reward(State &)> &evaluateTerminalState)
     : DefaultPolicyBase(getValidChildStates, evaluateTerminalState){};
 
 double TicTacToeDefaultPolicy::defaultPolicy(State state) {
@@ -11,7 +11,7 @@ double TicTacToeDefaultPolicy::defaultPolicy(State state) {
 
     while (validChildStates.size() != 0) {
         // Checking if any of the valid std::vector<State> are terminal (have no valid child std::vector<State>)
-        for (auto& childState : validChildStates) {
+        for (auto &childState : validChildStates) {
             if ((this->getValidChildStates(childState)).size() == 0) {
                 return (this->evaluateTerminalState(childState));
             }

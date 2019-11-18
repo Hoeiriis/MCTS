@@ -1,8 +1,9 @@
 #include <RandomSamplingDefaultPolicy.h>
 #include <vector>
 
-RandomSamplingDefaultPolicy::RandomSamplingDefaultPolicy(std::function<std::vector<State>(State &)>&getValidChildStates,
-                                                         std::function<Reward(State &)>&evaluateTerminalState)
+RandomSamplingDefaultPolicy::RandomSamplingDefaultPolicy(
+    std::function<std::vector<State>(State &)> &getValidChildStates,
+    std::function<Reward(State &)> &evaluateTerminalState)
     : DefaultPolicyBase(getValidChildStates, evaluateTerminalState){};
 
 Reward RandomSamplingDefaultPolicy::defaultPolicy(State state) {
