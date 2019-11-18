@@ -27,7 +27,11 @@ if(GTest_FOUND)
   include(GoogleTest)
 
   add_subdirectory(test_environments)
+<<<<<<< HEAD
+  add_subdirectory(test_defaultpolicy)
+=======
   add_subdirectory(test_core)
+>>>>>>> origin/master
 
 else()
 
