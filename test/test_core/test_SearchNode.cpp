@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 
 TEST(SearchNode, ParentChildRelationshipTest) {
-    // Arange
+    // Arrange
     State aState = State("root");
     State bState = State("childRoot");
     auto root = SearchNode::create_SearchNode(nullptr, aState, false);
@@ -16,7 +16,7 @@ TEST(SearchNode, ParentChildRelationshipTest) {
 }
 
 TEST(SearchNode, ParentChildRelationshipTwoLevelsTest) {
-    // Arange
+    // Arrange
     State aState = State("root");
     State bState = State("childRoot");
     State cState = State("childChildRoot");
@@ -37,7 +37,7 @@ TEST(SearchNode, ParentChildRelationshipTwoLevelsTest) {
 }
 
 TEST(SearchNode, SearchNode_SetUnvisitedChildStat_Test) {
-    // arange
+    // Arrange
     std::string rootStr = "root";
     State aState = State(rootStr);
     auto root = SearchNode::create_SearchNode(nullptr, aState, false);
@@ -46,12 +46,12 @@ TEST(SearchNode, SearchNode_SetUnvisitedChildStat_Test) {
     State bState = State(childStr);
     std::vector<State> unvisited_child_states{bState};
 
-    // act
+    // Act
     auto v = root.get();
     v->set_unvisited_child_states(unvisited_child_states);
 
-    // assert
-    auto ostate1 = root.get()->unvisited_child_states.at(0).getData<std::string>();
+    // Assert
+    auto ostate1 = root->unvisited_child_states.at(0).getData<std::string>();
     auto ostate2 = bState.getData<std::string>();
     EXPECT_EQ(ostate1, ostate2);
 }

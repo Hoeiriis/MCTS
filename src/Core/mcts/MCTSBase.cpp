@@ -6,6 +6,6 @@
 State tempState(std::nullopt);
 
 MCTSBase::MCTSBase(EnvironmentBase &environment, boost::function<int(State)> default_policy)
-    : env(environment), root(SearchNode::create_SearchNode(nullptr, state_hack, false)){};
+    : env(environment), root(SearchNode::create_SearchNode(nullptr, tempState, false)){};
 
 void MCTSBase::run(int n_searches = 100) { State initialState = env.GetStartState(); }
