@@ -3,38 +3,39 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-using testing::Return;
-using namespace std::placeholders;
-
-class MockTicTacToeEnv : public TicTacToeEnv {
+class MockTicTacToeEnv {
   public:
-    MOCK_METHOD((std::vector<State>), GetValidChildStates, (State &), (override));
-    MOCK_METHOD(Reward, EvaluateTerminalState, (State &), (override));
+    // MOCK_METHOD((std::vector<int>), GetValidChildStates, (int));
+    MOCK_METHOD(int, EvaluateTerminalState, (int));
 };
 
-//Testing behavior with a terminal state given
+// Testing behavior with a terminal state given
 TEST(TicTacToeDefaultPolicy, TestNoChildrenState) {
     // Arange
-    State state = State("2.1");
-    std::vector<State> validChildStates = {};
+    // State state = State("2.1");
+    // std::vector<State> validChildStates = {};
     MockTicTacToeEnv mock_env;
-    std::function<std::vector<State>(State &)> getValidChildStates =
-        std::bind(&MockTicTacToeEnv::GetValidChildStates, &mock_env, _1);
-    std::function<Reward(State &)> evaluateTerminalState =
-        std::bind(&MockTicTacToeEnv::EvaluateTerminalState, &mock_env, _1);
+    // EXPECT_CALL(mock_env, GetValidChildStates(state)).Times(1).WillOnce(testing::Return(validChildStates));
+    EXPECT_CALL(mock_env, EvaluateTerminalState(1)).WillOnce(testing::Return(1));
+    /*
 
-    TicTacToeDefaultPolicy t_defaultPolicy = TicTacToeDefaultPolicy(getValidChildStates, evaluateTerminalState);
-    EXPECT_CALL(mock_env, GetValidChildStates(state)).Times(1).WillOnce(Return(validChildStates));
-    EXPECT_CALL(mock_env, EvaluateTerminalState(state)).Times(1).WillOnce(Return(2.1));
+        std::function<std::vector<State>(State &)> getValidChildStates =
+            std::bind(&MockTicTacToeEnv::GetValidChildStates, &mock_env, _1);
+        std::function<Reward(State &)> evaluateTerminalState =
+            std::bind(&MockTicTacToeEnv::EvaluateTerminalState, &mock_env, _1);
 
-    // Act
-    double reward = t_defaultPolicy.defaultPolicy(state);
+        TicTacToeDefaultPolicy t_defaultPolicy = TicTacToeDefaultPolicy(getValidChildStates, evaluateTerminalState);
+        EXPECT_CALL(mock_env, GetValidChildStates(state)).Times(1).WillOnce(Return(validChildStates));
+        EXPECT_CALL(mock_env, EvaluateTerminalState(state)).Times(1).WillOnce(Return(2.1));
 
-    // Assert
-    EXPECT_DOUBLE_EQ(reward, 2.1);
+        // Act
+        double reward = t_defaultPolicy.defaultPolicy(state);
+
+        // Assert
+        EXPECT_DOUBLE_EQ(reward, 2.1); */
 }
-
-//Testing a behavior where a child is terminal 
+/*
+//Testing a behavior where a child is terminal
 TEST(TicTacToeDefaultPolicy, TestStateWithTerminalChild) {
     // Arange
     State state = State("1");
@@ -61,4 +62,4 @@ TEST(TicTacToeDefaultPolicy, TestStateWithTerminalChild) {
 
     // Assert
     EXPECT_EQ(reward, 1.2);
-}
+} */

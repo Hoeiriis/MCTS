@@ -18,7 +18,6 @@ ExternalProject_Add(googletest
 
 
 set(TEST_TARGETS GTest::GTest GTest::Main)
-
 find_package(GTest QUIET)
 
 if(GTest_FOUND)
@@ -27,11 +26,8 @@ if(GTest_FOUND)
   include(GoogleTest)
 
   add_subdirectory(test_environments)
-<<<<<<< HEAD
   add_subdirectory(test_defaultpolicy)
-=======
   add_subdirectory(test_core)
->>>>>>> origin/master
 
 else()
 

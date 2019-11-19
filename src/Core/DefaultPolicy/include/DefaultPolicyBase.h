@@ -3,7 +3,7 @@
 
 #include <State.h>
 #include <TicTacToeEnvironment.h>
-#include <boost/function.hpp>
+#include <functional>
 
 class DefaultPolicyBase {
   public:
