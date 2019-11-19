@@ -3,7 +3,8 @@
 class BackupNegmax : BackupBase {
   public:
     BackupNegmax();
-    virtual void backup(SearchNode &node, Reward defaultPolicyScore, int currentPlayer);
+    using BackupBase::backup;
+    void backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore, int currentPlayer);
 
   private:
     int currentPlayer;

@@ -2,14 +2,14 @@
 
 BackupNegmax::BackupNegmax(){};
 
-void BackupNegmax::backup(SearchNode &node, Reward defaultPolicyScore, int currentPlayer) {
+void BackupNegmax::backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore, int currentPlayer) {
     std::vector<SearchNode *> ancestorsList = {};
-    getAncestors(&node, ancestorsList);
+    getAncestors(node.get(), ancestorsList);
 
-    for (SearchNode *currentNode : ancestorsList) {
+    for (auto currentNode : ancestorsList) {
         currentNode->visits += 1;
-        currentNode->score += defaultPolicyScore;
+        //currentNode->score[currentPlayer] += defaultPolicyScore;
         defaultPolicyScore = -1 * (defaultPolicyScore);
         currentPlayer &= 1;
-    }
+   }
 }

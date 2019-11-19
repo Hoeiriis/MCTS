@@ -3,5 +3,5 @@
 class BasicBackup : BackupBase {
   public:
     BasicBackup();
-    virtual void backup(SearchNode &node, Reward defaultPolicyScore) override;
+    void backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore);
 };

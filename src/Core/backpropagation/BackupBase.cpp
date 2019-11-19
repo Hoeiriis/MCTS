@@ -6,7 +6,7 @@ BackupBase::BackupBase(){};
 void BackupBase::getAncestors(SearchNode *node, std::vector<SearchNode *> &ancestorsList) {
     ancestorsList.push_back(node);
     SearchNode *parent = node->parent;
-    if (parent != nullptr) {
+    if (parent->parent != nullptr) {
         BackupBase::getAncestors(parent, ancestorsList);
     }
 };
