@@ -3,8 +3,6 @@
 #include <memory>
 #include <string>
 
-State tempState(std::nullopt);
-
 class UCT_TreePolicyTest : public ::testing::Test {
 
   protected:
@@ -27,10 +25,9 @@ class UCT_TreePolicyTest : public ::testing::Test {
         treePolicy = UCT_TreePolicy(sExp, sChild);
     }
 
-    std::shared_ptr<SearchNode> root = SearchNode::create_SearchNode(nullptr, tempState, false);
-    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode> node)> placeholderFunc = [](std::shared_ptr<SearchNode> node) {
-        return node;
-    };
+    std::shared_ptr<SearchNode> root = SearchNode::create_SearchNode(nullptr, false);
+    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode> node)> placeholderFunc =
+        [](std::shared_ptr<SearchNode> node) { return node; };
     UCT_TreePolicy treePolicy = UCT_TreePolicy(placeholderFunc, placeholderFunc);
 
     std::shared_ptr<SearchNode> simpleExpand(std::shared_ptr<SearchNode> node) {
@@ -45,7 +42,7 @@ class UCT_TreePolicyTest : public ::testing::Test {
     }
 };
 
-TEST_F(UCT_TreePolicyTest, ExpandNode) {
+TEST_F(UCT_TreePolicyTest, ExpandRootsUnvisitedChildState) {
     // Arrange
     State rootChild3 = State("rootChild3");
     std::vector<State> unvisited_child_states{rootChild3};
@@ -59,7 +56,7 @@ TEST_F(UCT_TreePolicyTest, ExpandNode) {
     EXPECT_EQ(root->child_nodes.size(), 3);
 }
 
-TEST_F(UCT_TreePolicyTest, BestChildOnceThenExpand) {
+TEST_F(UCT_TreePolicyTest, CallBestChildOnceThenExpandUnvisitedChildState) {
     // Arrange
     State rootChild1Child = State("rootChild1Child");
     std::vector<State> unvisited_child_states{rootChild1Child};
@@ -72,11 +69,9 @@ TEST_F(UCT_TreePolicyTest, BestChildOnceThenExpand) {
     // Assert
     EXPECT_EQ(expandedNode->parent, bestChild.get());
     EXPECT_EQ(bestChild->child_nodes.size(), 1);
-
 }
 
-
-TEST_F(UCT_TreePolicyTest, BestChildTwiceThenExpand) {
+TEST_F(UCT_TreePolicyTest, CallBestChildTwiceThenExpandUnvisitedChildState) {
 
     // Arrange
     State secondBestChild = State("secondBestChild");
@@ -93,10 +88,9 @@ TEST_F(UCT_TreePolicyTest, BestChildTwiceThenExpand) {
     // Assert
     EXPECT_EQ(expandedNode->parent, bestChilds_bestChild.get());
     EXPECT_EQ(bestChilds_bestChild->child_nodes.size(), 1);
-
 }
 
-TEST_F(UCT_TreePolicyTest, NoExpand) {
+TEST_F(UCT_TreePolicyTest, ReturnTerminalNode) {
     // Arrange
     State secondBestChild = State("secondBestChild");
     auto bestChild = root->child_nodes.at(0);

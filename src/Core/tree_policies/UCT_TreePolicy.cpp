@@ -9,9 +9,7 @@ std::shared_ptr<SearchNode> UCT_TreePolicy::treePolicy(std::shared_ptr<SearchNod
             return m_expand(current_node);
         }
 
-
         current_node = m_bestChild(current_node);
     }
-    //std::shared_ptr<SearchNode> node_to_return = std::make_shared<SearchNode>(std::move(*current_node));
     return current_node;
 }

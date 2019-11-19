@@ -1,7 +1,7 @@
 #include <SearchNode.h>
 #include <gtest/gtest.h>
 
-TEST(SearchNode, ParentChildRelationshipTest) {
+TEST(SearchNode, ParentChildRelationship_TestCorrectness) {
     // Arrange
     State aState = State("root");
     State bState = State("childRoot");
@@ -15,7 +15,7 @@ TEST(SearchNode, ParentChildRelationshipTest) {
     EXPECT_EQ(child.get(), root->child_nodes.at(0).get());
 }
 
-TEST(SearchNode, ParentChildRelationshipTwoLevelsTest) {
+TEST(SearchNode, ParentChildRelationshipTwoLevels_TestCorrectness) {
     // Arrange
     State aState = State("root");
     State bState = State("childRoot");
@@ -36,7 +36,7 @@ TEST(SearchNode, ParentChildRelationshipTwoLevelsTest) {
     EXPECT_EQ(childChild.get(), root->child_nodes.at(0)->child_nodes.at(0).get());
 }
 
-TEST(SearchNode, SearchNode_SetUnvisitedChildStat_Test) {
+TEST(SearchNode, SetUnvisitedChildStates_TestCorrectness) {
     // Arrange
     std::string rootStr = "root";
     State aState = State(rootStr);
