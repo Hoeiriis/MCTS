@@ -1,25 +1,22 @@
 #ifndef MCTS_LIBRARY_DEFAULTPOLICYBASE_H
 #define MCTS_LIBRARY_DEFAULTPOLICYBASE_H
 
-#include <TicTacToeEnvironment.h>
 #include <State.h>
-#include <boost/function.hpp>
+#include <TicTacToeEnvironment.h>
+#include <functional>
+#include <random>
 
-typedef std::vector<State> States;
+class DefaultPolicyBase {
+  public:
+    DefaultPolicyBase(std::function<std::vector<State>(State &)> &getValidChildStates,
+                      std::function<Reward(State &)> &evaluateTerminalState);
 
-class DefaultPolicyBase
-{
-    public:
-        DefaultPolicyBase(boost::function<States(State&)>& getValidChildStates,
-                          boost::function<Reward(State&)>& evaluateTerminalState);
-        ~DefaultPolicyBase();
+    virtual Reward defaultPolicy(State) = 0;
 
-        virtual Reward defaultPolicy(State)=0;
-
-    protected:
-        boost::function<States(State&)> getValidChildStates;
-        boost::function<Reward(State&)> evaluateTerminalState;
-
+  protected:
+    std::function<std::vector<State>(State &)> &getValidChildStates;
+    std::function<Reward(State &)> &evaluateTerminalState;
+    std::mt19937 generator;
 };
 
-#endif //MCTS_LIBRARY_DEFAULTPOLICYBASE_H
+#endif // MCTS_LIBRARY_DEFAULTPOLICYBASE_H

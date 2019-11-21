@@ -18,7 +18,6 @@ ExternalProject_Add(googletest
 
 
 set(TEST_TARGETS GTest::GTest GTest::Main)
-
 find_package(GTest QUIET)
 
 if(GTest_FOUND)
