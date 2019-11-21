@@ -14,5 +14,7 @@
 int main() {
     std::cout << "Hello, World!" << std::endl;
     TicTacToeEnv env;
+    env = TicTacToeEnv();
+    auto s_state = env.GetStartState();
     return 0;
 }

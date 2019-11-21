@@ -1,8 +1,8 @@
 #include <SearchNode.h>
 #include <gtest/gtest.h>
 
-TEST(SearchNode, ParentChildRelationshipTest) {
-    // Arange
+TEST(SearchNode, ParentChildRelationship_TestCorrectness) {
+    // Arrange
     State aState = State("root");
     State bState = State("childRoot");
     auto root = SearchNode::create_SearchNode(nullptr, aState, false);
@@ -15,8 +15,8 @@ TEST(SearchNode, ParentChildRelationshipTest) {
     EXPECT_EQ(child.get(), root->child_nodes.at(0).get());
 }
 
-TEST(SearchNode, ParentChildRelationshipTwoLevelsTest) {
-    // Arange
+TEST(SearchNode, ParentChildRelationshipTwoLevels_TestCorrectness) {
+    // Arrange
     State aState = State("root");
     State bState = State("childRoot");
     State cState = State("childChildRoot");
@@ -34,4 +34,24 @@ TEST(SearchNode, ParentChildRelationshipTwoLevelsTest) {
 
     EXPECT_EQ(root.get(), childChild->parent->parent);
     EXPECT_EQ(childChild.get(), root->child_nodes.at(0)->child_nodes.at(0).get());
+}
+
+TEST(SearchNode, SetUnvisitedChildStates_TestCorrectness) {
+    // Arrange
+    std::string rootStr = "root";
+    State aState = State(rootStr);
+    auto root = SearchNode::create_SearchNode(nullptr, aState, false);
+
+    std::string childStr = "childState";
+    State bState = State(childStr);
+    std::vector<State> unvisited_child_states{bState};
+
+    // Act
+    auto v = root.get();
+    v->set_unvisited_child_states(unvisited_child_states);
+
+    // Assert
+    auto ostate1 = root->unvisited_child_states.at(0).getData<std::string>();
+    auto ostate2 = bState.getData<std::string>();
+    EXPECT_EQ(ostate1, ostate2);
 }
