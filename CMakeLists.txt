@@ -72,5 +72,4 @@ if("${TESTING}" STREQUAL "YES")
   add_subdirectory(test)
 endif("${TESTING}" STREQUAL "YES")
 
-
 target_compile_features(main PUBLIC cxx_std_17)

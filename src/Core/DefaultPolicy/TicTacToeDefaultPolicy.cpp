@@ -1,33 +1,26 @@
 #include <TicTacToeDefaultPolicy.h>
-#include <optional>
+#include <random>
 
-TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(boost::function<States(State &)> &getValidChildStates,
-                                               boost::function<Reward(State &)> &evaluateTerminalState)
+TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(std::function<std::vector<State>(State &)> &getValidChildStates,
+                                               std::function<Reward(State &)> &evaluateTerminalState)
     : DefaultPolicyBase(getValidChildStates, evaluateTerminalState){};
 
-Reward TicTacToeDefaultPolicy::defaultPolicy(State state) {
-    States childStates = this->getValidChildStates(state);
-    States validChildStates;
-    // TODO check the init of tempstate
-    State tempState(std::nullopt);
+double TicTacToeDefaultPolicy::defaultPolicy(State state) {
+    std::vector<State> validChildStates = this->getValidChildStates(state);
 
-    std::srand((int)time(0));
 
-    while (childStates.size()) {
-
-        // Check if any of the valid states are terminal (have no valid child states)
-        for (int i = 0; i < childStates.size(); i++) {
-            tempState = childStates[i];
-            validChildStates = this->getValidChildStates(tempState);
-            if (validChildStates.size() == 0) {
-                return this->evaluateTerminalState(tempState);
+    while (!validChildStates.empty()) {
+        // Checking if any of the valid std::vector<State> are terminal (have no valid child std::vector<State>)
+        for (auto &childState : validChildStates) {
+            if ((this->getValidChildStates(childState)).empty()) {
+                return (this->evaluateTerminalState(childState));
             }
         }
         // If there is no terminal child choose a state randomly
-        int i;
-        i = std::rand() % childStates.size();
-        tempState = childStates[i];
-        childStates = this->getValidChildStates(tempState);
+        std::uniform_int_distribution<int> uniformIntDistribution(0, validChildStates.size());
+        int i_random = uniformIntDistribution(generator);
+        state = validChildStates[i_random];
+        validChildStates = this->getValidChildStates(state);
     }
 
     return (this->evaluateTerminalState(state));
