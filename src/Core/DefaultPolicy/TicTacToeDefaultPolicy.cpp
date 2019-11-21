@@ -7,12 +7,12 @@ TicTacToeDefaultPolicy::TicTacToeDefaultPolicy(std::function<std::vector<State>(
 
 double TicTacToeDefaultPolicy::defaultPolicy(State state) {
     std::vector<State> validChildStates = this->getValidChildStates(state);
-    std::srand((int)time(0));
+    std::srand((int)time(nullptr));
 
-    while (validChildStates.size() != 0) {
+    while (!validChildStates.empty()) {
         // Checking if any of the valid std::vector<State> are terminal (have no valid child std::vector<State>)
         for (auto &childState : validChildStates) {
-            if ((this->getValidChildStates(childState)).size() == 0) {
+            if ((this->getValidChildStates(childState)).empty()) {
                 return (this->evaluateTerminalState(childState));
             }
         }
