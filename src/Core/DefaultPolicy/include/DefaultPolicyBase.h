@@ -4,6 +4,7 @@
 #include <State.h>
 #include <TicTacToeEnvironment.h>
 #include <functional>
+#include <random>
 
 class DefaultPolicyBase {
   public:
@@ -15,6 +16,7 @@ class DefaultPolicyBase {
   protected:
     std::function<std::vector<State>(State &)> &getValidChildStates;
     std::function<Reward(State &)> &evaluateTerminalState;
+    std::mt19937 generator;
 };
 
 #endif // MCTS_LIBRARY_DEFAULTPOLICYBASE_H
