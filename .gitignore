@@ -228,3 +228,5 @@ test_binaries/
 #Vscode
 .vscode/launch.json
 .vscode/settings.json
+
+MCTS Library.cbp
