@@ -1,8 +1,8 @@
 #include <BackupBase.h>
 
-class BackupNegmax : BackupBase {
+class BackupNegamax : BackupBase {
   public:
-    BackupNegmax();
+    BackupNegamax();
     using BackupBase::backup;
     void backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore, int currentPlayer);
 

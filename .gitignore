@@ -224,3 +224,7 @@ test_binaries/
 *_include.cmake
 *_tests.cmake
 .prefixes/
+
+#Vscode
+.vscode/launch.json
+.vscode/settings.json

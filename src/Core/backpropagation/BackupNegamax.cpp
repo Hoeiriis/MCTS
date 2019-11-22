@@ -1,8 +1,8 @@
 #include <BackupNegamax.h>
 
-BackupNegmax::BackupNegmax(){};
+BackupNegamax::BackupNegamax(){};
 
-void BackupNegmax::backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore, int currentPlayer) {
+void BackupNegamax::backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore, int currentPlayer) {
     std::vector<SearchNode *> ancestorsList = {};
     getAncestors(node.get(), ancestorsList);
 

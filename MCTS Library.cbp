@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="MCTS Library"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\Environments\;CMake Files\src\Core\;CMake Files\src\Core\tree_policies\;CMake Files\src\Core\mcts\;CMake Files\src\Core\DefaultPolicy\;CMake Files\test\;CMake Files\test\test_environments\;CMake Files\test\test_core\;CMake Files\test\test_core\test_tree_policies\;CMake Files\test\test_core\test_defaultpolicy\;CMake Files\.prefixes\;CMake Files\.prefixes\gtest\;CMake Files\.prefixes\gtest\tmp\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test">
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 test"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="main">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/bin/main" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/include"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 main"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="main/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/bin/main" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/include"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 main/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="doc">
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 doc"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Environment">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libEnvironment.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 Environment"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Environment/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libEnvironment.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 Environment/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TicTacToe">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libTicTacToe.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 TicTacToe"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TicTacToe/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libTicTacToe.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 TicTacToe/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Core">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libCore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/Makefile&quot;  VERBOSE=1 Core"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Core/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libCore.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/Makefile&quot;  VERBOSE=1 Core/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tree_policies">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libtree_policies.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/include"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/Makefile&quot;  VERBOSE=1 tree_policies"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tree_policies/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libtree_policies.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/include"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/Makefile&quot;  VERBOSE=1 tree_policies/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mcts">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libmcts.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/Makefile&quot;  VERBOSE=1 mcts"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mcts/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libmcts.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/Makefile&quot;  VERBOSE=1 mcts/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DefaultPolicy">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libDefaultPolicy.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/Makefile&quot;  VERBOSE=1 DefaultPolicy"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DefaultPolicy/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/lib/libDefaultPolicy.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/Makefile&quot;  VERBOSE=1 DefaultPolicy/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="googletest">
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/Makefile&quot;  VERBOSE=1 googletest"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_tictactoe">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_tictactoe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 test_tictactoe"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_tictactoe/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_tictactoe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 test_tictactoe/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_state">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_state" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 test_state"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_state/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_state" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 test_state/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_SearchNode">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_SearchNode" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/Makefile&quot;  VERBOSE=1 test_SearchNode"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_SearchNode/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_SearchNode" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/Makefile&quot;  VERBOSE=1 test_SearchNode/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_UCT_TreePolicy">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_UCT_TreePolicy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/include"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/Makefile&quot;  VERBOSE=1 test_UCT_TreePolicy"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_UCT_TreePolicy/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_UCT_TreePolicy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/include"/>
+					<Add directory="/mnt/c/libs/boost_1_69_0"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/Makefile&quot;  VERBOSE=1 test_UCT_TreePolicy/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_defaultpolicy">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_defaultpolicy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/Makefile&quot;  VERBOSE=1 test_defaultpolicy"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_defaultpolicy/fast">
+				<Option output="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test/test_defaultpolicy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Adriana/Projects/AAU/MCTS/build/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/ExternalLibs/GTest/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/include"/>
+					<Add directory="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/Makefile&quot;  VERBOSE=1 test_defaultpolicy/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/DefaultPolicyBase.cpp">
+			<Option target="DefaultPolicy"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/RandomSamplingDefaultPolicy.cpp">
+			<Option target="DefaultPolicy"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/TicTacToeDefaultPolicy.cpp">
+			<Option target="DefaultPolicy"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/SearchNode.cpp">
+			<Option target="Core"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/MCTSBase.cpp">
+			<Option target="mcts"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/UCT.cpp">
+			<Option target="mcts"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/TreePolicyBase.cpp">
+			<Option target="tree_policies"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/UCT_TreePolicy.cpp">
+			<Option target="tree_policies"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/EnvironmentBase.cpp">
+			<Option target="Environment"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/State.cpp">
+			<Option target="Environment"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/TicTacToeEnvironment.cpp">
+			<Option target="TicTacToe"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/main.cpp">
+			<Option target="main"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_SearchNode.cpp">
+			<Option target="test_SearchNode"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/test_TicTacToeDefaultPolicy.cpp">
+			<Option target="test_defaultpolicy"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/test_UCT_TreePolicy.cpp">
+			<Option target="test_UCT_TreePolicy"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/test_state.cpp">
+			<Option target="test_state"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/test_tictactoe.cpp">
+			<Option target="test_tictactoe"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/Doxyfile.in">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Environments/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\Environments\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\Core\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/tree_policies/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\Core\tree_policies\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/mcts/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\Core\mcts\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/src/Core/DefaultPolicy/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\Core\DefaultPolicy\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_environments/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\test_environments\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\test_core\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_tree_policies/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\test_core\test_tree_policies\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/test/test_core/test_defaultpolicy/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\test_core\test_defaultpolicy\"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Adriana/Projects/AAU/MCTS/.prefixes/gtest/tmp/googletest-cfgcmd.txt.in">
+			<Option virtualFolder="CMake Files\.prefixes\gtest\tmp\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
