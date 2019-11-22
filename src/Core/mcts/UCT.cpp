@@ -1,7 +1,5 @@
 #include <UCT.h>
-#include <UCT_treePolicy.h>
-#include <RandomDefaultPolicy.h>
 
-UCT::UCT(EnvironmentBase<boost::any> &environment) : MCTSInterface(environment){ 
+UCT::UCT(EnvironmentBase &environment) : MCTSInterface(environment){ 
 };
 

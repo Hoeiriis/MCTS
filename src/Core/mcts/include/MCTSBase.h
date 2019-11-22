@@ -1,34 +1,32 @@
-//
-// Created by happysun on 01/10/2019.
-//
-
 #ifndef MCTS_LIBRARY_MCTSBASE_H
 #define MCTS_LIBRARY_MCTSBASE_H
 
 #include <EnvironmentBase.h>
 #include <SearchNode.h>
 #include <State.h>
-#include <boost/any.hpp>
-#include <boost/function.hpp>
+#include <memory>
+#include <functional>
 
 class MCTSBase {
   public:
-    MCTSBase(EnvironmentBase<boost::any> &environment, boost::function<SearchNode(SearchNode)> &tree_policy,
-             boost::function<int(State<boost::any>)> &default_policy,
-             boost::function<void(SearchNode, int)> &backpropagation,
-             boost::function<SearchNode(SearchNode)> &best_child);
+    MCTSBase(EnvironmentBase &environment,
+             std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> &tree_policy,
+             std::function<Reward(State)> &default_policy,
+             std::function<void(std::shared_ptr<SearchNode>, int)> &backpropagation,
+             std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> &best_child);
 
     void run(int n_searches);
 
   protected:
-    SearchNode search(int n_searches);
+    std::shared_ptr<SearchNode> search(int n_searches);
 
-    EnvironmentBase<boost::any> &m_environment;
-    boost::function<SearchNode(SearchNode)> m_tree_policy;
-    boost::function<int(State<boost::any>)> m_default_policy;
-    boost::function<void(SearchNode, int)> m_backpropagation;
-    boost::function<SearchNode(SearchNode)> m_best_child;
-    SearchNode m_root;
+    EnvironmentBase& m_environment;
+    std::shared_ptr<SearchNode> m_root;
+
+    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> m_tree_policy;
+    std::function<Reward(State)> m_default_policy;
+    std::function<void(std::shared_ptr<SearchNode>, int)> m_backpropagation;
+    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> m_best_child;
 };
 
 #endif // MCTS_LIBRARY_MCTSBASE_H

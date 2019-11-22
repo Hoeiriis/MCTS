@@ -1,3 +1,4 @@
+set(CMAKE_CXX_STANDARD 17)
 cmake_minimum_required(VERSION 3.8)
 
 project("MCTS Library" LANGUAGES "CXX" VERSION 0.1.0)
@@ -38,7 +39,7 @@ add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
 add_executable(main src/main.cpp)
-target_link_libraries(main TicTacToe) 
+target_link_libraries(main TicTacToe Core tree_policies)
 
 # Build doxygen documentation if possible #####################################
 find_package(Doxygen)
@@ -55,12 +56,17 @@ if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
                     VERBATIM)
 endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
 
-if(NOT TESTING)
+if(NOT "${TESTING}" STREQUAL "NO")
+  message("Testing is ENABLED")
   set(TESTING YES)
-endif(NOT TESTING)
+else()
+  message("Testing is DISABLED")
+endif(NOT "${TESTING}" STREQUAL "NO")
 
 
 if("${TESTING}" STREQUAL "YES")
   enable_testing()
   add_subdirectory(test)
 endif("${TESTING}" STREQUAL "YES")
+
+target_compile_features(main PUBLIC cxx_std_17)
