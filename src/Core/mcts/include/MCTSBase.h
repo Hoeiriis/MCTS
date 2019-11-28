@@ -4,8 +4,8 @@
 #include <EnvironmentBase.h>
 #include <SearchNode.h>
 #include <State.h>
-#include <memory>
 #include <functional>
+#include <memory>
 
 class MCTSBase {
   public:
@@ -20,7 +20,7 @@ class MCTSBase {
   protected:
     std::shared_ptr<SearchNode> search(int n_searches);
 
-    EnvironmentBase& m_environment;
+    EnvironmentBase &m_environment;
     std::shared_ptr<SearchNode> m_root;
 
     std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> m_tree_policy;

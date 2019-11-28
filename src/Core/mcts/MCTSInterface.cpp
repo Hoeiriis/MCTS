@@ -6,10 +6,11 @@ MCTSInterface::MCTSInterface(EnvironmentBase &environment) : m_environment(envir
 void MCTSInterface::run(int n_searches) {
     State initialState = m_environment.GetStartState();
     std::vector<State> unvisited_child_states = m_environment.GetValidChildStates(initialState);
-    m_root = SearchNode::create_SearchNode(NULL, initialState, false);
+    m_root = SearchNode::create_SearchNode(nullptr, initialState, false);
 
     while (!m_environment.GetValidChildStates(m_root->state).empty()) {
-        m_root = m_search(n_searches);
+        auto best_child = m_search(n_searches);
+        m_root = best_child;
     }
 }
 
@@ -23,4 +24,6 @@ std::shared_ptr<SearchNode> MCTSInterface::m_search(int n_searches) {
         // The score is backpropagated up through the search tree
         m_backpropagation(node_to_expand, simulation_score);
     }
+
+    return m_best_child(m_root, 0);
 }
