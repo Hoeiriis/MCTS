@@ -1,5 +1,6 @@
 add_subdirectory(test_tree_policies)
 add_subdirectory(test_defaultpolicy)
+add_subdirectory(test_backpropagation)
 
 add_executable(test_SearchNode test_SearchNode.cpp)
 target_link_libraries(test_SearchNode
