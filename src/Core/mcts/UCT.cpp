@@ -4,7 +4,7 @@ UCT::UCT(EnvironmentBase &environment)
     : MCTSInterface(environment){};
 
 std::shared_ptr<SearchNode> UCT::m_tree_policy(std::shared_ptr<SearchNode> node){
-
+    return m_tpolicy.treePolicy(node);
 };
 
 Reward UCT::m_default_policy(State &state){

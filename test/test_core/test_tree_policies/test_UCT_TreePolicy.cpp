@@ -20,15 +20,17 @@ class UCT_TreePolicyTest : public ::testing::Test {
 
         std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> sExp =
             std::bind(&UCT_TreePolicyTest::simpleExpand, this, std::placeholders::_1);
-        std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> sChild =
-            std::bind(&UCT_TreePolicyTest::simpleChild, this, std::placeholders::_1);
+        std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>, double)> sChild =
+            std::bind(&UCT_TreePolicyTest::simpleChild, this, std::placeholders::_1, std::placeholders::_2);
         treePolicy = UCT_TreePolicy(sExp, sChild);
     }
 
     std::shared_ptr<SearchNode> root = SearchNode::create_SearchNode(nullptr, false);
     std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode> node)> placeholderFunc =
         [](std::shared_ptr<SearchNode> node) { return node; };
-    UCT_TreePolicy treePolicy = UCT_TreePolicy(placeholderFunc, placeholderFunc);
+    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode> node, double c)> placeholderFunc2 =
+            [](std::shared_ptr<SearchNode> node, double c) { return node; };
+    UCT_TreePolicy treePolicy = UCT_TreePolicy(placeholderFunc, placeholderFunc2);
 
     std::shared_ptr<SearchNode> simpleExpand(std::shared_ptr<SearchNode> node) {
         State state = node->unvisited_child_states.at(0);
@@ -36,7 +38,7 @@ class UCT_TreePolicyTest : public ::testing::Test {
         return expanded_node;
     }
 
-    std::shared_ptr<SearchNode> simpleChild(std::shared_ptr<SearchNode> node) {
+    std::shared_ptr<SearchNode> simpleChild(std::shared_ptr<SearchNode> node, double c=0) {
         auto firstChild = node->child_nodes.at(0);
         return firstChild;
     }
