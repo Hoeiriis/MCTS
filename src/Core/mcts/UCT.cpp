@@ -12,7 +12,21 @@ Reward UCT::m_default_policy(State &state){
 };
 
 std::shared_ptr<SearchNode> UCT::m_best_child(std::shared_ptr<SearchNode> node, double c) {
-    return node;
+    int best_child = 0;
+    double best_score_so_far = -1;
+
+    for (int i = 0; i < node->child_nodes.size(); i++) {
+        auto child = node->child_nodes.at(i);
+        double score = (child->score / (child->visits+0.000000001))
+                + c * std::sqrt((std::log(node->visits) / (child->visits+0.000000001)));
+
+        if(score > best_score_so_far) {
+            best_score_so_far = score;
+            best_child = i;
+        }
+    }
+
+    return node->child_nodes.at(best_child);
 };
 
 void UCT::m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) {
