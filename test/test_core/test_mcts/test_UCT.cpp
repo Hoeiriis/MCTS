@@ -61,19 +61,19 @@ TEST_F(UCTTesting, BestChildChoosesChildCorrectly) {
     root->visits = 6;
 
     // best child score: 1.0889
-    child1Node->score = 2;
+    child1Node->score.at(0) = 2;
     child1Node->visits = 3;
 
     // best child score: 1.2669
-    child2Node->score = 0;
+    child2Node->score.at(0) = 0;
     child2Node->visits = 1;
 
     // best child score: 1.2669
-    child3Node->score = 0;
+    child3Node->score.at(0) = 0;
     child3Node->visits = 1;
 
     // best child score: 1.6334 (best)
-    child4Node->score = 2;
+    child4Node->score.at(0) = 2;
     child4Node->visits = 2;
 
     double cp = 1 / std::sqrt(2);

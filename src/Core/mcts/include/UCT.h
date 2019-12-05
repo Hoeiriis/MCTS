@@ -6,10 +6,9 @@
 #include <BasicBackup.h>
 #include <UCT_TreePolicy.h>
 
-class UCT : MCTSInterface {
+class UCT : public MCTSInterface {
   public:
     explicit UCT(EnvironmentBase &environment);
-    ;
 
   protected:
     std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) override;

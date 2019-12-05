@@ -1,11 +1,15 @@
+#ifndef MCTS_LIBRARY_BACKUP_BASE
+#define MCTS_LIBRARY_BACKUP_BASE
+
 #include <EnvironmentBase.h>
 #include <SearchNode.h>
 
 class BackupBase {
   public:
     BackupBase();
-    void backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore);
 
   protected:
     void getAncestors(SearchNode *, std::vector<SearchNode *> &);
 };
+
+#endif // MCTS_LIBRARY_BACKUP_BASE

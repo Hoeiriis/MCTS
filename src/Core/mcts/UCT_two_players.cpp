@@ -1,18 +1,18 @@
-#include <UCT.h>
+//
+// Created by happysun on 05/12/2019.
+//
 
-UCT::UCT(EnvironmentBase &environment) : MCTSInterface(environment), generator(std::mt19937(time(nullptr))){};
+#include <UCT_two_players.h>
 
-std::shared_ptr<SearchNode> UCT::m_tree_policy(std::shared_ptr<SearchNode> node) { return m_tpolicy.treePolicy(node); };
+UCT_two_players::UCT_two_players(EnvironmentBase &environment): UCT(environment){}
 
-Reward UCT::m_default_policy(State &state) { return m_defaultPolicy.defaultPolicy(state); };
-
-std::shared_ptr<SearchNode> UCT::m_best_child(std::shared_ptr<SearchNode> node, double c) {
+std::shared_ptr<SearchNode> UCT_two_players::m_best_child(std::shared_ptr<SearchNode> node, double c) {
     int best_child = 0;
     double best_score_so_far = -1;
 
     for (int i = 0; i < node->child_nodes.size(); i++) {
         auto child = node->child_nodes.at(i);
-        double score = (child->score.at(0) / (child->visits + 0.000000001)) +
+        double score = (child->score.at(CurrentPlayer) / (child->visits + 0.000000001)) +
                        c * std::sqrt((std::log(node->visits) / (child->visits + 0.000000001)));
 
         if (score > best_score_so_far) {
@@ -31,11 +31,9 @@ std::shared_ptr<SearchNode> UCT::m_best_child(std::shared_ptr<SearchNode> node, 
     }
 
     return node->child_nodes.at(best_child);
-};
+}
 
-void UCT::m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) { return m_backup.backup(node, score); }
-
-std::shared_ptr<SearchNode> UCT::m_expand(std::shared_ptr<SearchNode> node) {
+std::shared_ptr<SearchNode> UCT_two_players::m_expand(std::shared_ptr<SearchNode> node) {
     int i_random = 0;
 
     if (node->unvisited_child_states.size() > 1) {
@@ -50,8 +48,35 @@ std::shared_ptr<SearchNode> UCT::m_expand(std::shared_ptr<SearchNode> node) {
     auto is_terminal = m_environment.GetValidChildStates(expanded_state).empty();
     auto expanded_node = SearchNode::create_SearchNode(node, expanded_state, is_terminal);
 
+    // Add values for both players
+    expanded_node->score = {0, 0};
+
     // Remove the state from unvisited states
     node->unvisited_child_states.erase(node->unvisited_child_states.begin() + i_random);
 
     return expanded_node;
 }
+
+State UCT_two_players::run(int n_searches) {
+
+    State initialState = m_environment.GetStartState();
+    std::vector<State> unvisited_child_states = m_environment.GetValidChildStates(initialState);
+    m_root = SearchNode::create_SearchNode(nullptr, initialState, false);
+    m_root->set_unvisited_child_states(unvisited_child_states);
+
+    CurrentPlayer = 0;
+
+    while (!m_environment.GetValidChildStates(m_root->state).empty()) {
+        auto best_child = m_search(n_searches);
+        m_root = best_child;
+
+        // Change player
+        CurrentPlayer = !CurrentPlayer;
+    }
+
+    return m_root->state;
+}
+
+void UCT_two_players::m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) {
+    m_backup.backup(node, score, CurrentPlayer);
+};
