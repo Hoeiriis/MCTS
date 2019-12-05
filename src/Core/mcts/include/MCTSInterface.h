@@ -9,7 +9,7 @@ class MCTSInterface {
   public:
     explicit MCTSInterface(EnvironmentBase &environment);
 
-    void run(int n_searches);
+    State run(int n_searches);
 
   protected:
     std::shared_ptr<SearchNode> m_search(int n_searches);
