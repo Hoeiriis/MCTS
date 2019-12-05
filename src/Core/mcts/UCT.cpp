@@ -36,9 +36,13 @@ std::shared_ptr<SearchNode> UCT::m_best_child(std::shared_ptr<SearchNode> node, 
 void UCT::m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) { return m_backup.backup(node, score); }
 
 std::shared_ptr<SearchNode> UCT::m_expand(std::shared_ptr<SearchNode> node) {
-    // Get unvisited state randomly
-    std::uniform_int_distribution<int> uniformIntDistribution(0, node->unvisited_child_states.size());
-    int i_random = uniformIntDistribution(generator);
+    int i_random = 0;
+
+    if (node->unvisited_child_states.size() > 1) {
+        // Get unvisited state randomly
+        std::uniform_int_distribution<int> uniformIntDistribution(0, node->unvisited_child_states.size() - 1);
+        i_random = uniformIntDistribution(generator);
+    }
 
     State expanded_state = node->unvisited_child_states.at(i_random);
 
