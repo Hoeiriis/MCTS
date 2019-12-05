@@ -18,6 +18,8 @@ class UCT : MCTSInterface {
     void m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) override;
     std::shared_ptr<SearchNode> m_expand(std::shared_ptr<SearchNode> node) override;
 
+    std::mt19937 generator;
+
 
   private:
 

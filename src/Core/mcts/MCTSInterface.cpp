@@ -7,6 +7,7 @@ void MCTSInterface::run(int n_searches) {
     State initialState = m_environment.GetStartState();
     std::vector<State> unvisited_child_states = m_environment.GetValidChildStates(initialState);
     m_root = SearchNode::create_SearchNode(nullptr, initialState, false);
+    m_root->set_unvisited_child_states(unvisited_child_states);
 
     while (!m_environment.GetValidChildStates(m_root->state).empty()) {
         auto best_child = m_search(n_searches);
