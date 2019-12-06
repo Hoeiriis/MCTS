@@ -1,36 +1,39 @@
 #include <UCT.h>
+#include <cfloat>
 
-UCT::UCT(EnvironmentBase &environment) : MCTSInterface(environment), generator(std::mt19937(time(nullptr))){};
+UCT::UCT(EnvironmentBase &environment) : MCTSBase(environment), generator(std::mt19937(time(nullptr))){};
 
 std::shared_ptr<SearchNode> UCT::m_tree_policy(std::shared_ptr<SearchNode> node) { return m_tpolicy.treePolicy(node); };
 
 Reward UCT::m_default_policy(State &state) { return m_defaultPolicy.defaultPolicy(state); };
 
 std::shared_ptr<SearchNode> UCT::m_best_child(std::shared_ptr<SearchNode> node, double c) {
-    int best_child = 0;
-    double best_score_so_far = -1;
+    auto best_score_so_far = DBL_MIN;
+    std::vector<double> score_list = {};
 
     for (int i = 0; i < node->child_nodes.size(); i++) {
         auto child = node->child_nodes.at(i);
-        double score = (child->score / (child->visits + 0.000000001)) +
-                       c * std::sqrt((std::log(node->visits) / (child->visits + 0.000000001)));
+        double score = (child->score / (child->visits + DBL_MIN)) +
+                       c * std::sqrt((std::log(node->visits) / (child->visits + DBL_MIN)));
+
+        score_list.push_back(score);
 
         if (score > best_score_so_far) {
             best_score_so_far = score;
-            best_child = i;
-        } else if (score == best_score_so_far) {
-            // randomly choose which become the new best
-            std::uniform_int_distribution<int> uniformIntDistribution(0, 1);
-            int coin_flip = uniformIntDistribution(generator);
-
-            if (coin_flip) {
-                best_score_so_far = score;
-                best_child = i;
-            }
         }
     }
 
-    return node->child_nodes.at(best_child);
+    std::vector<double> bestChildren {};
+    for (int i = 0; i < node->child_nodes.size(); i++) {
+        if (score_list.at(i) == best_score_so_far){
+            bestChildren.push_back(i);
+        }
+    }
+
+    std::uniform_int_distribution<int> uniformIntDistribution(0, bestChildren.size()-1);
+    int i_random = uniformIntDistribution(generator);
+
+    return node->child_nodes.at(bestChildren.at(i_random));
 };
 
 void UCT::m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) { return m_backup.backup(node, score); }

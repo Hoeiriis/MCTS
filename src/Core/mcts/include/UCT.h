@@ -1,15 +1,14 @@
 #ifndef MCTS_LIBRARY_UCT_H
 #define MCTS_LIBRARY_UCT_H
 
-#include <MCTSInterface.h>
+#include <MCTSBase.h>
 #include <RandomSamplingDefaultPolicy.h>
 #include <BasicBackup.h>
 #include <UCT_TreePolicy.h>
 
-class UCT : MCTSInterface {
+class UCT : MCTSBase {
   public:
     explicit UCT(EnvironmentBase &environment);
-    ;
 
   protected:
     std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) override;

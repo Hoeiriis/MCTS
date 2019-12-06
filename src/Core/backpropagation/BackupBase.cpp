@@ -1,7 +1,5 @@
 #include <BackupBase.h>
 
-BackupBase::BackupBase()= default;;
-
 // getAncestores - stores simulated node and all the nodes visited in one rollout in one list
 void BackupBase::getAncestors(SearchNode *node, std::vector<SearchNode *> &ancestorsList) {
     ancestorsList.push_back(node);
