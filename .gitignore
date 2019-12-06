@@ -226,8 +226,7 @@ test_binaries/
 .prefixes/
 
 #Vscode
-.vscode/launch.json
-.vscode/settings.json
+.vscode/
 
 #Random 
 MCTS Library.cbp

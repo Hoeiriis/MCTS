@@ -3,8 +3,8 @@
 
 class BackupBase {
   public:
-    BackupBase();
-    void backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore);
+    BackupBase()= default;;
+    virtual void backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore)=0;
 
   protected:
     void getAncestors(SearchNode *, std::vector<SearchNode *> &);
