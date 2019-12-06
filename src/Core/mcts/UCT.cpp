@@ -1,7 +1,7 @@
 #include <UCT.h>
 #include <cfloat>
 
-UCT::UCT(EnvironmentBase &environment) : MCTSInterface(environment), generator(std::mt19937(time(nullptr))){};
+UCT::UCT(EnvironmentBase &environment) : MCTSBase(environment), generator(std::mt19937(time(nullptr))){};
 
 std::shared_ptr<SearchNode> UCT::m_tree_policy(std::shared_ptr<SearchNode> node) { return m_tpolicy.treePolicy(node); };
 

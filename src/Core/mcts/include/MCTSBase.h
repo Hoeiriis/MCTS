@@ -4,29 +4,23 @@
 #include <EnvironmentBase.h>
 #include <SearchNode.h>
 #include <State.h>
-#include <functional>
-#include <memory>
 
 class MCTSBase {
   public:
-    MCTSBase(EnvironmentBase &environment,
-             std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> &tree_policy,
-             std::function<Reward(State)> &default_policy,
-             std::function<void(std::shared_ptr<SearchNode>, int)> &backpropagation,
-             std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> &best_child);
+    explicit MCTSBase(EnvironmentBase &environment);
 
-    void run(int n_searches);
+    State run(int n_searches);
 
   protected:
-    std::shared_ptr<SearchNode> search(int n_searches);
+    std::shared_ptr<SearchNode> m_search(int n_searches);
+    virtual std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) = 0;
+    virtual Reward m_default_policy(State &state) = 0;
+    virtual std::shared_ptr<SearchNode> m_best_child(std::shared_ptr<SearchNode> node, double c) = 0;
+    virtual std::shared_ptr<SearchNode> m_expand(std::shared_ptr<SearchNode> node) = 0;
+    virtual void m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) = 0;
 
     EnvironmentBase &m_environment;
     std::shared_ptr<SearchNode> m_root;
-
-    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> m_tree_policy;
-    std::function<Reward(State)> m_default_policy;
-    std::function<void(std::shared_ptr<SearchNode>, int)> m_backpropagation;
-    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> m_best_child;
 };
 
 #endif // MCTS_LIBRARY_MCTSBASE_H
