@@ -10,7 +10,8 @@ std::shared_ptr<SearchNode> UCT_TreePolicy::treePolicy(std::shared_ptr<SearchNod
             return m_expand(current_node);
         }
 
-        double cp = 1 / std::sqrt(2);
+        constexpr sqrt2 = std::sqrt(2);
+        double cp = 1 / sqrt2;
         current_node = m_bestChild(current_node, cp);
     }
     return current_node;
