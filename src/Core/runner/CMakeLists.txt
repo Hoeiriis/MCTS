@@ -8,4 +8,4 @@ target_include_directories(runner
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_link_libraries(runner mcts Environment Core tree_policies DefaultPolicy backpropagation)
+target_link_libraries(runner mcts Core Environment)
