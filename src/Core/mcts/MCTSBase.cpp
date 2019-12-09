@@ -12,6 +12,7 @@ State MCTSBase::run(int n_searches) {
     while (!m_environment.GetValidChildStates(m_root->state).empty()) {
         auto best_child = m_search(n_searches);
         m_root = best_child;
+        m_root->parent = nullptr;
     }
 
     return m_root->state;
@@ -26,6 +27,10 @@ std::shared_ptr<SearchNode> MCTSBase::m_search(int n_searches) {
         Reward simulation_score = m_default_policy(expandedNode->state);
         // The score is backpropagated up through the search tree
         m_backpropagation(expandedNode, simulation_score);
+
+        if (m_root->parent != nullptr) {
+            int iriri = 0;
+        }
     }
 
     return m_best_child(m_root, 0);

@@ -9,12 +9,21 @@
  */
 
 #include <TicTacToeEnvironment.h>
-#include <iostream>
+#include <UCT_two_players.h>
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    TicTacToeEnv env;
-    env = TicTacToeEnv();
-    auto s_state = env.GetStartState();
+
+    TicTacToeEnv env = TicTacToeEnv();
+    UCT_two_players uctTwoPlayers = UCT_two_players(env);
+
+    for (int i = 0; i < 100; ++i) {
+        std::cout << "Running one game of tic tac toe!" << std::endl;
+
+        auto endState = uctTwoPlayers.run(50000);
+        int winner = env.EvaluateTerminalState(endState);
+        env.PrintBoard(endState);
+        std::cout << "Player " << winner << " wins!" << std::endl;
+    }
+
     return 0;
 }

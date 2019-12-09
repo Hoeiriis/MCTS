@@ -14,8 +14,8 @@ class DefaultPolicyBase {
     virtual Reward defaultPolicy(State) = 0;
 
   protected:
-    std::function<std::vector<State>(State &)> &getValidChildStates;
-    std::function<Reward(State &)> &evaluateTerminalState;
+    std::function<std::vector<State>(State &)> getValidChildStates;
+    std::function<Reward(State &)> evaluateTerminalState;
     std::mt19937 generator;
 };
 

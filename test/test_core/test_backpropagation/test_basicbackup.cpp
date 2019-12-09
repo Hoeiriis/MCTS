@@ -33,10 +33,6 @@ TEST(TestBasicBackup, TestUpdateVisitsAndScores) {
     EXPECT_EQ(node_2->score.at(0), 6);
     EXPECT_EQ(node_2_1->score.at(0), 4);
     EXPECT_EQ(node_2_2->score.at(0), 2);
-
-    // Check that the root doesn't get updated
-    EXPECT_EQ(node->score.at(0), 0);
-    EXPECT_EQ(node->visits, 0);
 }
 
 

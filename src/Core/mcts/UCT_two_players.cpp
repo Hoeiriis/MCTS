@@ -5,10 +5,30 @@
 #include <UCT_two_players.h>
 #include <cfloat>
 
-UCT_two_players::UCT_two_players(EnvironmentBase &environment): UCT(environment){}
+UCT_two_players::UCT_two_players(EnvironmentBase &environment)
+    : MCTSBase(environment), generator(std::mt19937(time(nullptr))) {
+
+    // UCT TreePolicy setup
+    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> f_expand =
+        std::bind(&UCT_two_players::m_expand, this, std::placeholders::_1);
+
+    std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>, double)> f_best_child =
+        std::bind(&UCT_two_players::m_best_child, this, std::placeholders::_1, std::placeholders::_2);
+
+    m_tpolicy = UCT_TreePolicy(f_expand, f_best_child);
+
+    // UCT Default Policy setup
+    std::function<std::vector<State>(State &)> f_getValidChildStates =
+        std::bind(&EnvironmentBase::GetValidChildStates, &m_environment, std::placeholders::_1);
+
+    std::function<Reward(State &)> f_evaluateTerminalStates =
+        std::bind(&EnvironmentBase::EvaluateTerminalState, &m_environment, std::placeholders::_1);
+
+    m_defaultPolicy = RandomSamplingDefaultPolicy(f_getValidChildStates, f_evaluateTerminalStates);
+};
 
 std::shared_ptr<SearchNode> UCT_two_players::m_best_child(std::shared_ptr<SearchNode> node, double c) {
-    auto best_score_so_far = DBL_MIN;
+    auto best_score_so_far = std::numeric_limits<double>::lowest();
     std::vector<double> score_list = {};
 
     for (int i = 0; i < node->child_nodes.size(); i++) {
@@ -23,14 +43,14 @@ std::shared_ptr<SearchNode> UCT_two_players::m_best_child(std::shared_ptr<Search
         }
     }
 
-    std::vector<double> bestChildren {};
+    std::vector<double> bestChildren{};
     for (int i = 0; i < node->child_nodes.size(); i++) {
-        if (score_list.at(i) == best_score_so_far){
+        if (score_list.at(i) == best_score_so_far) {
             bestChildren.push_back(i);
         }
     }
 
-    std::uniform_int_distribution<int> uniformIntDistribution(0, bestChildren.size()-1);
+    std::uniform_int_distribution<int> uniformIntDistribution(0, bestChildren.size() - 1);
     int i_random = uniformIntDistribution(generator);
 
     return node->child_nodes.at(bestChildren.at(i_random));
@@ -50,6 +70,9 @@ std::shared_ptr<SearchNode> UCT_two_players::m_expand(std::shared_ptr<SearchNode
     // Create node from unvisited state
     auto is_terminal = m_environment.GetValidChildStates(expanded_state).empty();
     auto expanded_node = SearchNode::create_SearchNode(node, expanded_state, is_terminal);
+    // Add unvisited child states
+    auto unvisitedChildStates = m_environment.GetValidChildStates(expanded_state);
+    expanded_node->set_unvisited_child_states(unvisitedChildStates);
 
     // Add values for both players
     expanded_node->score = {0, 0};
@@ -72,6 +95,7 @@ State UCT_two_players::run(int n_searches) {
     while (!m_environment.GetValidChildStates(m_root->state).empty()) {
         auto best_child = m_search(n_searches);
         m_root = best_child;
+        m_root->parent = nullptr;
 
         // Change player
         CurrentPlayer = !CurrentPlayer;
@@ -82,4 +106,10 @@ State UCT_two_players::run(int n_searches) {
 
 void UCT_two_players::m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) {
     m_backup.backup(node, score, CurrentPlayer);
-};
+}
+
+std::shared_ptr<SearchNode> UCT_two_players::m_tree_policy(std::shared_ptr<SearchNode> node) {
+    return m_tpolicy.treePolicy(node);
+}
+
+Reward UCT_two_players::m_default_policy(State &state) { return m_defaultPolicy.defaultPolicy(state); };

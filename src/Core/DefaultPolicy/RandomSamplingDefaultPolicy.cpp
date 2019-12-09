@@ -18,5 +18,6 @@ Reward RandomSamplingDefaultPolicy::defaultPolicy(State state) {
         validChildStates = this->getValidChildStates(state);
     }
 
-    return (this->evaluateTerminalState(state));
+    double score = this->evaluateTerminalState(state);
+    return score;
 };
