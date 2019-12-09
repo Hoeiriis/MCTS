@@ -1,4 +1,4 @@
-add_library(Core SearchNode.cpp )
+add_library(Core SearchNode.cpp)
 
 target_include_directories(Core
         PUBLIC
@@ -14,3 +14,4 @@ add_subdirectory(tree_policies)
 add_subdirectory(mcts)
 add_subdirectory(DefaultPolicy)
 add_subdirectory(backpropagation)
+add_subdirectory(runner)

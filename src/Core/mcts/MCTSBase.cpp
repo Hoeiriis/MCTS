@@ -18,6 +18,8 @@ State MCTSBase::run(int n_searches) {
     return m_root->state;
 }
 
+EnvironmentBase &MCTSBase::getEnvironment() { return this->m_environment; }
+
 std::shared_ptr<SearchNode> MCTSBase::m_search(int n_searches) {
 
     for (int i = 0; i < n_searches; i++) {

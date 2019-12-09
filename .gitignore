@@ -228,4 +228,5 @@ test_binaries/
 #Vscode
 .vscode/
 
+#Random 
 MCTS Library.cbp

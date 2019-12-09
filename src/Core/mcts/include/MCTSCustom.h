@@ -16,6 +16,7 @@ class MCTSCustom {
                std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> &best_child);
 
     void run(int n_searches);
+    //EnvironmentBase& getEnvironemnt();
 
   protected:
     std::shared_ptr<SearchNode> search(int n_searches);
