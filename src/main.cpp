@@ -10,12 +10,16 @@
 
 #include <TicTacToeEnvironment.h>
 #include <UCT_two_players.h>
+#include <RunnerTicTacToe.h>
 
 int main() {
 
     TicTacToeEnv env = TicTacToeEnv();
     UCT_two_players uctTwoPlayers = UCT_two_players(env);
+    auto runner = RunnerTicTacToe(uctTwoPlayers);
+    runner.run(50, 5000);
 
+    /*
     for (int i = 0; i < 100; ++i) {
         std::cout << "Running one game of tic tac toe!" << std::endl;
 
@@ -23,7 +27,7 @@ int main() {
         int winner = env.EvaluateTerminalState(endState);
         env.PrintBoard(endState);
         std::cout << "Player " << winner << " wins!" << std::endl;
-    }
+    } */
 
     return 0;
 }

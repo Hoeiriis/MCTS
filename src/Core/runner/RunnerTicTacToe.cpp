@@ -25,7 +25,7 @@ void RunnerTicTacToe::runOneGame(int n_games, int n_searches) {
     int result;
     gamesRan += 1;
 
-    if (this->gamesRan % (int)(n_games*0.20) == 0) {
+    if ( n_games > 10 && (this->gamesRan % (int)(n_games*0.20) == 0)) {
         cout << "Running game " << this->gamesRan << " out of " << n_games << endl;
     }
     State state = this->mctsAlgorithm.run(n_searches);

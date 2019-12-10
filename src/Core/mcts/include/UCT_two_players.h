@@ -7,6 +7,7 @@
 
 #include <BackupNegamax.h>
 #include <UCT.h>
+#include <TicTacToeDefaultPolicy.h>
 
 class UCT_two_players : public MCTSBase {
 
@@ -47,7 +48,7 @@ class UCT_two_players : public MCTSBase {
 
     std::function<Reward(State &)> placeholderDefFunc2 = [](State &state) { return 0.2; };
 
-    RandomSamplingDefaultPolicy m_defaultPolicy = RandomSamplingDefaultPolicy(placeholderDefFunc, placeholderDefFunc2);
+    TicTacToeDefaultPolicy m_defaultPolicy = TicTacToeDefaultPolicy(placeholderDefFunc, placeholderDefFunc2);
 };
 
 #endif // MCTS_LIBRARY_UCT_TWO_PLAYERS_H

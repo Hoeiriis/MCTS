@@ -39,7 +39,7 @@ add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
 add_executable(main src/main.cpp)
-target_link_libraries(main TicTacToe Core mcts)
+target_link_libraries(main TicTacToe Core mcts runner)
 
 # Build doxygen documentation if possible #####################################
 find_package(Doxygen)

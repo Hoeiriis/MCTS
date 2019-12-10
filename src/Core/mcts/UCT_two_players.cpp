@@ -4,6 +4,7 @@
 
 #include <UCT_two_players.h>
 #include <cfloat>
+#include <TicTacToeDefaultPolicy.h>
 
 UCT_two_players::UCT_two_players(EnvironmentBase &environment)
     : MCTSBase(environment), generator(std::mt19937(time(nullptr))) {
@@ -24,7 +25,7 @@ UCT_two_players::UCT_two_players(EnvironmentBase &environment)
     std::function<Reward(State &)> f_evaluateTerminalStates =
         std::bind(&EnvironmentBase::EvaluateTerminalState, &m_environment, std::placeholders::_1);
 
-    m_defaultPolicy = RandomSamplingDefaultPolicy(f_getValidChildStates, f_evaluateTerminalStates);
+    m_defaultPolicy = TicTacToeDefaultPolicy(f_getValidChildStates, f_evaluateTerminalStates);
 };
 
 std::shared_ptr<SearchNode> UCT_two_players::m_best_child(std::shared_ptr<SearchNode> node, double c) {

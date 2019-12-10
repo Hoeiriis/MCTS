@@ -11,6 +11,11 @@ void BackupNegamax::backup(const std::shared_ptr<SearchNode>& node, Reward defau
         currentNode->score[currentPlayer] += defaultPolicyScore;
 
         defaultPolicyScore = -1 * (defaultPolicyScore);
-        currentPlayer &= 1;
-   }
+
+        if(currentPlayer){
+            currentPlayer = 0;
+        } else {
+            currentPlayer = 1;
+        }
+    }
 }

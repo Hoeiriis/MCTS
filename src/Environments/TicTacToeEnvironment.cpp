@@ -4,7 +4,9 @@
 TicTacToeEnv::TicTacToeEnv() {}
 
 State TicTacToeEnv::GetStartState() {
-    BoardState state(9, None);
+    BoardState state = {None, None, None,
+                        None, None, None,
+                        None, None, None};
     State result = State(state);
 
     return result;

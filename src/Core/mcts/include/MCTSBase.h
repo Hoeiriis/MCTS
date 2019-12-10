@@ -6,13 +6,18 @@
 #include <SearchNode.h>
 #include <State.h>
 
-class MCTSBase : MCTSInterface {
+class MCTSBase : public MCTSInterface {
   public:
     explicit MCTSBase(EnvironmentBase &environment);
     State run(int n_searches);
     EnvironmentBase &getEnvironment();
 
-  protected:
+    std::shared_ptr<SearchNode> m_root;
+    std::shared_ptr<SearchNode> tree_original_root;
+
+
+
+protected:
     std::shared_ptr<SearchNode> m_search(int n_searches);
     virtual std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) = 0;
     virtual Reward m_default_policy(State &state) = 0;
@@ -20,7 +25,6 @@ class MCTSBase : MCTSInterface {
     virtual std::shared_ptr<SearchNode> m_expand(std::shared_ptr<SearchNode> node) = 0;
     virtual void m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) = 0;
 
-    std::shared_ptr<SearchNode> m_root;
     EnvironmentBase &m_environment;
 };
 

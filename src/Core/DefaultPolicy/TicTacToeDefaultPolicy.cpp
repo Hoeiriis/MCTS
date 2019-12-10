@@ -17,7 +17,7 @@ double TicTacToeDefaultPolicy::defaultPolicy(State state) {
             }
         }
         // If there is no terminal child choose a state randomly
-        std::uniform_int_distribution<int> uniformIntDistribution(0, validChildStates.size());
+        std::uniform_int_distribution<int> uniformIntDistribution(0, validChildStates.size()-1);
         int i_random = uniformIntDistribution(generator);
         state = validChildStates[i_random];
         validChildStates = this->getValidChildStates(state);
