@@ -2,6 +2,7 @@
 #include <State.h>
 #include <iostream>
 
+
 using namespace std;
 
 RunnerTicTacToe::RunnerTicTacToe(MCTSInterface &mctsAlgorithm) : Runner(mctsAlgorithm){};
@@ -14,6 +15,7 @@ void RunnerTicTacToe::run(int n_games = 1000, int n_searches = 100) {
     for (int i = 1; i <= n_games; i++) {
         runOneGame(n_games, n_searches);
     }
+
     cout << "\nOut of " << n_games << " games: " << endl;
     cout << "Player 1 won " << player1 << " times!" << endl;
     cout << "Player 2 won " << player2 << " times!" << endl;

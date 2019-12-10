@@ -8,7 +8,7 @@ class RunnerTicTacToe : Runner {
     virtual void run(int n_games, int n_simulations) override;
 
   private:
-    bool draw = false;
+    short draw = 0;
     short player1 = 0;
     short player2 = 0;
     virtual void runOneGame(int n_games, int n_simulations) override;
