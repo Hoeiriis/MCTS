@@ -46,6 +46,8 @@ class EnvironmentBase {
     virtual State GetStartState() = 0;
     virtual std::vector<State> GetValidChildStates(State &state) = 0;
     virtual Reward EvaluateTerminalState(State &state) = 0;
+    virtual Reward EvaluateRewardFunction(State& state) = 0;
+    virtual bool IsTerminal(State&) = 0;
 };
 
 #endif // ENVIRONMENTBASE_H

@@ -38,8 +38,11 @@ message(STATUS "Prefix=${PREFIX_LOCATION}")
 add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
-add_executable(main src/main.cpp)
-target_link_libraries(main mcts TicTacToe Core tree_policies)
+option(MCTS_Executable "Build executable." OFF)
+if(MCTS_Executable)
+    add_executable(main src/main.cpp)
+    target_link_libraries(main mcts TicTacToe Core tree_policies)
+endif(MCTS_Executable)
 
 # Build doxygen documentation if possible #####################################
 find_package(Doxygen)
@@ -56,17 +59,24 @@ if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
                     VERBATIM)
 endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
 
-if(NOT "${TESTING}" STREQUAL "NO")
-  message("Testing is ENABLED")
-  set(TESTING YES)
-else()
-  message("Testing is DISABLED")
-endif(NOT "${TESTING}" STREQUAL "NO")
+if(MCTS_Executable)
+    if(NOT "${TESTING}" STREQUAL "NO")
+      message("Testing is ENABLED")
+      set(TESTING YES)
+    else()
+      message("Testing is DISABLED")
+    endif(NOT "${TESTING}" STREQUAL "NO")
 
 
-if("${TESTING}" STREQUAL "YES")
-  enable_testing()
-  add_subdirectory(test)
-endif("${TESTING}" STREQUAL "YES")
+    if("${TESTING}" STREQUAL "YES")
+      enable_testing()
+      add_subdirectory(test)
+    endif("${TESTING}" STREQUAL "YES")
 
-target_compile_features(main PUBLIC cxx_std_17)
+    target_compile_features(main PUBLIC cxx_std_17)
+endif(MCTS_Executable)
+
+install(TARGETS mcts Environment
+	RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib)
