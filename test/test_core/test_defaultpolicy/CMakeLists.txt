@@ -4,7 +4,7 @@ target_link_libraries(test_defaultpolicy
                       ${TEST_TARGETS}
                       gmock
                       gmock_main
-                      DefaultPolicy)
+                      default_policy)
 
 gtest_discover_tests(test_defaultpolicy)
 
