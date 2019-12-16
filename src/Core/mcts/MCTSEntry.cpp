@@ -5,6 +5,7 @@
 
 
 #include <MCTSEntry.h>
+#include <UCT.h>
 
 MCTSEntry::MCTSEntry(EnvironmentBase& env) : _environment(env)
 {
@@ -13,6 +14,8 @@ MCTSEntry::MCTSEntry(EnvironmentBase& env) : _environment(env)
 
 bool MCTSEntry::run()
 {
-    // do alg
+    auto uct = UCT(_environment);
+    auto endState = uct.run(5000);
+
     return true;
 }

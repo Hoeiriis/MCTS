@@ -16,9 +16,9 @@
 
 class MCTSEntry {
 protected:
-    const EnvironmentBase& _environment;
+    EnvironmentBase& _environment;
 public:
-    MCTSEntry(EnvironmentBase& env);
+    explicit MCTSEntry(EnvironmentBase& env);
     bool run();
 };
 
