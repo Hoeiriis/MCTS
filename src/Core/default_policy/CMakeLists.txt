@@ -1,6 +1,6 @@
-add_library(DefaultPolicy DefaultPolicyBase.cpp RandomSamplingDefaultPolicy.cpp TicTacToeDefaultPolicy.cpp)
+add_library(default_policy DefaultPolicyBase.cpp RandomSamplingDefaultPolicy.cpp TicTacToeDefaultPolicy.cpp)
 
-target_include_directories(DefaultPolicy
+target_include_directories(default_policy
     PUBLIC
     $<INSTALL_INTERFACE:include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -8,4 +8,4 @@ target_include_directories(DefaultPolicy
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_link_libraries(DefaultPolicy Core Environment)
+target_link_libraries(default_policy Core Environment)
