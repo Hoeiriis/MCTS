@@ -5,14 +5,17 @@ MCTSBase::MCTSBase(EnvironmentBase &environment) : m_environment(environment){};
 
 State MCTSBase::run(int n_searches) {
     State initialState = m_environment.GetStartState();
-    std::vector<State> unvisited_child_states = m_environment.GetValidChildStates(initialState);
-    m_root = SearchNode::create_SearchNode(nullptr, initialState, false);
+    return run(n_searches, initialState);
+}
+
+State MCTSBase::run(int n_searches, State initial_state) {
+    std::vector<State> unvisited_child_states = m_environment.GetValidChildStates(initial_state);
+    m_root = SearchNode::create_SearchNode(nullptr, initial_state, false);
     m_root->set_unvisited_child_states(unvisited_child_states);
 
     while (!m_environment.GetValidChildStates(m_root->state).empty()) {
         auto best_child = m_search(n_searches);
         m_root = best_child;
-        m_root->parent = nullptr;
     }
 
     return m_root->state;

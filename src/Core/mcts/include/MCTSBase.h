@@ -10,6 +10,7 @@ class MCTSBase : public MCTSInterface {
   public:
     explicit MCTSBase(EnvironmentBase &environment);
     State run(int n_searches);
+    State run(int n_searches, State initial_state);
     EnvironmentBase &getEnvironment();
 
     std::shared_ptr<SearchNode> m_root;
