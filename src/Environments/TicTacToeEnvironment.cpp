@@ -73,3 +73,18 @@ void TicTacToeEnv::PrintBoard(State &state) {
         std::cout << "\n";
     }
 }
+
+Reward TicTacToeEnv::EvaluateRewardFunction(State &state) {
+
+    if(IsTerminal(state)){
+        return EvaluateTerminalState(state);
+    }
+    else {
+        return 0;
+    }
+
+}
+
+bool TicTacToeEnv::IsTerminal(State &state) {
+    return GetValidChildStates(state).empty();
+}

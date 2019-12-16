@@ -8,7 +8,7 @@
 
 class UCT : MCTSBase {
   public:
-    explicit UCT(EnvironmentBase &environment);
+    explicit UCT(EnvironmentInterface &environment);
 
   protected:
     std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) override;
@@ -38,13 +38,7 @@ class UCT : MCTSBase {
 
     // UCT Default Policy setup
     RandomSamplingDefaultPolicy m_defaultPolicy =
-            RandomSamplingDefaultPolicy(f_getValidChildStates, f_evaluateTerminalStates);
-
-    std::function<std::vector<State>(State &)> f_getValidChildStates =
-        std::bind(&EnvironmentBase::GetValidChildStates, &m_environment, std::placeholders::_1);
-
-    std::function<Reward(State &)> f_evaluateTerminalStates =
-        std::bind(&EnvironmentBase::EvaluateTerminalState, &m_environment, std::placeholders::_1);
+            RandomSamplingDefaultPolicy(m_environment);
 };
 
 #endif // MCTS_LIBRARY_UCT_H

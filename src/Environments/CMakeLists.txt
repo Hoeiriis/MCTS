@@ -1,4 +1,4 @@
-add_library(Environment EnvironmentBase.cpp State.cpp)
+add_library(Environment EnvironmentInterface.cpp State.cpp)
 
 target_include_directories(
   Environment

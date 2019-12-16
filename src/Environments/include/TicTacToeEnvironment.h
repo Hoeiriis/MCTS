@@ -15,7 +15,7 @@
 #ifndef TICTACTOEENVIRONMENT_H
 #define TICTACTOEENVIRONMENT_H
 
-#include <EnvironmentBase.h>
+#include <EnvironmentInterface.h>
 
 static const std::vector<std::vector<int>> TicTacToeWinConditions = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // rows
                                                                      {0, 3, 6}, {1, 4, 6}, {2, 5, 8}, // columns
@@ -34,7 +34,7 @@ typedef std::vector<BoardPiece> BoardState;
  * @return     TicTacToeEnv
  */
 
-class TicTacToeEnv : public EnvironmentBase {
+class TicTacToeEnv : public EnvironmentInterface {
   public:
     TicTacToeEnv();
 
@@ -46,7 +46,7 @@ class TicTacToeEnv : public EnvironmentBase {
      *
      * @return     State
      */
-    State GetStartState();
+    State GetStartState() override;
 
     /**
      * @brief      Return successor states of a state
@@ -58,7 +58,7 @@ class TicTacToeEnv : public EnvironmentBase {
      *
      * @return     vector<state>
      */
-    std::vector<State> GetValidChildStates(State &state);
+    std::vector<State> GetValidChildStates(State &state) override;
     /**
      * @brief      Evaluate whether a state is terminal
      *
@@ -73,6 +73,32 @@ class TicTacToeEnv : public EnvironmentBase {
     Reward EvaluateTerminalState(State &state);
 
     /**
+     * @brief      Evaluate a given states reward function
+     *
+     * @details    Given a state, computes a reward that should match the state with
+     * the underlying reward function.
+     *
+     * @param      State&
+     *
+     * @return     double
+     */
+
+    Reward EvaluateRewardFunction(State &state) override;
+
+    /**
+     * @brief      Evaluate wether a given states is a terminal state or not
+     *
+     * @details    Given a state, computes wether the state is a terminal state (i.e the game has finished)
+     * or not
+     *
+     * @param      State&
+     *
+     * @return     bool
+     */
+
+    bool IsTerminal(State &state) override;
+
+    /**
      * @brief      Display a given state representation
      *
      * @details    Dumps a representation of the given state to stdout. Player one
@@ -83,6 +109,7 @@ class TicTacToeEnv : public EnvironmentBase {
      *
      * @return     void
      */
+
     void PrintBoard(State &state);
 
   private:
