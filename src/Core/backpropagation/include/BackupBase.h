@@ -1,7 +1,7 @@
 #ifndef MCTS_LIBRARY_BACKUP_BASE
 #define MCTS_LIBRARY_BACKUP_BASE
 
-#include <EnvironmentBase.h>
+#include <EnvironmentInterface.h>
 #include <SearchNode.h>
 
 class BackupBase {

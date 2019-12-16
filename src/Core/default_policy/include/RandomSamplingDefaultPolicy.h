@@ -5,8 +5,7 @@
 
 class RandomSamplingDefaultPolicy : DefaultPolicyBase {
   public:
-    RandomSamplingDefaultPolicy(std::function<std::vector<State>(State &)> &getValidChildStates,
-                                std::function<Reward(State &)> &evaluateTerminalState);
+    explicit RandomSamplingDefaultPolicy(EnvironmentInterface &environment);
     Reward defaultPolicy(State) override;
 
   private:

@@ -5,8 +5,7 @@
 
 class TicTacToeDefaultPolicy : DefaultPolicyBase {
   public:
-    TicTacToeDefaultPolicy(std::function<std::vector<State>(State &)> &getValidChildStates,
-                           std::function<Reward(State &)> &evaluateTerminalState);
+    explicit TicTacToeDefaultPolicy(EnvironmentInterface &environment);
     Reward defaultPolicy(State) override;
 
   private:
