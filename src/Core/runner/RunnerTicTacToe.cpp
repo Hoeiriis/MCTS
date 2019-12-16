@@ -29,7 +29,7 @@ void RunnerTicTacToe::runOneGame(int n_games, int n_searches) {
         cout << "Running game " << this->gamesRan << " out of " << n_games << endl;
     }
     State state = this->mctsAlgorithm.run(n_searches);
-    result = this->mctsAlgorithm.getEnvironment().EvaluateTerminalState(state);
+    result = this->mctsAlgorithm.getEnvironment().EvaluateRewardFunction(state);
     if (result == 1) {
         player1 += 1;
     } else if (result == -1) {

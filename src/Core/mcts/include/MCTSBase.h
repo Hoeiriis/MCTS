@@ -1,17 +1,17 @@
 #ifndef MCTS_LIBRARY_MCTSBASE_H
 #define MCTS_LIBRARY_MCTSBASE_H
 
-#include <EnvironmentBase.h>
+#include <EnvironmentInterface.h>
 #include <MCTSInterface.h>
 #include <SearchNode.h>
 #include <State.h>
 
 class MCTSBase : public MCTSInterface {
   public:
-    explicit MCTSBase(EnvironmentBase &environment);
+    explicit MCTSBase(EnvironmentInterface &environment);
     State run(int n_searches);
     State run(int n_searches, State initial_state);
-    EnvironmentBase &getEnvironment();
+    EnvironmentInterface &getEnvironment();
 
     std::shared_ptr<SearchNode> m_root;
     std::shared_ptr<SearchNode> tree_original_root;
@@ -24,7 +24,7 @@ class MCTSBase : public MCTSInterface {
     virtual std::shared_ptr<SearchNode> m_expand(std::shared_ptr<SearchNode> node) = 0;
     virtual void m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) = 0;
 
-    EnvironmentBase &m_environment;
+    EnvironmentInterface &m_environment;
 };
 
 #endif // MCTS_LIBRARY_MCTSBASE_H

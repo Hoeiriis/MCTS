@@ -8,18 +8,19 @@ using namespace testing;
 using namespace std::placeholders;
 typedef std::shared_ptr<SearchNode> SearchNodes;
 
-class MockEnv : public EnvironmentBase {
+class MockEnv : public EnvironmentInterface {
   public:
-    MOCK_METHOD(Reward, EvaluateTerminalState, (State &));
-    MOCK_METHOD(State, GetStartState, ());
     MOCK_METHOD((std::vector<State>), GetValidChildStates, (State &));
+    MOCK_METHOD(Reward, EvaluateRewardFunction, (State &));
+    MOCK_METHOD(bool, IsTerminal, (State &));
+    MOCK_METHOD(State, GetStartState, ());
 };
 
 // TODO check mocking of func with default parameters
 class MockMCTS : public MCTSInterface {
   public:
     MOCK_METHOD(State, run, (int), (override));
-    MOCK_METHOD(EnvironmentBase &, getEnvironment, (), (override));
+    MOCK_METHOD(EnvironmentInterface &, getEnvironment, (), (override));
 
   private:
     MOCK_METHOD(SearchNodes, m_search, (int n_searches), (override));
@@ -42,7 +43,7 @@ TEST(TestRunnerTicTacToe, TestVariousNumberOfGames) {
     RunnerTicTacToe runner = RunnerTicTacToe(mockMCTS);
     EXPECT_CALL(mockMCTS, run).Times(AnyNumber()).WillRepeatedly(Return(state));
     EXPECT_CALL(mockMCTS, getEnvironment).Times(AnyNumber()).WillRepeatedly(ReturnRef(mockEnv));
-    EXPECT_CALL(mockEnv, EvaluateTerminalState).Times(AnyNumber()).WillRepeatedly(Return(1));
+    EXPECT_CALL(mockEnv, EvaluateRewardFunction).Times(AnyNumber()).WillRepeatedly(Return(1));
 
     // Act
     for(int i=10; i<=2000; i+=10){

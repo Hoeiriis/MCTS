@@ -4,11 +4,12 @@
 
 #include <utility>
 
-class MockEnv : public EnvironmentBase {
+class MockEnv : public EnvironmentInterface {
   public:
-    MOCK_METHOD(State, GetStartState, ());
     MOCK_METHOD((std::vector<State>), GetValidChildStates, (State &));
-    MOCK_METHOD(Reward, EvaluateTerminalState, (State &));
+    MOCK_METHOD(Reward, EvaluateRewardFunction, (State &));
+    MOCK_METHOD(bool, IsTerminal, (State &));
+    MOCK_METHOD(State, GetStartState, ());
 };
 
 class UCTTesting : UCT, public ::testing::Test {

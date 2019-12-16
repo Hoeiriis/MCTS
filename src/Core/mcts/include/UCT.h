@@ -8,7 +8,7 @@
 
 class UCT : public MCTSBase {
   public:
-    explicit UCT(EnvironmentBase &environment);
+    explicit UCT(EnvironmentInterface &environment);
 
   protected:
     Reward m_default_policy(State &state) override;
@@ -33,14 +33,7 @@ class UCT : public MCTSBase {
     UCT_TreePolicy m_tpolicy = UCT_TreePolicy(placeholderFunc, placeholderFunc2);
 
     // UCT Default Policy setup
-    std::function<std::vector<State>(State &)> placeholderDefFunc = [](State &state) {
-        std::vector<State> retVec{state};
-        return retVec;
-    };
-
-    std::function<Reward(State &)> placeholderDefFunc2 = [](State &state) { return 0.2; };
-
-    RandomSamplingDefaultPolicy m_defaultPolicy = RandomSamplingDefaultPolicy(placeholderDefFunc, placeholderDefFunc2);
+    RandomSamplingDefaultPolicy m_defaultPolicy = RandomSamplingDefaultPolicy(m_environment);
 };
 
 #endif // MCTS_LIBRARY_UCT_H

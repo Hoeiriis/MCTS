@@ -1,7 +1,7 @@
 #include <UCT.h>
 #include <cfloat>
 
-UCT::UCT(EnvironmentBase &environment) : MCTSBase(environment), generator(std::mt19937(time(nullptr))) {
+UCT::UCT(EnvironmentInterface &environment) : MCTSBase(environment), generator(std::mt19937(time(nullptr))) {
 
     // UCT TreePolicy setup
     std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> f_expand =
@@ -11,15 +11,6 @@ UCT::UCT(EnvironmentBase &environment) : MCTSBase(environment), generator(std::m
         std::bind(&UCT::m_best_child, this, std::placeholders::_1, std::placeholders::_2);
 
     m_tpolicy = UCT_TreePolicy(f_expand, f_best_child);
-
-    // UCT Default Policy setup
-    std::function<std::vector<State>(State &)> f_getValidChildStates =
-        std::bind(&EnvironmentBase::GetValidChildStates, &m_environment, std::placeholders::_1);
-
-    std::function<Reward(State &)> f_evaluateTerminalStates =
-        std::bind(&EnvironmentBase::EvaluateTerminalState, &m_environment, std::placeholders::_1);
-
-    m_defaultPolicy = RandomSamplingDefaultPolicy(f_getValidChildStates, f_evaluateTerminalStates);
 };
 
 std::shared_ptr<SearchNode> UCT::m_tree_policy(std::shared_ptr<SearchNode> node) { return m_tpolicy.treePolicy(node); };
