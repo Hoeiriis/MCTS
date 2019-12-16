@@ -10,6 +10,7 @@ class UCT : public MCTSBase {
   public:
     explicit UCT(EnvironmentBase &environment);
 
+
   protected:
     Reward m_default_policy(State &state) override;
     std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) override;

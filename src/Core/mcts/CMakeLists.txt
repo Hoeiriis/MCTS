@@ -1,4 +1,4 @@
-add_library(mcts MCTSCustom.cpp MCTSBase.cpp UCT.cpp MCTSInterface.cpp UCT_two_players.cpp) 
+add_library(mcts MCTSBase.cpp UCT.cpp MCTSInterface.cpp)
 
 target_include_directories(mcts
         PUBLIC
