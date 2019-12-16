@@ -13,12 +13,12 @@
 #define MCTSENTRY_H
 
 #include <EnvironmentInterface.h>
-//#include <SearchNode.h>
+#include <SearchNode.h>
 
 class MCTSEntry {
 protected:
     EnvironmentInterface& _environment;
-    //std::vector<State> compute_state_trace(const std::shared_ptr<SearchNode>& final_node);
+    std::vector<State> compute_state_trace(const std::shared_ptr<SearchNode>& final_node);
 
 public:
     explicit MCTSEntry(EnvironmentInterface& env);

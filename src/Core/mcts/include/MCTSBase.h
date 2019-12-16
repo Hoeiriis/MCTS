@@ -15,7 +15,6 @@ class MCTSBase : public MCTSInterface {
     std::shared_ptr<SearchNode> search_iter_limit(int n_searches);
     std::shared_ptr<SearchNode> search_time_limit(int n_searches);
 
-    std::shared_ptr<SearchNode> m_root;
 
   protected:
     std::shared_ptr<SearchNode> m_search(int n_searches) override;
