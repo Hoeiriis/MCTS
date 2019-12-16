@@ -1,7 +1,7 @@
 #include <MCTSBase.h>
 #include <memory>
 
-MCTSBase::MCTSBase(EnvironmentBase &environment) : m_environment(environment){};
+MCTSBase::MCTSBase(EnvironmentInterface &environment) : m_environment(environment){};
 
 State MCTSBase::run(int n_searches) {
     State initialState = m_environment.GetStartState();
@@ -9,7 +9,7 @@ State MCTSBase::run(int n_searches) {
     m_root = SearchNode::create_SearchNode(nullptr, initialState, false);
     m_root->set_unvisited_child_states(unvisited_child_states);
 
-    while (!m_environment.GetValidChildStates(m_root->state).empty()) {
+    while (!m_environment.IsTerminal(m_root->state)) {
         auto best_child = m_search(n_searches);
         m_root = best_child;
     }
@@ -17,7 +17,7 @@ State MCTSBase::run(int n_searches) {
     return m_root->state;
 }
 
-EnvironmentBase &MCTSBase::getEnvironment() { return this->m_environment; }
+EnvironmentInterface &MCTSBase::getEnvironment() { return this->m_environment; }
 
 std::shared_ptr<SearchNode> MCTSBase::m_search(int n_searches) {
 

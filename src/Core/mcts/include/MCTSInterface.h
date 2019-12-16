@@ -1,7 +1,7 @@
 #ifndef MCTS_LIBRARY_MCTSINTERFACE_H
 #define MCTS_LIBRARY_MCTSINTERFACE_H
 
-#include <EnvironmentBase.h>
+#include <EnvironmentInterface.h>
 #include <SearchNode.h>
 #include <State.h>
 
@@ -9,7 +9,7 @@ class MCTSInterface {
   public:
     //virtual ~MCTSInterface() = 0;
     virtual State run(int n_searches) = 0;
-    virtual EnvironmentBase& getEnvironment() = 0;
+    virtual EnvironmentInterface& getEnvironment() = 0;
     
   protected:
     virtual std::shared_ptr<SearchNode> m_search(int n_searches) = 0;

@@ -8,14 +8,12 @@
 
 class DefaultPolicyBase {
   public:
-    DefaultPolicyBase(std::function<std::vector<State>(State &)> &getValidChildStates,
-                      std::function<Reward(State &)> &evaluateTerminalState);
+    explicit DefaultPolicyBase(EnvironmentInterface &environment);
 
     virtual Reward defaultPolicy(State) = 0;
 
   protected:
-    std::function<std::vector<State>(State &)> &getValidChildStates;
-    std::function<Reward(State &)> &evaluateTerminalState;
+    EnvironmentInterface &_environment;
     std::mt19937 generator;
 };
 

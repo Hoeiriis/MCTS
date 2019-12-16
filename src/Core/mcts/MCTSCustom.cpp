@@ -2,7 +2,7 @@
 #include <functional>
 #include <memory>
 
-MCTSCustom::MCTSCustom(EnvironmentBase &environment,
+MCTSCustom::MCTSCustom(EnvironmentInterface &environment,
                        std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> &tree_policy,
                        std::function<Reward(State)> &default_policy,
                        std::function<void(std::shared_ptr<SearchNode>, int)> &backpropagation,

@@ -31,11 +31,9 @@ typedef double Reward;
  *
  * @return     Environmentbase
  */
-class EnvironmentBase {
+class EnvironmentInterface {
 
   public:
-    // EnvironmentBase();
-
     /**
      * @brief      Get the initial environment state
      *
@@ -44,8 +42,42 @@ class EnvironmentBase {
      * @return     State
      */
     virtual State GetStartState() = 0;
+
+    /**
+     * @brief      Return successor states of a state
+     *
+     * @details    Given a representation of a state, return a vector of all
+     * possible successor states of that state.
+     *
+     * @param      &state
+     *
+     * @return     vector<state>
+     */
     virtual std::vector<State> GetValidChildStates(State &state) = 0;
-    virtual Reward EvaluateTerminalState(State &state) = 0;
+
+    /**
+     * @brief      Evaluate a given states reward function
+     *
+     * @details    Given a state, computes a reward that should match the state with
+     * the underlying reward function.
+     *
+     * @param      State&
+     *
+     * @return     double
+     */
+    virtual Reward EvaluateRewardFunction(State &state) = 0;
+
+    /**
+      * @brief      Evaluate wether a given states is a terminal state or not
+      *
+      * @details    Given a state, computes wether the state is a terminal state or not
+      *
+      * @param      State&
+      *
+      * @return     bool
+      */
+
+    virtual bool IsTerminal(State &state) = 0;
 };
 
 #endif // ENVIRONMENTBASE_H
