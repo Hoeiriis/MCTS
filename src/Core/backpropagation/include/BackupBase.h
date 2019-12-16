@@ -6,7 +6,8 @@
 
 class BackupBase {
   public:
-    BackupBase()= default;;
+    BackupBase() = default;
+    ;
 
   protected:
     void getAncestors(SearchNode *, std::vector<SearchNode *> &);

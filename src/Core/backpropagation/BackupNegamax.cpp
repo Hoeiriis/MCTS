@@ -2,7 +2,7 @@
 
 BackupNegamax::BackupNegamax(){};
 
-void BackupNegamax::backup(const std::shared_ptr<SearchNode>& node, Reward defaultPolicyScore, int currentPlayer) {
+void BackupNegamax::backup(const std::shared_ptr<SearchNode> &node, Reward defaultPolicyScore, int currentPlayer) {
     std::vector<SearchNode *> ancestorsList = {};
     getAncestors(node.get(), ancestorsList);
 
@@ -12,7 +12,7 @@ void BackupNegamax::backup(const std::shared_ptr<SearchNode>& node, Reward defau
 
         defaultPolicyScore = -1 * (defaultPolicyScore);
 
-        if(currentPlayer){
+        if (currentPlayer) {
             currentPlayer = 0;
         } else {
             currentPlayer = 1;

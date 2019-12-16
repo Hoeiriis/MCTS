@@ -11,7 +11,7 @@ class SearchNode {
 
   public:
     int visits;
-    std::vector<double> score {0, 0};
+    std::vector<double> score{0, 0};
     State state;
     std::vector<State> unvisited_child_states;
     SearchNode *parent;

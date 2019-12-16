@@ -16,9 +16,7 @@ class MCTSBase : public MCTSInterface {
     std::shared_ptr<SearchNode> m_root;
     std::shared_ptr<SearchNode> tree_original_root;
 
-
-
-protected:
+  protected:
     std::shared_ptr<SearchNode> m_search(int n_searches);
     virtual std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) = 0;
     virtual Reward m_default_policy(State &state) = 0;
