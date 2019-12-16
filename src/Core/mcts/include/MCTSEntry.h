@@ -12,13 +12,17 @@
 #ifndef MCTSENTRY_H
 #define MCTSENTRY_H
 
-#include <EnvironmentBase.h>
+#include <EnvironmentInterface.h>
+#include <SearchNode.h>
 
 class MCTSEntry {
 protected:
-    EnvironmentBase& _environment;
+    EnvironmentInterface& _environment;
+    std::vector<State> compute_state_trace(const std::shared_ptr<SearchNode>& final_node);
+
 public:
-    explicit MCTSEntry(EnvironmentBase& env);
+    explicit MCTSEntry(EnvironmentInterface& env);
+    std::vector<State> state_trace{};
     bool run();
 };
 
