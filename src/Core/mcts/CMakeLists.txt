@@ -10,4 +10,4 @@ target_include_directories(mcts
 
 target_link_libraries(mcts Environment Core tree_policy default_policy backpropagation)
 
-install(FILES include/MCTSEntry.h include/UCT.h DESTINATION include/)
+install(FILES include/MCTSEntry.h DESTINATION include/)

@@ -21,6 +21,13 @@ class MCTSBase : public MCTSInterface {
     std::shared_ptr<SearchNode> unroll_search();
 
 
+    virtual std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) = 0;
+    virtual Reward m_default_policy(State &state) = 0;
+    virtual std::shared_ptr<SearchNode> m_best_child(std::shared_ptr<SearchNode> node, double c) = 0;
+    virtual std::shared_ptr<SearchNode> m_expand(std::shared_ptr<SearchNode> node) = 0;
+    virtual void m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) = 0;
+
+
     EnvironmentInterface &m_environment;
 };
 
