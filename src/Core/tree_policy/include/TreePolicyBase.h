@@ -7,7 +7,8 @@
 
 class TreePolicyBase {
   public:
-    TreePolicyBase(std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> &expand, std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>, double)> &bestChild);
+    TreePolicyBase(std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> &expand,
+                   std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>, double)> &bestChild);
     virtual std::shared_ptr<SearchNode> treePolicy(std::shared_ptr<SearchNode> node) = 0;
 
   protected:

@@ -1,4 +1,4 @@
-add_library(mcts MCTSCustom.cpp MCTSBase.cpp UCT.cpp MCTSInterface.cpp MCTSEntry.cpp)
+add_library(mcts MCTSBase.cpp UCT.cpp MCTSInterface.cpp MCTSEntry.cpp)
 
 target_include_directories(mcts
         PUBLIC
@@ -8,6 +8,6 @@ target_include_directories(mcts
         ${CMAKE_CURRENT_SOURCE_DIR}
         )
 
-target_link_libraries(mcts Environment Core tree_policies DefaultPolicy backpropagation)
+target_link_libraries(mcts Environment Core tree_policy default_policy backpropagation)
 
-install(FILES  include/MCTSEntry.h DESTINATION include/)
+install(FILES include/MCTSEntry.h DESTINATION include/)

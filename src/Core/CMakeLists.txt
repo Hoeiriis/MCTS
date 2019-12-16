@@ -10,8 +10,8 @@ target_include_directories(Core
         )
 
 target_link_libraries(Core Environment)
-add_subdirectory(tree_policies)
+add_subdirectory(tree_policy)
 add_subdirectory(mcts)
-add_subdirectory(DefaultPolicy)
+add_subdirectory(default_policy)
 add_subdirectory(backpropagation)
 add_subdirectory(runner)

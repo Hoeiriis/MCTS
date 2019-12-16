@@ -1,6 +1,6 @@
-add_library(tree_policies TreePolicyBase.cpp UCT_TreePolicy.cpp)
+add_library(tree_policy TreePolicyBase.cpp UCT_TreePolicy.cpp)
 
-target_include_directories(tree_policies
+target_include_directories(tree_policy
         PUBLIC
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -9,4 +9,4 @@ target_include_directories(tree_policies
         ${CMAKE_CURRENT_SOURCE_DIR}      
         )
 
-target_link_libraries(tree_policies Core)
+target_link_libraries(tree_policy Core)
