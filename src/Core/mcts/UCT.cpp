@@ -1,7 +1,7 @@
 #include <UCT.h>
 #include <cfloat>
 
-UCT::UCT(EnvironmentInterface &environment) : MCTSBase(environment), generator(std::mt19937(time(nullptr))) {
+UCT::UCT(EnvironmentInterface &environment) : MCTSBase(environment), m_defaultPolicy(RandomSamplingDefaultPolicy(m_environment)), generator(std::mt19937(time(nullptr))) {
 
     // UCT TreePolicy setup
     std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> f_expand =

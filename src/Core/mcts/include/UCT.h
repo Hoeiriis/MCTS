@@ -33,7 +33,7 @@ class UCT : public MCTSBase {
     UCT_TreePolicy m_tpolicy = UCT_TreePolicy(placeholderFunc, placeholderFunc2);
 
     // UCT Default Policy setup
-    RandomSamplingDefaultPolicy m_defaultPolicy = RandomSamplingDefaultPolicy(m_environment);
+    RandomSamplingDefaultPolicy m_defaultPolicy;
 };
 
 #endif // MCTS_LIBRARY_UCT_H
