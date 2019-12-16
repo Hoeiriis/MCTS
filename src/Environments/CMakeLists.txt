@@ -16,4 +16,4 @@ target_include_directories(
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-install(FILES  include/EnvironmentBase.h include/State.h include/State.tcc DESTINATION include/)
+install(FILES  include/EnvironmentInterface.h include/State.h include/State.tcc DESTINATION include/)
