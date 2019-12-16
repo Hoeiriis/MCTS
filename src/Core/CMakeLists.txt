@@ -15,3 +15,5 @@ add_subdirectory(mcts)
 add_subdirectory(default_policy)
 add_subdirectory(backpropagation)
 add_subdirectory(runner)
+
+install(FILES  include/SearchNode.h DESTINATION include/)
