@@ -18,11 +18,12 @@ bool MCTSEntry::run()
 
     int sec = 30;
     auto endNode = uct.search_time_limit(sec);
-    state_trace = compute_state_trace(endNode);
+    //state_trace = compute_state_trace(endNode);
 
     return true;
 }
 
+/*
 std::vector<State> MCTSEntry::compute_state_trace(const std::shared_ptr<SearchNode>& endNode) {
     std::vector<State> trace{endNode->state};
 
@@ -32,4 +33,4 @@ std::vector<State> MCTSEntry::compute_state_trace(const std::shared_ptr<SearchNo
         current_node = current_node->parent;
     }
     return trace;
-}
+}*/
