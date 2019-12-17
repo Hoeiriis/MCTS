@@ -76,7 +76,7 @@ if(MCTS_Executable)
     target_compile_features(main PUBLIC cxx_std_17)
 endif(MCTS_Executable)
 
-install(TARGETS mcts Environment
-	RUNTIME DESTINATION bin
+install(TARGETS Core Environment
+	    RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib)
