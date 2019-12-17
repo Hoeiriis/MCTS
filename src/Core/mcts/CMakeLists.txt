@@ -1,11 +1,18 @@
 add_library(mcts MCTSCustom.cpp MCTSBase.cpp UCT.cpp MCTSInterface.cpp)
 
 target_include_directories(mcts
-        PUBLIC
-        $<INSTALL_INTERFACE:include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}
-        )
+    PUBLIC
+      $<INSTALL_INTERFACE:include>
+      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
-target_link_libraries(mcts Environment Core tree_policies DefaultPolicy backpropagation)
+target_link_libraries(mcts
+    PUBLIC
+      Environment
+      Core
+      tree_policies 
+      DefaultPolicy 
+      backpropagation
+)

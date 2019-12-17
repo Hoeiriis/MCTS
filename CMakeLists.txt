@@ -1,21 +1,113 @@
 set(CMAKE_CXX_STANDARD 17)
 cmake_minimum_required(VERSION 3.8)
-
 project("MCTS Library" LANGUAGES "CXX" VERSION 0.1.0)
 
-execute_process(COMMAND "git" "rev-parse" "HEAD"
-                COMMAND "cut" "-c1-16" "-z"
-                WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-                OUTPUT_VARIABLE PACKAGE_REVISION
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
+############################################
+# Cmake commands only enabled when developing 
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  
+  # Testing
+  if(NOT "${TESTING}" STREQUAL "NO")
+    message("Testing is ENABLED")
+    set(TESTING YES)
+  else()
+    message("Testing is DISABLED")
+  endif()
 
-string(TOUPPER "${PACKAGE_REVISION}" PACKAGE_REVISION)
-set(PACKAGE_REVISION "rev. ${PACKAGE_REVISION}")
+  if("${TESTING}" STREQUAL "YES")
+    enable_testing()
+    add_subdirectory(test)
+  endif()
 
 
-execute_process(COMMAND "git" "rev-parse" "--show-toplevel"
-                OUTPUT_VARIABLE PROJECT_ROOT
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
+  # Build doxygen documentation if possible 
+  find_package(Doxygen)
+  if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
+    set(DOC_OUTPUT_DIR "${PROJECT_ROOT}/doc")
+
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
+                  ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+
+    add_custom_target(doc ${DOXYGEN_EXECUTABLE}
+                      ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+                      WORKING_DIRECTORY ${PROJECT_ROOT}
+                      COMMENT "Generating API documentation with Doxygen"
+                      VERBATIM)
+  endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
+
+endif()
+
+
+
+
+
+
+
+
+
+############################################
+# Dependencies
+
+############################################
+# Library target
+
+add_subdirectory(src/Environments)
+add_subdirectory(src/Core)
+add_library(MCTS)
+target_link_libraries(MCTS
+    PUBLIC
+      Core
+      Environment
+)
+
+target_compile_features(mcts PRIVATE cxx_auto_type)
+
+############################################
+# Installation
+
+include(GNUInstallDirs)
+install(TARGETS MCTS
+  EXPORT MCTSTargets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+install(EXPORT MCTSTargets
+  FILE MCTSTargets.cmake
+  NAMESPACE MCTS::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS
+)
+
+#Create a ConfigVersion.cmake file for helping to find version
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyMajorVersion
+)
+
+# configure and install config, configversion
+configure_package_config_file(
+    ${CMAKE_CURRENT_LIST_DIR}/cmake/MCTSConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS
+)
+
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/MCTSVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS
+)
+
+#################################################
+# Exporting package to be found with find_package() by other CMake projects 
+export(EXPORT MCTSTargets FILE ${CMAKE_CURRENT_BINARY_DIR}/MCTSTargets.cmake NAMESPACE MCTS::)
+
+#Register package in user's package registry
+export(PACKAGE MCTS)
+
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
@@ -27,39 +119,3 @@ set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
 set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
 
 message(STATUS "Prefix=${PREFIX_LOCATION}")
-
-add_subdirectory(src/Environments)
-add_subdirectory(src/Core)
-
-add_executable(main src/main.cpp)
-target_link_libraries(main mcts TicTacToe Core tree_policies)
-
-# Build doxygen documentation if possible #####################################
-find_package(Doxygen)
-if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
-  set(DOC_OUTPUT_DIR "${PROJECT_ROOT}/doc")
-
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-                 ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-
-  add_custom_target(doc ${DOXYGEN_EXECUTABLE}
-                    ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-                    WORKING_DIRECTORY ${PROJECT_ROOT}
-                    COMMENT "Generating API documentation with Doxygen"
-                    VERBATIM)
-endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
-
-if(NOT "${TESTING}" STREQUAL "NO")
-  message("Testing is ENABLED")
-  set(TESTING YES)
-else()
-  message("Testing is DISABLED")
-endif(NOT "${TESTING}" STREQUAL "NO")
-
-
-if("${TESTING}" STREQUAL "YES")
-  enable_testing()
-  add_subdirectory(test)
-endif("${TESTING}" STREQUAL "YES")
-
-target_compile_features(main PUBLIC cxx_std_17)
