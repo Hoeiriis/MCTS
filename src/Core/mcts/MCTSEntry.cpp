@@ -1,20 +1,19 @@
 /*
  *  Copyright Peter G. Jensen, all rights reserved.
  */
-
-
-
 #include <MCTSEntry.h>
+#include <UCT.h>
 
-MCTSEntry::MCTSEntry(EnvironmentInterface& env) : _environment(env), _uct(UCT(_environment))
+MCTSEntry::MCTSEntry(EnvironmentInterface& env) : _environment(env)
 {
 }
 
 
 bool MCTSEntry::run()
 {
+    UCT uct = UCT(_environment);
     int sec = 30;
-    auto endNode = _uct.search_time_limit(sec);
+    auto endNode = uct.search_time_limit(sec);
     state_trace = compute_state_trace(endNode);
 
     return true;

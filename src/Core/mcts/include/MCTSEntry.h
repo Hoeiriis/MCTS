@@ -14,18 +14,17 @@
 
 #include <EnvironmentInterface.h>
 #include <SearchNode.h>
-#include <UCT.h>
 
 class MCTSEntry {
-protected:
-    EnvironmentInterface& _environment;
-    std::vector<State> compute_state_trace(const std::shared_ptr<SearchNode>& final_node);
-    UCT _uct;
 
 public:
     explicit MCTSEntry(EnvironmentInterface& env);
     std::vector<State> state_trace{};
     bool run();
+
+protected:
+    EnvironmentInterface& _environment;
+    std::vector<State> compute_state_trace(const std::shared_ptr<SearchNode>& final_node);
 };
 
 

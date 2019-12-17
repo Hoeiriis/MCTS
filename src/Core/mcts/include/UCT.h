@@ -8,8 +8,7 @@
 
 class UCT : public MCTSBase {
   public:
-    explicit UCT(EnvironmentInterface &environment);
-    ~UCT()= default;
+explicit UCT(EnvironmentInterface &environment);
 
   protected:
     Reward m_default_policy(State &state) override;
