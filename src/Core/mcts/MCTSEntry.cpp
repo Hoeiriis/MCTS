@@ -5,19 +5,16 @@
 
 
 #include <MCTSEntry.h>
-#include <UCT.h>
 
-MCTSEntry::MCTSEntry(EnvironmentInterface& env) : _environment(env)
+MCTSEntry::MCTSEntry(EnvironmentInterface& env) : _environment(env), _uct(UCT(_environment))
 {
 }
 
 
 bool MCTSEntry::run()
 {
-    auto uct = UCT(_environment);
-
     int sec = 30;
-    auto endNode = uct.search_time_limit(sec);
+    auto endNode = _uct.search_time_limit(sec);
     state_trace = compute_state_trace(endNode);
 
     return true;
