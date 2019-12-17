@@ -15,3 +15,5 @@ std::shared_ptr<SearchNode> UCT_TreePolicy::treePolicy(std::shared_ptr<SearchNod
     }
     return current_node;
 }
+
+UCT_TreePolicy::~UCT_TreePolicy() {}

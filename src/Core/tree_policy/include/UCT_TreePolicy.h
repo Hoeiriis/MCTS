@@ -10,6 +10,8 @@ class UCT_TreePolicy : TreePolicyBase {
         : TreePolicyBase(expand, bestChild){};
 
     std::shared_ptr<SearchNode> treePolicy(std::shared_ptr<SearchNode> node) override;
+
+    ~UCT_TreePolicy();
 };
 
 #endif // MCTS_LIBRARY_UCT_TREEPOLICY_H

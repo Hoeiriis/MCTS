@@ -17,4 +17,6 @@ Reward RandomSamplingDefaultPolicy::defaultPolicy(State state) {
     }
 
     return (_environment.EvaluateRewardFunction(state));
-};
+}
+
+RandomSamplingDefaultPolicy::~RandomSamplingDefaultPolicy() {};
