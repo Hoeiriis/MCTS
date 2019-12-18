@@ -1,5 +1,5 @@
 #set(CMAKE_CXX_STANDARD 17)
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.13)
 project("MCTS Library" LANGUAGES "CXX" VERSION 0.1.0)
 
 ############################################
@@ -47,12 +47,7 @@ endif()
 
 add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
-add_library(MCTS)
-target_link_libraries(MCTS
-    PUBLIC
-      Core
-      Environment
-)
+add_library(MCTS $<TARGET_OBJECTS:Environment>)
 
 target_compile_features(mcts PRIVATE cxx_auto_type)
 target_compile_options(mcts PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
