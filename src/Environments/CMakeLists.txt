@@ -1,6 +1,11 @@
-add_library(Environment OBJECT EnvironmentInterface.cpp State.cpp TicTacToeEnvironment.cpp)
+target_sources(MCTS
+    PRIVATE
+      EnvironmentInterface.cpp
+      State.cpp
+      TicTacToeEnvironment.cpp
+)
 
-target_include_directories(Environment
+target_include_directories(MCTS
   PUBLIC
     $<INSTALL_INTERFACE:include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -8,4 +13,4 @@ target_include_directories(Environment
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_compile_features(Environment PRIVATE cxx_std_17)
+target_compile_features(MCTS PRIVATE cxx_std_17)

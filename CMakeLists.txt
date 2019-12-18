@@ -1,44 +1,5 @@
-#set(CMAKE_CXX_STANDARD 17)
 cmake_minimum_required(VERSION 3.13)
-project("MCTS Library" LANGUAGES "CXX" VERSION 0.1.0)
-
-############################################
-# Cmake commands only enabled when developing 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-
-  set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
-  set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
-  
-  # Testing
-  if(NOT "${TESTING}" STREQUAL "NO")
-    message("Testing is ENABLED")
-    set(TESTING YES)
-  else()
-    message("Testing is DISABLED")
-  endif()
-
-  if("${TESTING}" STREQUAL "YES")
-    enable_testing()
-    add_subdirectory(test)
-  endif()
-
-
-  # Build doxygen documentation if possible 
-  find_package(Doxygen)
-  if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
-    set(DOC_OUTPUT_DIR "${PROJECT_ROOT}/doc")
-
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-                  ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-
-    add_custom_target(doc ${DOXYGEN_EXECUTABLE}
-                      ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-                      WORKING_DIRECTORY ${PROJECT_ROOT}
-                      COMMENT "Generating API documentation with Doxygen"
-                      VERBATIM)
-  endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
-
-endif()
+project(MCTS LANGUAGES "CXX" VERSION 0.1.0)
 
 ############################################
 # Dependencies
@@ -46,10 +7,10 @@ endif()
 ############################################
 # Library target
 
-add_subdirectory(src/Environments)
-#add_subdirectory(src/Core)
-add_library(MCTS $<TARGET_OBJECTS:Environment>)
 
+add_library(MCTS "")
+add_subdirectory(src/Environments)
+add_subdirectory(src/Core)
 
 add_library(MCTS::MCTS ALIAS MCTS)
 
@@ -111,3 +72,42 @@ set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
 
 message(STATUS "Prefix=${PREFIX_LOCATION}")
 ]]
+
+
+############################################
+# Cmake commands only enabled when developing 
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+  set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+  set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
+  
+  # Testing
+  if(NOT "${TESTING}" STREQUAL "NO")
+    message("Testing is ENABLED")
+    set(TESTING YES)
+  else()
+    message("Testing is DISABLED")
+  endif()
+
+  if("${TESTING}" STREQUAL "YES")
+    enable_testing()
+    add_subdirectory(test)
+  endif()
+
+
+  # Build doxygen documentation if possible 
+  find_package(Doxygen)
+  if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
+    set(DOC_OUTPUT_DIR "${PROJECT_ROOT}/doc")
+
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
+                  ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+
+    add_custom_target(doc ${DOXYGEN_EXECUTABLE}
+                      ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+                      WORKING_DIRECTORY ${PROJECT_ROOT}
+                      COMMENT "Generating API documentation with Doxygen"
+                      VERBATIM)
+  endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
+
+endif()
