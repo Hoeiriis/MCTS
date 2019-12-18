@@ -138,6 +138,9 @@ cmake_install.cmake
 Makefile
 build/
 .ccls-cache/
+MCTSConfig.cmake
+MCTSConfigVersion.cmake
+MCTSTargets.cmake
 
 # doxygen generated files
 CMakeDoxyfile.in

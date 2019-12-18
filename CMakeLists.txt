@@ -47,10 +47,13 @@ endif()
 
 add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
-add_library(MCTS $<TARGET_OBJECTS:Environment>)
+#add_library(MCTS $<TARGET_OBJECTS:Environment>)
 
-target_compile_features(mcts PRIVATE cxx_auto_type)
-target_compile_options(mcts PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
+#[[
+add_library(MCTS::MCTS ALIAS MCTS)
+
+target_compile_features(MCTS PRIVATE cxx_auto_type)
+target_compile_options(MCTS PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 ############################################
 # Installation
@@ -108,3 +111,4 @@ export(PACKAGE MCTS)
 #set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
 #
 #message(STATUS "Prefix=${PREFIX_LOCATION}")
+]]

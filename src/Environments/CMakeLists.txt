@@ -1,4 +1,4 @@
-add_library(Environment OBJECT EnvironmentInterface.cpp State.cpp TicTacToeEnvironment.cpp)
+add_library(Environment EnvironmentInterface.cpp State.cpp TicTacToeEnvironment.cpp)
 
 target_include_directories(Environment
   PUBLIC
