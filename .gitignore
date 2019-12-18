@@ -232,4 +232,4 @@ test_binaries/
 .vscode/
 
 #Random 
-MCTS Library.cbp
+*.cbp

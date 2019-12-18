@@ -1,6 +1,9 @@
-add_library(Core SearchNode.cpp)
+target_sources(MCTS
+    PRIVATE
+      SearchNode.cpp
+)
 
-target_include_directories(Core
+target_include_directories(MCTS
     PUBLIC
       $<INSTALL_INTERFACE:include>
       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -8,13 +11,8 @@ target_include_directories(Core
       ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_link_libraries(Core
-    PUBLIC
-      Environment)
-
-
 add_subdirectory(tree_policies)
-add_subdirectory(mcts)
 add_subdirectory(DefaultPolicy)
 add_subdirectory(backpropagation)
 add_subdirectory(runner)
+add_subdirectory(mcts)
