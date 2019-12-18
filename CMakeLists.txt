@@ -1,10 +1,12 @@
-set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_CXX_STANDARD 17)
 cmake_minimum_required(VERSION 3.8)
 project("MCTS Library" LANGUAGES "CXX" VERSION 0.1.0)
 
 ############################################
 # Cmake commands only enabled when developing 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+  set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
   
   # Testing
   if(NOT "${TESTING}" STREQUAL "NO")
@@ -37,14 +39,6 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
 endif()
 
-
-
-
-
-
-
-
-
 ############################################
 # Dependencies
 
@@ -61,20 +55,21 @@ target_link_libraries(MCTS
 )
 
 target_compile_features(mcts PRIVATE cxx_auto_type)
+target_compile_options(mcts PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 ############################################
 # Installation
 
 include(GNUInstallDirs)
 install(TARGETS MCTS
-  EXPORT MCTSTargets
+  EXPORT MCTS-targets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-install(EXPORT MCTSTargets
+install(EXPORT MCTS-targets
   FILE MCTSTargets.cmake
   NAMESPACE MCTS::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS
@@ -85,7 +80,7 @@ include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
     ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfigVersion.cmake
     VERSION ${PROJECT_VERSION}
-    COMPATIBILITY AnyMajorVersion
+    COMPATIBILITY AnyNewerVersion
 )
 
 # configure and install config, configversion
@@ -97,25 +92,24 @@ configure_package_config_file(
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfig.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/MCTSVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS
 )
 
 #################################################
 # Exporting package to be found with find_package() by other CMake projects 
-export(EXPORT MCTSTargets FILE ${CMAKE_CURRENT_BINARY_DIR}/MCTSTargets.cmake NAMESPACE MCTS::)
+export(EXPORT MCTS-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/MCTSTargets.cmake NAMESPACE MCTS::)
 
-#Register package in user's package registry
 export(PACKAGE MCTS)
 
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
-
-set(OUTPUT_DIR "${PROJECT_SOURCE_DIR}/build")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
-set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
-set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
-
-message(STATUS "Prefix=${PREFIX_LOCATION}")
+#set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+#
+#set(OUTPUT_DIR "${PROJECT_SOURCE_DIR}/build")
+#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
+#set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
+#set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
+#
+#message(STATUS "Prefix=${PREFIX_LOCATION}")
