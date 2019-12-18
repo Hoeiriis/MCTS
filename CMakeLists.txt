@@ -6,6 +6,7 @@ project("MCTS Library" LANGUAGES "CXX" VERSION 0.1.0)
 # Cmake commands only enabled when developing 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
+  set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
   set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
   
   # Testing
@@ -46,10 +47,10 @@ endif()
 # Library target
 
 add_subdirectory(src/Environments)
-add_subdirectory(src/Core)
-#add_library(MCTS $<TARGET_OBJECTS:Environment>)
+#add_subdirectory(src/Core)
+add_library(MCTS $<TARGET_OBJECTS:Environment>)
 
-#[[
+
 add_library(MCTS::MCTS ALIAS MCTS)
 
 target_compile_features(MCTS PRIVATE cxx_auto_type)
@@ -100,15 +101,13 @@ export(EXPORT MCTS-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/MCTSTargets.cmake NA
 
 export(PACKAGE MCTS)
 
+#[[
+set(OUTPUT_DIR "${PROJECT_SOURCE_DIR}/build")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
+set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
+set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
 
-#set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
-#
-#set(OUTPUT_DIR "${PROJECT_SOURCE_DIR}/build")
-#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
-#set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
-#set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
-#
-#message(STATUS "Prefix=${PREFIX_LOCATION}")
+message(STATUS "Prefix=${PREFIX_LOCATION}")
 ]]
