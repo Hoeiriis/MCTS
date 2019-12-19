@@ -39,7 +39,7 @@ endif()
 
 ############################################
 # Library target
-add_library(MCTS "")
+add_library(MCTS SHARED "")
 add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
@@ -59,7 +59,7 @@ install(TARGETS MCTS
   INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/MCTS
 )
 
-INSTALL(DIRECTORY src/Core/include/ ${CMAKE_INSTALL_INCLUDEDIR}/MCTS)
+#INSTALL(DIRECTORY src/Core/include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/MCTS)
 
 install(EXPORT MCTS-targets
   FILE MCTSTargets.cmake

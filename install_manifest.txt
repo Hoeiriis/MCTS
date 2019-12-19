@@ -1,4 +1,4 @@
-/usr/local/lib/libMCTS.a
+/usr/local/lib/libMCTS.so
 /usr/local/lib/cmake/MCTS/MCTSTargets.cmake
 /usr/local/lib/cmake/MCTS/MCTSTargets-noconfig.cmake
 /usr/local/lib/cmake/MCTS/MCTSConfig.cmake
