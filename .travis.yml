@@ -14,15 +14,18 @@ matrix:
           sources:
             - sourceline: 'ppa:mhier/libboost-latest'
             - ubuntu-toolchain-r-test
-            - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
-              key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
           packages:
             - g++-7
-            - cmake
-
+install:
+    - wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+    - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+    - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic-rc main'
+    - sudo apt update
+    - sudo apt install cmake
+    
 script:
-        - cmake .
-        - make googletest
-        - cmake .
-        - make
-        - make test
+    - usr/bin/cmake .
+    - make googletest
+    - usr/bin/cmake .
+    - make
+    - make test
