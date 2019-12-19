@@ -10,6 +10,8 @@ FetchContent_Declare(
 FetchContent_GetProperties(googletest)
 if(NOT googletest_POPULATED)
   FetchContent_Populate(googletest)
+  message(${googletest_SOURCE_DIR})
+  message(${googletest_BINARY_DIR})
   add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
@@ -32,7 +34,7 @@ if(GTest_FOUND)
   add_subdirectory(test_environments)
   add_subdirectory(test_core)
 
-  else()
+else()
     message(WARNING "\nGTest not found.\n\
     It will probably be found after you have run `make` and then cmake again.\n\
     If this warning persists I messed up.")
