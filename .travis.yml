@@ -17,37 +17,15 @@ matrix:
           packages:
             - g++-7
 install:
-    - wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
-    - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-    - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic-rc main'
-    - sudo apt update
-    - sudo apt install cmake
- 
-before_script:
-  - |
-    function cond_call {
-      if [[ "$(command -v $1)" ]]; then
-        echo "Command: $1"
-        echo "Verbose: $(command -v $1)"
-        $@ --version
-        echo "----------------"
-      fi
-    }
+  - wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+  - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+  - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic-rc main'
+  - sudo apt update
+  - sudo apt install cmake
 
 script:
-  - lsb_release --all
-  - apt-cache show cmake -a | grep Version
-  - cond_call cmake
-  - |
-    LOCATIONS="$(whereis cmake)"
-    for LOCATION in ${LOCATIONS:-}; do
-      cond_call $LOCATION
-    done
-  - hash
-  - echo $PATH
-
-  - cmake .
+  - /usr/bin/cmake .
   - make googletest
-  - cmake .
+  - /usr/bin/cmake .
   - make
   - make test
