@@ -2,12 +2,42 @@ cmake_minimum_required(VERSION 3.13)
 project(MCTS LANGUAGES "CXX" VERSION 0.1.0)
 
 ############################################
+# Cmake commands only enabled when developing 
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+  message("Setting local variables")
+  set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+  set(OUTPUT_DIR "${PROJECT_SOURCE_DIR}/build")
+  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
+  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
+  set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
+  set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
+
+  message(STATUS "Prefix=${PREFIX_LOCATION}")
+
+  # Build doxygen documentation if possible 
+  find_package(Doxygen)
+  if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
+    set(DOC_OUTPUT_DIR "${PROJECT_ROOT}/doc")
+
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
+                  ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+
+    add_custom_target(doc ${DOXYGEN_EXECUTABLE}
+                      ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+                      WORKING_DIRECTORY ${PROJECT_ROOT}
+                      COMMENT "Generating API documentation with Doxygen"
+                      VERBATIM)
+  endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
+
+endif()
+
+############################################
 # Dependencies
 
 ############################################
 # Library target
-
-
 add_library(MCTS "")
 add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
@@ -18,7 +48,7 @@ target_compile_features(MCTS PRIVATE cxx_auto_type)
 target_compile_options(MCTS PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 ############################################
-# Installation
+# Installation instructions
 
 include(GNUInstallDirs)
 install(TARGETS MCTS
@@ -62,25 +92,8 @@ export(EXPORT MCTS-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/MCTSTargets.cmake NA
 
 export(PACKAGE MCTS)
 
-#[[
-set(OUTPUT_DIR "${PROJECT_SOURCE_DIR}/build")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/bin)
-set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
-set(PREFIX_LOCATION "${PROJECT_ROOT}/.prefixes")
 
-message(STATUS "Prefix=${PREFIX_LOCATION}")
-]]
-
-
-############################################
-# Cmake commands only enabled when developing 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-
-  set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
-  set(EXTERNAL_INSTALL_LOCATION "${PROJECT_ROOT}/ExternalLibs")
-  
   # Testing
   if(NOT "${TESTING}" STREQUAL "NO")
     message("Testing is ENABLED")
@@ -93,21 +106,4 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     enable_testing()
     add_subdirectory(test)
   endif()
-
-
-  # Build doxygen documentation if possible 
-  find_package(Doxygen)
-  if(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
-    set(DOC_OUTPUT_DIR "${PROJECT_ROOT}/doc")
-
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
-                  ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-
-    add_custom_target(doc ${DOXYGEN_EXECUTABLE}
-                      ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-                      WORKING_DIRECTORY ${PROJECT_ROOT}
-                      COMMENT "Generating API documentation with Doxygen"
-                      VERBATIM)
-  endif(DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
-
 endif()

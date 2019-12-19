@@ -1,37 +1,40 @@
-find_package(Threads REQUIRED)
+#FetchContent Only available in cmake 3.11 =>
+include(FetchContent)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}/test)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest
+  GIT_TAG        release-1.10.0
+)
 
-include(ExternalProject)
+FetchContent_GetProperties(googletest)
+if(NOT googletest_POPULATED)
+  FetchContent_Populate(googletest)
+  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+endif()
 
-# Necessary for CMake to find this specific GTest install
-set(GTEST_ROOT "${EXTERNAL_INSTALL_LOCATION}/GTest")
-set(GTEST_DIR "${GTEST_ROOT}/lib/cmake")
-
-ExternalProject_Add(googletest
-                    INSTALL_DIR "${GTEST_ROOT}/install_prefix"
-                    PREFIX "${PREFIX_LOCATION}/gtest"
-                    GIT_REPOSITORY https://github.com/google/googletest
-                    GIT_TAG v1.10.x
-                    TIMEOUT 30
-                    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${GTEST_ROOT})
-
-
-set(TEST_TARGETS GTest::GTest GTest::Main)
 find_package(GTest QUIET)
-
 if(GTest_FOUND)
-  include_directories(${GTEST_ROOT}/include)
-  link_directories(${GTEST_ROOT}/lib)
-  include(GoogleTest)
+
+  macro(package_add_test TESTNAME)
+    # create an exectuable in which the tests will be stored
+    add_executable(${TESTNAME} ${ARGN})
+    # link the gtest and gmock
+    # maybe do something with MCTS namespaces later
+    target_link_libraries(${TESTNAME} gtest gmock gtest_main MCTS::MCTS)
+    # gtest_discover_tests to discover the tests
+    gtest_discover_tests(${TESTNAME})
+
+    target_compile_features(${TESTNAME} PRIVATE cxx_std_17)
+
+  endmacro()
 
   add_subdirectory(test_environments)
   add_subdirectory(test_core)
 
-else()
-
-  message(WARNING "\nGTest not found.\n\
-It will probably be found after you have run `make` and then cmake again.\n\
-If this warning persists I messed up.")
+  else()
+    message(WARNING "\nGTest not found.\n\
+    It will probably be found after you have run `make` and then cmake again.\n\
+    If this warning persists I messed up.")
 
 endif(GTest_FOUND)

@@ -218,6 +218,9 @@ compile_commands.json
 cmake-build-*/
 CMakeFiles/
 
+#Fetchcontent dep folder
+_deps/
+
 ## GTest
 ExternalLibs/
 googletest-prefix/
