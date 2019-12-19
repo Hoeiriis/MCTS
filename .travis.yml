@@ -10,7 +10,8 @@ matrix:
       compiler: gcc
       addons:
         snaps:
-          - cmake
+          - name: cmake
+            confinement: classic
         apt:
           update: true
           sources:
