@@ -25,7 +25,7 @@ install:
 
 script:
   - /usr/bin/cmake .
-  - make googletest
+  - make
   - /usr/bin/cmake .
   - make
   - make test
