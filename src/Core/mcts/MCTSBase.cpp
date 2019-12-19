@@ -32,6 +32,10 @@ std::shared_ptr<SearchNode> MCTSBase::m_search(int n_searches) {
         Reward simulation_score = m_default_policy(expandedNode->state);
         // The score is backpropagated up through the search tree
         m_backpropagation(expandedNode, simulation_score);
+        
+        if(i % 100 == 0){
+            std::cout << "Iter: " << i << " of " << n_searches << std::endl;
+        }
     }
 
     return m_best_child(m_root, 0);
