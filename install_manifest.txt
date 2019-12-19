@@ -1,0 +1,5 @@
+/usr/local/lib/libMCTS.a
+/usr/local/lib/cmake/MCTS/MCTSTargets.cmake
+/usr/local/lib/cmake/MCTS/MCTSTargets-noconfig.cmake
+/usr/local/lib/cmake/MCTS/MCTSConfig.cmake
+/usr/local/lib/cmake/MCTS/MCTSConfigVersion.cmake
