@@ -1,6 +1,5 @@
 target_sources(MCTS
     PRIVATE
-      MCTSCustom.cpp
       MCTSBase.cpp
       UCT.cpp
       MCTSInterface.cpp

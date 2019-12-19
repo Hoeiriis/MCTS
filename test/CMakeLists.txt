@@ -10,8 +10,6 @@ FetchContent_Declare(
 FetchContent_GetProperties(googletest)
 if(NOT googletest_POPULATED)
   FetchContent_Populate(googletest)
-  message(${googletest_SOURCE_DIR})
-  message(${googletest_BINARY_DIR})
   add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()
 
