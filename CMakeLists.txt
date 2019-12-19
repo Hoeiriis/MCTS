@@ -4,7 +4,7 @@ project(MCTS LANGUAGES "CXX" VERSION 0.1.0)
 option(MCTS_Executable "Build executable." OFF)
 ############################################
 # Cmake commands only enabled when developing 
-if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) && MCTS_Executable)
+if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND MCTS_Executable)
 
   message("Setting local variables")
   set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
@@ -94,7 +94,7 @@ export(EXPORT MCTS-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/MCTSTargets.cmake NA
 export(PACKAGE MCTS)
 
 
-if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) && MCTS_Executable)
+if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND MCTS_Executable)
   # Testing
   if(NOT "${TESTING}" STREQUAL "NO")
     message("Testing is ENABLED")
