@@ -11,6 +11,8 @@ target_include_directories(MCTS
       ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+add_to_PUBLIC_HEADER(MCTS src/Core/include/SearchNode.h)
+
 add_subdirectory(tree_policy)
 add_subdirectory(mcts)
 add_subdirectory(default_policy)

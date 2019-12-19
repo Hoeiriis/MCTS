@@ -14,3 +14,8 @@ target_include_directories(MCTS
 )
 
 target_compile_features(MCTS PRIVATE cxx_std_17)
+add_to_PUBLIC_HEADER(MCTS 
+  src/Environments/include/EnvironmentInterface.h
+  src/Environments/include/State.h
+  src/Environments/include/TicTacToeEnvironment.h
+)

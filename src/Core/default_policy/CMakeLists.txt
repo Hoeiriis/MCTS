@@ -12,3 +12,8 @@ target_include_directories(MCTS
     PRIVATE
       ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+add_to_PUBLIC_HEADER(MCTS 
+  src/Core/default_policy/include/DefaultPolicyBase.h 
+  src/Core/default_policy/include/RandomSamplingDefaultPolicy.h 
+  src/Core/default_policy/include/TicTacToeDefaultPolicy.h)
