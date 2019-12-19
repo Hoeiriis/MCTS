@@ -12,8 +12,8 @@ MCTSEntry::MCTSEntry(EnvironmentInterface& env) : _environment(env)
 bool MCTSEntry::run()
 {
     UCT uct = UCT(_environment);
-    int sec = 30;
-    auto endNode = uct.search_time_limit(sec);
+    int limit = 50000;
+    auto endNode = uct.search_iter_limit(limit);
     state_trace = compute_state_trace(endNode);
 
     return true;
