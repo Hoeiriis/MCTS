@@ -1,6 +1,7 @@
 target_sources(MCTS
     PRIVATE
       MCTSBase.cpp
+      MCTSEntry.cpp
       UCT.cpp
       MCTSInterface.cpp
 )
