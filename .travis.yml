@@ -16,11 +16,16 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-            - boost1.70
+install:
+  - wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+  - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+  - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic-rc main'
+  - sudo apt update
+  - sudo apt install cmake
 
 script:
-        - cmake .
-        - make googletest
-        - cmake .
-        - make
-        - make test
+  - /usr/bin/cmake .
+  - make
+  - /usr/bin/cmake .
+  - make
+  - make test

@@ -138,6 +138,9 @@ cmake_install.cmake
 Makefile
 build/
 .ccls-cache/
+MCTSConfig.cmake
+MCTSConfigVersion.cmake
+MCTSTargets.cmake
 
 # doxygen generated files
 CMakeDoxyfile.in
@@ -215,6 +218,9 @@ compile_commands.json
 cmake-build-*/
 CMakeFiles/
 
+#Fetchcontent dep folder
+_deps/
+
 ## GTest
 ExternalLibs/
 googletest-prefix/
@@ -229,4 +235,4 @@ test_binaries/
 .vscode/
 
 #Random 
-MCTS Library.cbp
+*.cbp

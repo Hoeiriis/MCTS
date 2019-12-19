@@ -1,19 +1,19 @@
-add_library(Core SearchNode.cpp)
+target_sources(MCTS
+    PRIVATE
+      SearchNode.cpp
+)
 
-target_include_directories(Core
-        PUBLIC
-        $<INSTALL_INTERFACE:include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}
-        ${Boost_INCLUDE_DIRS}
-        )
+target_include_directories(MCTS
+    PUBLIC
+      $<INSTALL_INTERFACE:include>
+      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
-target_link_libraries(Core Environment)
 add_subdirectory(tree_policy)
 add_subdirectory(mcts)
 add_subdirectory(default_policy)
 add_subdirectory(backpropagation)
 add_subdirectory(runner)
-
-install(FILES  include/SearchNode.h DESTINATION include/)
+add_subdirectory(mcts)
