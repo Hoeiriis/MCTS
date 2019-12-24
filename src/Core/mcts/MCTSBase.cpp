@@ -81,8 +81,18 @@ std::shared_ptr<SearchNode> MCTSBase::search_time_limit(int sec_to_run) {
 std::shared_ptr<SearchNode> MCTSBase::unroll_search() {
     auto current_node = m_root;
     // keep getting best child until we reach a terminal node or leaf node
-    while((!m_environment.IsTerminal(current_node->state)) || (!current_node->child_nodes.empty())){
-        current_node = m_best_child(current_node, 0);
+    while(!m_environment.IsTerminal(current_node->state)){
+
+        // If the node has child nodes run best child
+        if(!current_node->child_nodes.empty()){
+            current_node = m_best_child(current_node, 0);
+
+        // If the node has no children and is not Terminal, rerun unroll
+        } else {
+            current_node->score.at(0) *= -10;
+            current_node = unroll_search();
+            break;
+        }
     }
 
     return current_node;
