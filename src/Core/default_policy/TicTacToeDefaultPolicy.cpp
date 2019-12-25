@@ -9,8 +9,8 @@ double TicTacToeDefaultPolicy::defaultPolicy(State state) {
     while (!validChildStates.empty()) {
         // Checking if any of the valid std::vector<State> are terminal (have no valid child std::vector<State>)
         for (auto &childState : validChildStates) {
-            if (_environment.IsTerminal(state)) {
-                return (_environment.EvaluateRewardFunction(state));
+            if (_environment.IsTerminal(childState)) {
+                return (_environment.EvaluateRewardFunction(childState));
             }
         }
         // If there is no terminal child choose a state randomly

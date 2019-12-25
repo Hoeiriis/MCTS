@@ -1,5 +1,6 @@
 #include <UCT.h>
 #include <cfloat>
+#include <cassert>
 
 UCT::UCT(EnvironmentInterface &environment) : MCTSBase(environment), generator(std::mt19937(time(nullptr))) {
 
@@ -40,6 +41,7 @@ std::shared_ptr<SearchNode> UCT::m_best_child(std::shared_ptr<SearchNode> node, 
         }
     }
 
+    assert(!bestChildren.empty()); // ensure that there is children
     std::uniform_int_distribution<int> uniformIntDistribution(0, bestChildren.size() - 1);
     int i_random = uniformIntDistribution(generator);
 
@@ -60,7 +62,7 @@ std::shared_ptr<SearchNode> UCT::m_expand(std::shared_ptr<SearchNode> node) {
     State expanded_state = node->unvisited_child_states.at(i_random);
 
     // Create node from unvisited state
-    auto is_terminal = m_environment.GetValidChildStates(expanded_state).empty();
+    auto is_terminal = m_environment.IsTerminal(expanded_state);
     auto expanded_node = SearchNode::create_SearchNode(node, expanded_state, is_terminal);
 
     // Set unvisited child States
