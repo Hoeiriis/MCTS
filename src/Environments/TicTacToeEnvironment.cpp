@@ -11,8 +11,15 @@ State TicTacToeEnv::GetStartState() {
 }
 
 std::vector<State> TicTacToeEnv::GetValidChildStates(State &state) {
+
     BoardState bState = state.getData<BoardState>();
     std::vector<State> result;
+
+    // Check if this state is terminal
+    if (EvaluateTerminalState(state) != 0) {
+        return result;
+    }
+
     int board_pieces = 0;
     int player_turn;
     for (BoardPiece symbol : bState) {
@@ -29,9 +36,7 @@ std::vector<State> TicTacToeEnv::GetValidChildStates(State &state) {
             BoardState boardState(bState);
             boardState[i] = piece;
             State childState(boardState);
-            if (!EvaluateTerminalState(childState)) {
-                result.push_back(childState);
-            }
+            result.push_back(childState);
         }
     }
 

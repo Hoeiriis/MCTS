@@ -1,11 +1,11 @@
+#ifndef MCTS_LIBRARY_BACKUPNEGAMAX
+#define MCTS_LIBRARY_BACKUPNEGAMAX
 #include <BackupBase.h>
 
-class BackupNegamax : BackupBase {
+class BackupNegamax : public BackupBase {
   public:
     BackupNegamax();
-    using BackupBase::backup;
-    void backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyScore, int currentPlayer);
-
-  private:
-    int currentPlayer;
+    void backup(const std::shared_ptr<SearchNode> &node, Reward defaultPolicyScore, int currentPlayer);
 };
+
+#endif // MCTS_LIBRARY_BACKUPNEGAMAX

@@ -28,15 +28,11 @@ TEST(TestBasicBackup, TestUpdateVisitsAndScores) {
     EXPECT_EQ(node_2_1->visits, 2);
     EXPECT_EQ(node_2_2->visits, 1);
 
-    EXPECT_EQ(node_1_1->score, 0);
-    EXPECT_EQ(node_1->score, 0);
-    EXPECT_EQ(node_2->score, 6);
-    EXPECT_EQ(node_2_1->score, 4);
-    EXPECT_EQ(node_2_2->score, 2);
-
-    // Check that the root doesn't get updated
-    EXPECT_EQ(node->score, 0);
-    EXPECT_EQ(node->visits, 0);
+    EXPECT_EQ(node_1_1->score.at(0), 0);
+    EXPECT_EQ(node_1->score.at(0), 0);
+    EXPECT_EQ(node_2->score.at(0), 6);
+    EXPECT_EQ(node_2_1->score.at(0), 4);
+    EXPECT_EQ(node_2_2->score.at(0), 2);
 }
 
 

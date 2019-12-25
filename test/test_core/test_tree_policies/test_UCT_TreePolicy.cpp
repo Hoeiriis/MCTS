@@ -18,6 +18,7 @@ class UCT_TreePolicyTest : public ::testing::Test {
         std::shared_ptr<SearchNode> rootChild1 = SearchNode::create_SearchNode(root, rootChild1State, false);
         std::shared_ptr<SearchNode> rootChild2 = SearchNode::create_SearchNode(root, rootChild2State, false);
 
+
         std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> sExp =
             std::bind(&UCT_TreePolicyTest::simpleExpand, this, std::placeholders::_1);
         std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>, double)> sChild =

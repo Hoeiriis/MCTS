@@ -8,6 +8,6 @@ void BasicBackup::backup(std::shared_ptr<SearchNode> node, Reward defaultPolicyS
 
     for (auto currentNode : ancestorsList) {
         currentNode->visits += 1;
-        currentNode->score += defaultPolicyScore;
+        currentNode->score.at(0) += defaultPolicyScore;
     }
 }

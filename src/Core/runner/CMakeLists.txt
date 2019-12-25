@@ -11,3 +11,5 @@ target_include_directories(MCTS
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+add_to_PUBLIC_HEADER(MCTS src/Core/runner/include/Runner.h src/Core/runner/include/RunnerTicTacToe.h)

@@ -7,10 +7,9 @@
 
 class MCTSInterface {
   public:
-    //virtual ~MCTSInterface() = 0;
     virtual State run(int n_searches) = 0;
-    virtual EnvironmentInterface& getEnvironment() = 0;
-    
+    virtual EnvironmentInterface &getEnvironment() = 0;
+
   protected:
     virtual std::shared_ptr<SearchNode> m_search(int n_searches) = 0;
     virtual std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) = 0;

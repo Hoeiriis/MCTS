@@ -46,7 +46,7 @@ TEST(TestRunnerTicTacToe, TestVariousNumberOfGames) {
     EXPECT_CALL(mockEnv, EvaluateRewardFunction).Times(AnyNumber()).WillRepeatedly(Return(1));
 
     // Act
-    for(int i=10; i<=2000; i+=10){
+    for(int i=10; i<=1000; i+=10){
         runner.run(i,100);
     }
 

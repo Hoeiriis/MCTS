@@ -34,11 +34,20 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 endif()
 
 ############################################
+# Macros
+macro(add_to_PUBLIC_HEADER TARGET)
+  get_target_property(current_public_headers ${TARGET} PUBLIC_HEADER)
+  set_target_properties(MCTS PROPERTIES PUBLIC_HEADER "${current_public_headers};${ARGN}")  
+endmacro()
+
+############################################
 # Dependencies
 
 ############################################
 # Library target
 add_library(MCTS "")
+set_target_properties(MCTS PROPERTIES PUBLIC_HEADER "")
+
 add_subdirectory(src/Environments)
 add_subdirectory(src/Core)
 
@@ -55,9 +64,8 @@ install(TARGETS MCTS
   EXPORT MCTS-targets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/MCTS/
 )
-
-install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 install(EXPORT MCTS-targets
   FILE MCTSTargets.cmake
