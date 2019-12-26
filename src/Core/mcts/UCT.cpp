@@ -44,7 +44,7 @@ std::shared_ptr<SearchNode> UCT::m_best_child(std::shared_ptr<SearchNode> node, 
         }
     }
 
-    assert(bestChildren.size() > 0);
+    assert(!bestChildren.empty()); // ensure that there is children
     std::uniform_int_distribution<int> uniformIntDistribution(0, bestChildren.size() - 1);
     int i_random = uniformIntDistribution(generator);
 

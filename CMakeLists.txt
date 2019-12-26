@@ -41,7 +41,6 @@ macro(add_to_PUBLIC_HEADER TARGET)
   set_target_properties(MCTS PROPERTIES PUBLIC_HEADER "${current_public_headers};${ARGN}")  
 endmacro()
 
-
 ############################################
 # Dependencies
 

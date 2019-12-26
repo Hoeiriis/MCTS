@@ -15,6 +15,9 @@ class MCTSBase : public MCTSInterface {
     std::shared_ptr<SearchNode> search_iter_limit(int n_searches);
     std::shared_ptr<SearchNode> search_time_limit(int n_searches);
 
+    inline std::shared_ptr<SearchNode> getRoot() { return m_root; }
+    inline std::shared_ptr<SearchNode> getOriginalRoot(){return tree_original_root;}
+
 
   protected:
     std::shared_ptr<SearchNode> m_search(int n_searches) override;
@@ -27,6 +30,8 @@ class MCTSBase : public MCTSInterface {
     virtual std::shared_ptr<SearchNode> m_expand(std::shared_ptr<SearchNode> node) = 0;
     virtual void m_backpropagation(std::shared_ptr<SearchNode> node, Reward score) = 0;
 
+    std::shared_ptr<SearchNode> m_root;
+    std::shared_ptr<SearchNode> tree_original_root;
 
     EnvironmentInterface &m_environment;
 };
