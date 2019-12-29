@@ -3,6 +3,7 @@ target_sources(MCTS
       MCTSBase.cpp
       UCT.cpp
       MCTSInterface.cpp
+      UCT_UPPAAL.cpp
 )
 
 target_include_directories(MCTS
@@ -17,5 +18,6 @@ add_to_PUBLIC_HEADER(MCTS
   src/Core/mcts/include/MCTSBase.h
   src/Core/mcts/include/MCTSEntry.h
   src/Core/mcts/include/UCT.h
+  src/Core/mcts/include/UCT_UPPAAL.h
   src/Core/mcts/include/MCTSInterface.h
 )
