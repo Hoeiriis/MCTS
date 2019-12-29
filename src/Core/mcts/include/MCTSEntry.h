@@ -21,6 +21,7 @@ public:
     explicit MCTSEntry(EnvironmentInterface& env);
     std::vector<State> state_trace{};
     bool run();
+    int time_limit_sec = 10;
 
 protected:
     EnvironmentInterface& _environment;
