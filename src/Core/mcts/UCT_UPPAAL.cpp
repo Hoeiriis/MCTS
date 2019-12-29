@@ -21,6 +21,12 @@ UCT_UPPAAL::UCT_UPPAAL(EnvironmentInterface &environment)
 
 State UCT_UPPAAL::run(int n_searches) {
 
+    State initial_state = _environment.GetStartState();
+    std::vector<State> unvisited_child_states = _environment.GetValidChildStates(initial_state);
+    m_root = SearchNode::create_SearchNode(nullptr, initial_state, false);
+    m_root->set_unvisited_child_states(unvisited_child_states);
+
+
     time_t start = time(nullptr);
     long timeLeft = n_searches;
 
