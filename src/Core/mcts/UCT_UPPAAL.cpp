@@ -30,7 +30,7 @@ State UCT_UPPAAL::run(int n_searches) {
     time_t start = time(nullptr);
     long timeLeft = n_searches;
 
-    while(!best_proved || timeLeft > 0) {
+    while(!best_proved && timeLeft > 0) {
         // TreePolicy runs to find an unexpanded node to expand
         auto expandedNode = m_tree_policy(m_root);
         // From the expanded node, a simulation runs that returns a score
