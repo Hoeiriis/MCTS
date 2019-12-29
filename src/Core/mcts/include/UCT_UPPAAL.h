@@ -11,7 +11,7 @@
 #include <BasicBackup.h>
 #include <random>
 #include <tree_policy/include/UCT_TreePolicy.h>
-#include <default_policy/include/RandomSamplingDefaultPolicy.h>
+#include <default_policy/include/UPPAAL_RandomSamplingDefaultPolicy.h>
 
 class TerminalNodeScore {
     public:
@@ -35,6 +35,7 @@ class UCT_UPPAAL : public MCTSInterface {
 
 protected:
         Reward m_default_policy(State &state) override;
+        std::shared_ptr<SearchNode> m_search(int n_searches) override;
         std::shared_ptr<SearchNode> m_tree_policy(std::shared_ptr<SearchNode> node) override;
         std::shared_ptr<SearchNode> m_best_child(std::shared_ptr<SearchNode> node, double c) override;
         std::shared_ptr<SearchNode> m_expand(std::shared_ptr<SearchNode> node) override;
@@ -60,7 +61,7 @@ protected:
         UCT_TreePolicy _tpolicy = UCT_TreePolicy(placeholderFunc, placeholderFunc2);
 
         // UCT Default Policy setup
-        RandomSamplingDefaultPolicy _defaultPolicy = RandomSamplingDefaultPolicy(_environment);
+        UPPAAL_RandomSamplingDefaultPolicy _defaultPolicy;
 };
 
 

@@ -8,7 +8,7 @@
 #include "UCT_UPPAAL.h"
 
 UCT_UPPAAL::UCT_UPPAAL(EnvironmentInterface &environment)
-: _environment(environment), generator(std::mt19937(time(nullptr))) {
+: _environment(environment), generator(std::mt19937(time(nullptr))), _defaultPolicy(UPPAAL_RandomSamplingDefaultPolicy(_environment)) {
     // UCT TreePolicy setup
     std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> f_expand =
             std::bind(&UCT_UPPAAL::m_expand, this, std::placeholders::_1);
@@ -125,4 +125,8 @@ void UCT_UPPAAL::m_backpropagation(std::shared_ptr<SearchNode> node, Reward scor
 
 std::shared_ptr<SearchNode> UCT_UPPAAL::m_tree_policy(std::shared_ptr<SearchNode> node) {
     return _tpolicy.treePolicy(node);
+}
+
+std::shared_ptr<SearchNode> UCT_UPPAAL::m_search(int n_searches) {
+    return std::shared_ptr<SearchNode>();
 }
