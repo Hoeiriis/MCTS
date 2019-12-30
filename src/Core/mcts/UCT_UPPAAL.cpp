@@ -28,7 +28,7 @@ State UCT_UPPAAL::run(int n_searches) {
 
 
     time_t start = time(nullptr);
-    long og_timeLeft = n_searches
+    long og_timeLeft = n_searches;
     long timeLeft = n_searches;
 
     while(!best_proved && timeLeft > 0) {
