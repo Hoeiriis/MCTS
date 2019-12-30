@@ -72,7 +72,7 @@ std::shared_ptr<SearchNode> MCTSBase::search_time_limit(int sec_to_run) {
         m_backpropagation(expandedNode, simulation_score);
 
         // update time left
-        timeLeft = timeLeft - (time(nullptr) - start);
+        timeLeft = sec_to_run - (time(nullptr) - start);
     }
 
     return unroll_search();

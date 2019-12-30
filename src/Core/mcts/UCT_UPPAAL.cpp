@@ -28,6 +28,7 @@ State UCT_UPPAAL::run(int n_searches) {
 
 
     time_t start = time(nullptr);
+    long og_timeLeft = n_searches
     long timeLeft = n_searches;
 
     while(!best_proved && timeLeft > 0) {
@@ -52,7 +53,7 @@ State UCT_UPPAAL::run(int n_searches) {
         }
 
         // update time left
-        timeLeft = timeLeft - (time(nullptr) - start);
+        timeLeft = og_timeLeft - (time(nullptr) - start);
     }
 
     if (bestTerminalNodesFound.empty()){
