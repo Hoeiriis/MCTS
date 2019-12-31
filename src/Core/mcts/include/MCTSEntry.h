@@ -23,11 +23,13 @@ public:
     std::vector<State> state_trace{};
     bool run();
     int time_limit_sec = 10;
-    std::vector<TerminalNodeScore> terminalNodeScores;
+
+    inline std::vector<TerminalNodeScore> getTerminalNodeScores(){return terminalNodeScores;};
 
 protected:
     EnvironmentInterface& _environment;
     std::vector<State> compute_state_trace(const std::shared_ptr<SearchNode>& final_node);
+    std::vector<TerminalNodeScore> terminalNodeScores;
 };
 
 
