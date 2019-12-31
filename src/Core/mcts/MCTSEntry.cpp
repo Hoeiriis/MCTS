@@ -20,7 +20,7 @@ bool MCTSEntry::run()
     if(terminalNodeScores.empty()){
         std::cout << "No terminal node was found in the compute time given." << std::endl;
     } else {
-        auto termNode = terminalNodeScores.at(0);
+        auto termNode = terminalNodeScores.back();
         state_trace = compute_state_trace(termNode.node);
     }
 

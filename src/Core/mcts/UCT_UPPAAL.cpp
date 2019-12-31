@@ -42,13 +42,13 @@ State UCT_UPPAAL::run(int n_searches) {
         // if new terminal node is encountered, update the bestTerminalNode
         if (expandedNode->isTerminalState){
             Reward termReward = _environment.EvaluateRewardFunction(expandedNode->state);
-            if (bestTerminalNodesFound.empty() || bestTerminalNodesFound.at(0).score < termReward){
+            if (bestTerminalNodesFound.empty() || bestTerminalNodesFound.back().score < termReward){
                 auto newBestNode = TerminalNodeScore();
                 newBestNode.score = termReward;
                 newBestNode.node = expandedNode;
                 newBestNode.time_to_find = (time(nullptr) - start);
                 // insert at beginning
-                bestTerminalNodesFound.insert(bestTerminalNodesFound.begin(), newBestNode);
+                bestTerminalNodesFound.push_back(newBestNode);
             }
         }
 
