@@ -10,8 +10,8 @@
 #include <functional>
 #include <BasicBackup.h>
 #include <random>
-#include <tree_policy/include/UCT_TreePolicy.h>
-#include <default_policy/include/UPPAAL_RandomSamplingDefaultPolicy.h>
+#include <UCT_TreePolicy.h>
+#include <UPPAAL_RandomSamplingDefaultPolicy.h>
 
 class TerminalNodeScore {
     public:
