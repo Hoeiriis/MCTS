@@ -12,10 +12,17 @@ MCTSEntry::MCTSEntry(EnvironmentInterface& env) : _environment(env)
 bool MCTSEntry::run()
 {
     UCT_UPPAAL uct = UCT_UPPAAL(_environment);
-    
+
     uct.run(time_limit_sec);
-    auto termNode = uct.getBestTerminalNodeScore().at(0);
-    state_trace = compute_state_trace(termNode.node);
+
+    terminalNodeScores = uct.getBestTerminalNodeScore();
+
+    if(terminalNodeScores.empty()){
+        std::cout << "No terminal node was found in the compute time given." << std::endl;
+    } else {
+        auto termNode = terminalNodeScores.at(0);
+        state_trace = compute_state_trace(termNode.node);
+    }
 
     return true;
 }

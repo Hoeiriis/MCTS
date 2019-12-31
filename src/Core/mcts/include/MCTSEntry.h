@@ -14,6 +14,7 @@
 
 #include <EnvironmentInterface.h>
 #include <SearchNode.h>
+#include "UCT_UPPAAL.h"
 
 class MCTSEntry {
 
@@ -22,6 +23,7 @@ public:
     std::vector<State> state_trace{};
     bool run();
     int time_limit_sec = 10;
+    std::vector<TerminalNodeScore> terminalNodeScores;
 
 protected:
     EnvironmentInterface& _environment;
