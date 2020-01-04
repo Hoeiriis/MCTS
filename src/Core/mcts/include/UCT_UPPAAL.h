@@ -62,6 +62,9 @@ protected:
 
         // UCT Default Policy setup
         UPPAAL_RandomSamplingDefaultPolicy _defaultPolicy;
+
+        //Reward min/max
+        std::pair<double,double> rewardMinMax = {0, 0};
 };
 
 

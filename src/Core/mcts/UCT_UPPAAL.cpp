@@ -26,6 +26,17 @@ State UCT_UPPAAL::run(int n_searches) {
     m_root = SearchNode::create_SearchNode(nullptr, initial_state, false);
     m_root->set_unvisited_child_states(unvisited_child_states);
 
+    // rough bootstrap of reward scaling
+    std::vector<double> rewards(200, 0);
+    for (int i = 0; i < 200; ++i) {
+        Reward score = m_default_policy(m_root->state);
+        rewards.at(i) = score;
+    }
+
+    auto it = std::minmax_element(std::begin(rewards), std::end(rewards));
+    rewardMinMax.first = *it.first;
+    rewardMinMax.second = *it.second;
+
 
     time_t start = time(nullptr);
     long og_timeLeft = n_searches;
@@ -36,8 +47,16 @@ State UCT_UPPAAL::run(int n_searches) {
         auto expandedNode = m_tree_policy(m_root);
         // From the expanded node, a simulation runs that returns a score
         Reward simulation_score = m_default_policy(expandedNode->state);
+        // eventually update min max reward
+        if(simulation_score < rewardMinMax.first){
+            rewardMinMax.first = simulation_score;
+        } else if(simulation_score > rewardMinMax.second){
+            rewardMinMax.second = simulation_score;
+        }
+        // normalize data
+        double norm_score = (simulation_score-rewardMinMax.first)/(rewardMinMax.first - rewardMinMax.second);
         // The score is backpropagated up through the search tree
-        m_backpropagation(expandedNode, simulation_score);
+        m_backpropagation(expandedNode, norm_score);
 
         // if new terminal node is encountered, update the bestTerminalNode
         if (expandedNode->isTerminalState){
