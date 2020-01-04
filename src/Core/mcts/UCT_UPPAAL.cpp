@@ -43,7 +43,7 @@ State UCT_UPPAAL::run(int n_searches) {
     long max_timeLeft = max_time;
 
     time_t start = max_start;
-    long semi_timeLeft = int(n_searches/3);
+    long semi_timeLeft = 300; // 5 minutes
     long timeLeft = semi_timeLeft;
 
     while(!best_proved && timeLeft > 0) {
@@ -88,6 +88,7 @@ State UCT_UPPAAL::run(int n_searches) {
                 timeLeft = 300; // 5 minutes more
                 semi_timeLeft = 300;
                 start = time(nullptr);
+                std::cout << "Added 5 minutes. MaxTimeLeft: " << max_timeLeft << std::endl;
             }
         }
 
