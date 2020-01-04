@@ -89,6 +89,8 @@ State UCT_UPPAAL::run(int n_searches) {
                 semi_timeLeft = timeLeft;
                 start = time(nullptr);
                 std::cout << "Added more time. MaxTimeLeft: " << max_timeLeft << std::endl;
+                m_root = m_best_child(m_root, 0);
+                m_root->parent = nullptr;
             }
         }
 
