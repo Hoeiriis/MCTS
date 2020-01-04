@@ -43,7 +43,7 @@ State UCT_UPPAAL::run(int n_searches) {
     long max_timeLeft = max_time;
 
     time_t start = max_start;
-    long semi_timeLeft = 300; // 5 minutes
+    long semi_timeLeft = int(n_searches/3);
     long timeLeft = semi_timeLeft;
 
     while(!best_proved && timeLeft > 0) {
@@ -85,10 +85,10 @@ State UCT_UPPAAL::run(int n_searches) {
             if(!bestTerminalNodesFound.empty()){
                 continue;
             } else {
-                timeLeft = 300; // 5 minutes more
-                semi_timeLeft = 300;
+                timeLeft = int(n_searches/10); // 10th of total more
+                semi_timeLeft = timeLeft;
                 start = time(nullptr);
-                std::cout << "Added 5 minutes. MaxTimeLeft: " << max_timeLeft << std::endl;
+                std::cout << "Added more time. MaxTimeLeft: " << max_timeLeft << std::endl;
             }
         }
 
