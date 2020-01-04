@@ -54,7 +54,7 @@ State UCT_UPPAAL::run(int n_searches) {
             rewardMinMax.second = simulation_score;
         }
         // normalize data
-        double norm_score = (simulation_score-rewardMinMax.first)/(rewardMinMax.first - rewardMinMax.second);
+        double norm_score = (simulation_score-rewardMinMax.first)/(rewardMinMax.second - rewardMinMax.first);
         // The score is backpropagated up through the search tree
         m_backpropagation(expandedNode, norm_score);
 
