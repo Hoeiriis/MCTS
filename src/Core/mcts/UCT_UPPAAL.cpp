@@ -38,9 +38,13 @@ State UCT_UPPAAL::run(int n_searches) {
     rewardMinMax.second = *it.second;
 
 
-    time_t start = time(nullptr);
-    long og_timeLeft = n_searches;
-    long timeLeft = n_searches;
+    time_t max_start = time(nullptr);
+    long max_time = n_searches;
+    long max_timeLeft = max_time;
+
+    time_t start = max_start;
+    long semi_timeLeft = int(n_searches/3);
+    long timeLeft = semi_timeLeft;
 
     while(!best_proved && timeLeft > 0) {
         // TreePolicy runs to find an unexpanded node to expand
@@ -71,8 +75,22 @@ State UCT_UPPAAL::run(int n_searches) {
             }
         }
 
-        // update time left
-        timeLeft = og_timeLeft - (time(nullptr) - start);
+        // update maxTime
+        max_timeLeft = max_time - (time(nullptr) - max_start);
+        //update timeLeft
+        timeLeft = semi_timeLeft - (time(nullptr) - start);
+
+        // if terminal state not found, try for 5 minutes more except if over maxtime
+        if(timeLeft <= 0 && max_timeLeft > 0){
+            if(!bestTerminalNodesFound.empty()){
+                continue;
+            } else {
+                timeLeft = 300; // 5 minutes more
+                semi_timeLeft = 300;
+                start = time(nullptr);
+            }
+        }
+
     }
 
     if (bestTerminalNodesFound.empty()){
