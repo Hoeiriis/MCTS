@@ -27,8 +27,8 @@ State UCT_UPPAAL::run(int n_searches) {
     m_root->set_unvisited_child_states(unvisited_child_states);
 
     // rough bootstrap of reward scaling
-    std::vector<double> rewards(200, 0);
-    for (int i = 0; i < 200; ++i) {
+    std::vector<double> rewards(500, 0);
+    for (int i = 0; i < 500; ++i) {
         Reward score = m_default_policy(m_root->state);
         rewards.at(i) = score;
     }
@@ -43,7 +43,7 @@ State UCT_UPPAAL::run(int n_searches) {
     long max_timeLeft = max_time;
 
     time_t start = max_start;
-    long semi_timeLeft = int(n_searches/3);
+    long semi_timeLeft = int(n_searches/2);
     long timeLeft = semi_timeLeft;
 
     while(!best_proved && timeLeft > 0) {
@@ -73,6 +73,7 @@ State UCT_UPPAAL::run(int n_searches) {
                 // insert at beginning
                 bestTerminalNodesFound.push_back(newBestNode);
             }
+            expandedNode->score = {-100000, 0};
         }
 
         // update maxTime

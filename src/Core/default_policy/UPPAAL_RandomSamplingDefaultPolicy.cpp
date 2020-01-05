@@ -12,7 +12,7 @@ Reward UPPAAL_RandomSamplingDefaultPolicy::defaultPolicy(State state) {
     int states_unrolled = 0;
 
 
-    // run default policy until we hit a terminal node or a node with no children
+    // run default policy until we hit a terminal node or a node with no children or we have unrolled 50 nodes
     while (states_unrolled < 50 && (!validChildStates.empty()) && (!isTerminal)) {
         std::uniform_int_distribution<int> uniformIntDistribution(0, validChildStates.size() - 1);
         i_random = uniformIntDistribution(generator);
