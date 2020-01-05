@@ -22,6 +22,7 @@ public:
     explicit MCTSEntry(EnvironmentInterface& env);
     std::vector<State> state_trace{};
     bool run();
+    bool bfs();
     int time_limit_sec = 10;
 
     inline std::vector<TerminalNodeScore> getTerminalNodeScores(){return terminalNodeScores;};
