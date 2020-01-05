@@ -31,7 +31,6 @@ bool MCTSEntry::run()
 bool MCTSEntry::bfs(){
 
     std::queue<State> stateQueue{};
-    std::vector<TerminalNodeScore> termsFound;
     State currentState = _environment.GetStartState();
 
     time_t max_start = time(nullptr);
@@ -47,13 +46,13 @@ bool MCTSEntry::bfs(){
 
         if(_environment.IsTerminal(currentState)){
             Reward termReward = _environment.EvaluateRewardFunction(currentState);
-            if (termsFound.empty() || termsFound.back().score < termReward){
+            if (terminalNodeScores.empty() || terminalNodeScores.back().score < termReward){
                 auto newBestNode = TerminalNodeScore();
                 newBestNode.score = termReward;
                 newBestNode.node = nullptr;
                 newBestNode.time_to_find = (time(nullptr) - max_start);
                 // insert at beginning
-                termsFound.push_back(newBestNode);
+                terminalNodeScores.push_back(newBestNode);
             }
         }
 
@@ -69,7 +68,7 @@ bool MCTSEntry::bfs(){
         auto termNode = terminalNodeScores.back();
     }
 
-    
+
     return true;
 }
 
