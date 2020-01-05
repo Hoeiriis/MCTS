@@ -69,7 +69,7 @@ State UCT_UPPAAL::run(int n_searches) {
                 auto newBestNode = TerminalNodeScore();
                 newBestNode.score = termReward;
                 newBestNode.node = expandedNode;
-                newBestNode.time_to_find = (time(nullptr) - start);
+                newBestNode.time_to_find = (time(nullptr) - max_start);
                 // insert at beginning
                 bestTerminalNodesFound.push_back(newBestNode);
             }
