@@ -23,11 +23,15 @@ public:
     std::vector<State> state_trace{};
     bool run();
     bool bfs();
+    bool dfs();
     int time_limit_sec = 10;
 
     inline std::vector<TerminalNodeScore> getTerminalNodeScores(){return terminalNodeScores;};
 
 protected:
+
+    void dfsLoop(State& currentState, int levels);
+
     EnvironmentInterface& _environment;
     std::vector<State> compute_state_trace(const std::shared_ptr<SearchNode>& final_node);
     std::vector<TerminalNodeScore> terminalNodeScores;
