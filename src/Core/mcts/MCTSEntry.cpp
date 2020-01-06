@@ -87,10 +87,11 @@ bool MCTSEntry::dfs() {
 
     State currentState = nullptr;
 
-    while (max_timeLeft > 0){
+    bool isTerminal = false;
+
+    while (!isTerminal){
 
         std::vector<State> unvisited_child_states = _environment.GetValidChildStates(rootState);
-        bool isTerminal = false;
 
         // do random depth first search
         while (states_unrolled < 1000 && (!unvisited_child_states.empty()) && (!isTerminal)) {
@@ -118,6 +119,8 @@ bool MCTSEntry::dfs() {
 
         max_timeLeft = max_time - (time(nullptr) - max_start);
     }
+
+    time_limit_sec = time(nullptr) - max_start;
 
     if(terminalNodeScores.empty()){
         std::cout << "No terminal node was found in the compute time given." << std::endl;
