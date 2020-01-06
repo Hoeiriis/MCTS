@@ -76,25 +76,35 @@ bool MCTSEntry::bfs(){
 bool MCTSEntry::dfs() {
 
     std::stack<State> stateStack{};
-    State currentState = _environment.GetStartState();
+    State rootState = _environment.GetStartState();
 
     time_t max_start = time(nullptr);
     long max_time = time_limit_sec;
     long max_timeLeft = max_time;
 
+    int states_unrolled = 0;
+    auto generator = std::mt19937(time(nullptr));
+
+    State currentState = nullptr;
+
     while (max_timeLeft > 0){
 
-        std::vector<State> unvisited_child_states = _environment.GetValidChildStates(currentState);
+        std::vector<State> unvisited_child_states = _environment.GetValidChildStates(rootState);
+        bool isTerminal = false;
 
-        for (int i = 0; i < unvisited_child_states.size(); ++i) {
-            stateStack.push(unvisited_child_states.at(i));
-        }
-        
-        for (const auto & unvisited_child_state : unvisited_child_states) {
-            stateStack.push(unvisited_child_state);
+        // do random depth first search
+        while (states_unrolled < 1000 && (!unvisited_child_states.empty()) && (!isTerminal)) {
+            std::uniform_int_distribution<int> uniformIntDistribution(0, unvisited_child_states.size() - 1);
+            int i_random = uniformIntDistribution(generator);
+            currentState = unvisited_child_states[i_random];
+
+            // Fetch info from the new child state
+            unvisited_child_states = _environment.GetValidChildStates(currentState);
+            isTerminal = _environment.IsTerminal(currentState);
+            states_unrolled++;
         }
 
-        if(_environment.IsTerminal(currentState)){
+        if(isTerminal){
             Reward termReward = _environment.EvaluateRewardFunction(currentState);
             if (terminalNodeScores.empty() || terminalNodeScores.back().score < termReward){
                 auto newBestNode = TerminalNodeScore();
@@ -106,8 +116,6 @@ bool MCTSEntry::dfs() {
             }
         }
 
-        currentState = stateStack.top();
-        stateStack.pop();
         max_timeLeft = max_time - (time(nullptr) - max_start);
     }
 
