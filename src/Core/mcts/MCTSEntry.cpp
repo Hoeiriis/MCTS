@@ -26,7 +26,7 @@ bool MCTSEntry::run()
         auto termNode = terminalNodeScores.back();
         state_trace = compute_state_trace(termNode.node);
     }
-    
+
     states_explored = count_states(uct.root_node);
 
     return true;
@@ -39,7 +39,7 @@ int MCTSEntry::count_states(const std::shared_ptr<SearchNode> &root) {
     std::queue<std::shared_ptr<SearchNode>> nodeQueue{};
     const std::shared_ptr<SearchNode>& currentNode = root;
 
-    while (!nodeQueue.empty()){
+    while (count == 1 || !nodeQueue.empty()){
         auto children = currentNode->child_nodes;
         for(auto& child : children){
             nodeQueue.push(child);
