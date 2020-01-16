@@ -21,6 +21,10 @@ UCT_UPPAAL::UCT_UPPAAL(EnvironmentInterface &environment)
 
 State UCT_UPPAAL::run(int n_searches) {
 
+    time_t max_start = time(nullptr);
+    long max_time = n_searches;
+    long max_timeLeft = max_time;
+
     State initial_state = _environment.GetStartState();
     std::vector<State> unvisited_child_states = _environment.GetValidChildStates(initial_state);
     m_root = SearchNode::create_SearchNode(nullptr, initial_state, false);
@@ -38,15 +42,7 @@ State UCT_UPPAAL::run(int n_searches) {
     rewardMinMax.second = *it.second;
 
 
-    time_t max_start = time(nullptr);
-    long max_time = n_searches;
-    long max_timeLeft = max_time;
-
-    time_t start = max_start;
-    long semi_timeLeft = int(n_searches/2);
-    long timeLeft = semi_timeLeft;
-
-    while(!best_proved && timeLeft > 0) {
+    while(!best_proved && max_timeLeft > 0) {
         // TreePolicy runs to find an unexpanded node to expand
         auto expandedNode = m_tree_policy(m_root);
         // From the expanded node, a simulation runs that returns a score
@@ -78,23 +74,6 @@ State UCT_UPPAAL::run(int n_searches) {
 
         // update maxTime
         max_timeLeft = max_time - (time(nullptr) - max_start);
-        //update timeLeft
-        timeLeft = semi_timeLeft - (time(nullptr) - start);
-
-        // if terminal state not found, try for 5 minutes more except if over maxtime
-        if(timeLeft <= 0 && max_timeLeft > 0){
-            if(!bestTerminalNodesFound.empty()){
-                continue;
-            } else {
-                timeLeft = int(n_searches/10); // 10th of total more
-                semi_timeLeft = timeLeft;
-                start = time(nullptr);
-                std::cout << "Added more time. MaxTimeLeft: " << max_timeLeft << std::endl;
-                m_root = m_best_child(m_root, 0);
-                m_root->parent = nullptr;
-            }
-        }
-
     }
 
     if (bestTerminalNodesFound.empty()){
