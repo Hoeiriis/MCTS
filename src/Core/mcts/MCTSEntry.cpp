@@ -93,7 +93,7 @@ bool MCTSEntry::dfs() {
         bool isTerminal = false;
 
         // do random depth first search
-        while (states_unrolled < 5000 && (!unvisited_child_states.empty()) && (!isTerminal)) {
+        while (states_unrolled < 100000 && (!unvisited_child_states.empty()) && (!isTerminal)) {
             std::uniform_int_distribution<int> uniformIntDistribution(0, unvisited_child_states.size() - 1);
             int i_random = uniformIntDistribution(generator);
             currentState = unvisited_child_states[i_random];
