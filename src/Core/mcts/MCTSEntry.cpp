@@ -32,12 +32,12 @@ bool MCTSEntry::run()
     return true;
 }
 
-int MCTSEntry::count_states(const std::shared_ptr<SearchNode> &root) {
+int MCTSEntry::count_states(std::shared_ptr<SearchNode> &root) {
 
     int count = 1;
 
     std::queue<std::shared_ptr<SearchNode>> nodeQueue{};
-    const std::shared_ptr<SearchNode>& currentNode = root;
+    std::shared_ptr<SearchNode>& currentNode = root;
 
     while (count == 1 || !nodeQueue.empty()){
         auto children = currentNode->child_nodes;
@@ -45,6 +45,9 @@ int MCTSEntry::count_states(const std::shared_ptr<SearchNode> &root) {
             nodeQueue.push(child);
             count ++;
         }
+
+        currentNode = nodeQueue.front();
+        nodeQueue.pop();
     }
 
     return count;
@@ -90,7 +93,6 @@ bool MCTSEntry::bfs(){
     } else {
         auto termNode = terminalNodeScores.back();
     }
-
 
     return true;
 }
