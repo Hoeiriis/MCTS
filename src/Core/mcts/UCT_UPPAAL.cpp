@@ -8,7 +8,7 @@
 #include "UCT_UPPAAL.h"
 
 UCT_UPPAAL::UCT_UPPAAL(EnvironmentInterface &environment)
-: _environment(environment), generator(std::mt19937(time(nullptr))), _defaultPolicy(UPPAAL_RandomSamplingDefaultPolicy(_environment)) {
+: _environment(environment), generator(std::mt19937(time(nullptr))), _defaultPolicy(UPPAAL_RandomSamplingDefaultPolicy(_environment)), root_node(SearchNode::create_SearchNode(nullptr, false)) {
     // UCT TreePolicy setup
     std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> f_expand =
             std::bind(&UCT_UPPAAL::m_expand, this, std::placeholders::_1);
@@ -75,6 +75,8 @@ State UCT_UPPAAL::run(int n_searches) {
         // update maxTime
         max_timeLeft = max_time - (time(nullptr) - max_start);
     }
+
+    root_node = m_root;
 
     if (bestTerminalNodesFound.empty()){
         return nullptr;

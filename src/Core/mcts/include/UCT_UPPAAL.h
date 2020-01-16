@@ -29,6 +29,8 @@ class UCT_UPPAAL : public MCTSInterface {
         inline EnvironmentInterface &getEnvironment() override { return _environment; }
         inline std::vector<TerminalNodeScore> &getBestTerminalNodeScore() { return bestTerminalNodesFound; }
 
+        std::shared_ptr<SearchNode> root_node;
+
         std::mt19937 generator;
 
 
