@@ -72,6 +72,7 @@ State UCT_UPPAAL::run(int n_searches) {
             expandedNode->score = {-100000, 0};
         }
 
+        last_expanded_node=expandedNode;
         // update maxTime
         max_timeLeft = max_time - (time(nullptr) - max_start);
     }

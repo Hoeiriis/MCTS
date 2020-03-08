@@ -30,6 +30,7 @@ class UCT_UPPAAL : public MCTSInterface {
         inline std::vector<TerminalNodeScore> &getBestTerminalNodeScore() { return bestTerminalNodesFound; }
 
         std::shared_ptr<SearchNode> root_node;
+        std::shared_ptr<SearchNode> last_expanded_node;
 
         std::mt19937 generator;
 

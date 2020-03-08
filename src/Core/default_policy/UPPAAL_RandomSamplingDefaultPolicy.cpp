@@ -20,6 +20,7 @@ Reward UPPAAL_RandomSamplingDefaultPolicy::defaultPolicy(State state) {
 
         // Fetch info from the new child state
         validChildStates = _environment.GetValidChildStates(state);
+        //std::cout<< "Number of valid child states of randomly chosen state: " << validChildStates.size() << "\n";
         isTerminal = _environment.IsTerminal(state);
         states_unrolled++;
     }
