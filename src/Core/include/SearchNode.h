@@ -11,6 +11,7 @@ class SearchNode {
 
   public:
     int visits;
+    int depth;
     std::vector<double> score{0, 0};
     State state;
     std::vector<State> unvisited_child_states;

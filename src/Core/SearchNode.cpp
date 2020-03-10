@@ -5,7 +5,14 @@
 #include <optional>
 
 SearchNode::SearchNode(SearchNode *parent_node, State &in_state, bool isTerminal)
-    : parent(parent_node), state(in_state), visits(0), isTerminalState(isTerminal){};
+    : parent(parent_node), state(in_state), visits(0), isTerminalState(isTerminal){
+        if (!parent_node){
+            depth=0;
+        }else
+        {
+            depth=parent_node->depth+1;
+        }
+    };
 
 void SearchNode::add_child(const std::shared_ptr<SearchNode> &child) { child_nodes.push_back(child); }
 
