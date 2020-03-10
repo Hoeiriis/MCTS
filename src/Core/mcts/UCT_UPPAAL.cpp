@@ -44,11 +44,14 @@ State UCT_UPPAAL::run(int n_searches) {
 
     while(!best_proved && max_timeLeft > 0) {
         // TreePolicy runs to find an unexpanded node to expand
-        auto expandedNode = m_tree_policy(m_root);        
+        auto expandedNode = m_tree_policy(m_root);     
         std::cout << "Depth of the newly expanded node: " << expandedNode->depth << std::endl;
-        std::cout << "Number of times its parent has been visited: " << expandedNode->parent->visits << std::endl;
+        std::cout << "Number of times its parent has been visited and its score: " << expandedNode->parent->visits << "; " << expandedNode->parent->score.at(0) << std::endl;
+        if (expandedNode->parent->unvisited_child_states.empty()){
+                std::cout << "  All of the children of its parent has been expanded! " << std::endl;
+        }   
         std::cout << "Number of its unvisited children: " << expandedNode->unvisited_child_states.size() << std::endl;
-        // From the expanded node, a simulation runs that returns a score
+        // From the expanded node, a simulation runs that returns a scor!
         Reward simulation_score = m_default_policy(expandedNode->state);
         // eventually update min max reward
         if(simulation_score < rewardMinMax.first){
