@@ -1,7 +1,7 @@
 //
 // Created by happysun on 09/10/2019.
 //
-#include <SearchNode.h>
+#include "SearchNode.h"
 #include <optional>
 
 SearchNode::SearchNode(SearchNode *parent_node, State &in_state, bool isTerminal)

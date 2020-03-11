@@ -1,21 +1,27 @@
-target_sources(MCTS
+add_library(mctsAlg_objLib OBJECT)
+target_sources(mctsAlg_objLib
     PRIVATE
       MCTSBase.cpp
       UCT.cpp
       MCTSInterface.cpp
 )
 
-target_include_directories(MCTS
+Set_Multiple_PUBLIC_HEADER(mctsAlg_objLib
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/MCTSBase.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/UCT.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/MCTSInterface.h)
+
+target_include_directories(mctsAlg_objLib
     PUBLIC
       $<INSTALL_INTERFACE:include>
       $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    PRIVATE
-      ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_to_PUBLIC_HEADER(MCTS 
-  src/Core/mcts/include/MCTSBase.h
-  src/Core/mcts/include/MCTSEntry.h
-  src/Core/mcts/include/UCT.h
-  src/Core/mcts/include/MCTSInterface.h
-)
+
+  target_link_libraries(mctsAlg_objLib
+        PRIVATE
+          environments_objLib
+          defaultpolicy_objLib
+          treepolicy_objLib
+          backpropagation_objLib
+          common_objLib)
