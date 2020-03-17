@@ -31,8 +31,8 @@ State UCT_UPPAAL::run(int n_searches) {
     m_root->set_unvisited_child_states(unvisited_child_states);
 
     // rough bootstrap of reward scaling
-    std::vector<double> rewards(500, 0);
-    for (int i = 0; i < 500; ++i) {
+    std::vector<double> rewards(100, 0);
+    for (int i = 0; i < 100; ++i) {
         Reward score = m_default_policy(m_root->state);
         rewards.at(i) = score;
     }
