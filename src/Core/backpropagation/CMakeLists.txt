@@ -18,4 +18,7 @@ Set_Multiple_PUBLIC_HEADER(backpropagation_objLib
         ${CMAKE_CURRENT_SOURCE_DIR}/include/BasicBackup.h
         ${CMAKE_CURRENT_SOURCE_DIR}/include/BackupNegamax.h)
 
-target_link_libraries(backpropagation_objLib PRIVATE environments_objLib)
+target_link_libraries(backpropagation_objLib
+        PRIVATE
+          environments_objLib
+          common_objLib)
