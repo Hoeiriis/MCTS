@@ -1,7 +1,7 @@
 #ifndef MCTS_LIBRARY_SEARCHNODE_H
 #define MCTS_LIBRARY_SEARCHNODE_H
 
-#include <State.h>
+#include "State.h"
 #include <memory>
 #include <vector>
 

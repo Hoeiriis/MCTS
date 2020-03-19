@@ -1,7 +1,7 @@
 #ifndef MCTS_LIBRARY_TREEPOLICYBASE_H
 #define MCTS_LIBRARY_TREEPOLICYBASE_H
 
-#include <SearchNode.h>
+#include "SearchNode.h"
 #include <functional>
 #include <memory>
 

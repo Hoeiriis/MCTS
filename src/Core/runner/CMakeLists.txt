@@ -1,15 +1,22 @@
-target_sources(MCTS
+add_library(runner_objLib OBJECT)
+target_sources(runner_objLib
     PRIVATE
       Runner.cpp
       RunnerTicTacToe.cpp
 )
 
-target_include_directories(MCTS
+target_include_directories(runner_objLib
     PUBLIC
         $<INSTALL_INTERFACE:include>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_to_PUBLIC_HEADER(MCTS src/Core/runner/include/Runner.h src/Core/runner/include/RunnerTicTacToe.h)
+Set_Multiple_PUBLIC_HEADER(runner_objLib
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/Runner.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/RunnerTicTacToe.h)
+
+
+target_link_libraries(runner_objLib
+    PRIVATE
+      common_objLib
+      mctsAlg_objLib)
