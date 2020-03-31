@@ -2,10 +2,8 @@ add_library(mctsAlg_objLib OBJECT)
 target_sources(mctsAlg_objLib
     PRIVATE
       MCTSBase.cpp
-      MCTSEntry.cpp
       UCT.cpp
       MCTSInterface.cpp
-      UCT_UPPAAL.cpp
 )
 
 Set_Multiple_PUBLIC_HEADER(mctsAlg_objLib

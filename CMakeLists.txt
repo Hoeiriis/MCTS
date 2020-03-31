@@ -4,11 +4,7 @@ project(MCTS
         LANGUAGES "CXX"
         DESCRIPTION "A Monte Carlo Tree Search library.")
 
-<<<<<<< HEAD
-option(MCTS_Executable "Build executable." OFF)
-=======
 set( CMAKE_POSITION_INDEPENDENT_CODE ON )
->>>>>>> master
 ############################################
 # Cmake commands only enabled when developing 
 if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND MCTS_Executable)
@@ -54,21 +50,13 @@ endmacro()
 
 ############################################
 # Library target
-<<<<<<< HEAD
-add_library(MCTS "")
-set_target_properties(MCTS PROPERTIES PUBLIC_HEADER "")
-=======
 add_library(MCTS)
->>>>>>> master
 add_subdirectory(src/Environments)
 add_library(MCTS::Environments ALIAS Environments)
 
 add_subdirectory(src/Core)
 add_library(MCTS::Core ALIAS Core)
 
-<<<<<<< HEAD
-add_library(MCTS::MCTS ALIAS MCTS)
-=======
 
 target_link_libraries(MCTS
      PUBLIC
@@ -76,7 +64,6 @@ target_link_libraries(MCTS
       MCTS::Core)
       
 
->>>>>>> master
 target_compile_features(MCTS PRIVATE cxx_auto_type)
 target_compile_options(MCTS PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
@@ -104,13 +91,7 @@ install(
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-<<<<<<< HEAD
-#INSTALL(DIRECTORY /src DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/MCTS)
-
-install(EXPORT MCTS-targets
-=======
 install(EXPORT MCTSTargets
->>>>>>> master
   FILE MCTSTargets.cmake
   NAMESPACE MCTS::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS

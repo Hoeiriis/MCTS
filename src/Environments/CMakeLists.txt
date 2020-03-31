@@ -25,9 +25,8 @@ target_include_directories(environments_objLib
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
 target_compile_features(environments_objLib
-      PUBLIC
-        cxx_std_17)
-
+        PUBLIC
+          cxx_std_17)
 # A shared library for Environments functionality
 add_library(Environments STATIC)
 target_link_libraries(Environments PUBLIC environments_objLib)

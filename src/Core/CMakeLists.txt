@@ -1,4 +1,4 @@
-gi#first make libraries at this level
+#first make libraries at this level
 add_library(common_objLib OBJECT)
 target_sources(common_objLib
       PRIVATE
