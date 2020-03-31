@@ -236,3 +236,4 @@ test_binaries/
 
 #Random 
 *.cbp
+install_manifest.txt

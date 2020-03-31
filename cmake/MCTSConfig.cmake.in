@@ -1,11 +1,7 @@
 get_filename_component(MCTS_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 include(CMakeFindDependencyMacro)
 
-list(APPEND CMAKE_MODULE_PATH ${MCTS_CMAKE_DIR})
-
 # use find_dependency or(?) find_package here to get dependencies (find_dependency after cmake 3.8 probably)
-
-#list(REMOVE_AT CMAKE_MODULE_PATH -1)
 
 if(NOT TARGET MCTS::MCTS)
     include("${MCTS_CMAKE_DIR}/MCTSTargets.cmake")

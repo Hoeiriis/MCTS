@@ -1,21 +1,21 @@
-target_sources(MCTS
-    PRIVATE
-      DefaultPolicyBase.cpp
-      RandomSamplingDefaultPolicy.cpp
-      UPPAAL_RandomSamplingDefaultPolicy.cpp
-      TicTacToeDefaultPolicy.cpp
-)
+add_library(defaultpolicy_objLib OBJECT)
 
-target_include_directories(MCTS
+target_include_directories(defaultpolicy_objLib
     PUBLIC
       $<INSTALL_INTERFACE:include>
-      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    PRIVATE
-      ${CMAKE_CURRENT_SOURCE_DIR}
-)
+      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
-add_to_PUBLIC_HEADER(MCTS 
-  src/Core/default_policy/include/DefaultPolicyBase.h 
-  src/Core/default_policy/include/RandomSamplingDefaultPolicy.h 
-  src/Core/default_policy/include/UPPAAL_RandomSamplingDefaultPolicy.h
-  src/Core/default_policy/include/TicTacToeDefaultPolicy.h)
+target_sources(defaultpolicy_objLib
+      PRIVATE
+        DefaultPolicyBase.cpp
+        RandomSamplingDefaultPolicy.cpp
+        TicTacToeDefaultPolicy.cpp)
+
+Set_Multiple_PUBLIC_HEADER(defaultpolicy_objLib
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/DefaultPolicyBase.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/RandomSamplingDefaultPolicy.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/TicTacToeDefaultPolicy.h)
+
+target_link_libraries(defaultpolicy_objLib
+      PRIVATE
+        common_objLib) 

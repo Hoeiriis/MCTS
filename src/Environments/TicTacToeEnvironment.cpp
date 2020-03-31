@@ -1,4 +1,4 @@
-#include <TicTacToeEnvironment.h>
+#include "TicTacToeEnvironment.h"
 #include <iostream>
 
 TicTacToeEnv::TicTacToeEnv() {}
@@ -81,15 +81,11 @@ void TicTacToeEnv::PrintBoard(State &state) {
 
 Reward TicTacToeEnv::EvaluateRewardFunction(State &state) {
 
-    if(IsTerminal(state)){
+    if (IsTerminal(state)) {
         return EvaluateTerminalState(state);
-    }
-    else {
+    } else {
         return 0;
     }
-
 }
 
-bool TicTacToeEnv::IsTerminal(State &state) {
-    return GetValidChildStates(state).empty();
-}
+bool TicTacToeEnv::IsTerminal(State &state) { return GetValidChildStates(state).empty(); }

@@ -18,7 +18,7 @@
 #ifndef ENVIRONMENTINTERFACE_H
 #define ENVIRONMENTINTERFACE_H
 
-#include <State.h>
+#include "State.h"
 #include <stdexcept>
 #include <vector>
 

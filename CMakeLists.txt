@@ -1,7 +1,14 @@
-cmake_minimum_required(VERSION 3.13)
-project(MCTS LANGUAGES "CXX" VERSION 0.1.0)
+cmake_minimum_required(VERSION 3.12...3.13)
+project(MCTS 
+        VERSION 0.1.0
+        LANGUAGES "CXX"
+        DESCRIPTION "A Monte Carlo Tree Search library.")
 
+<<<<<<< HEAD
 option(MCTS_Executable "Build executable." OFF)
+=======
+set( CMAKE_POSITION_INDEPENDENT_CODE ON )
+>>>>>>> master
 ############################################
 # Cmake commands only enabled when developing 
 if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND MCTS_Executable)
@@ -36,9 +43,10 @@ endif()
 
 ############################################
 # Macros
-macro(add_to_PUBLIC_HEADER TARGET)
-  get_target_property(current_public_headers ${TARGET} PUBLIC_HEADER)
-  set_target_properties(MCTS PROPERTIES PUBLIC_HEADER "${current_public_headers};${ARGN}")  
+macro(Set_Multiple_PUBLIC_HEADER TARGET)
+  #set_target_properties(${TARGET} PROPERTIES PUBLIC_HEADER "")
+  #get_target_property(current_public_headers ${TARGET} PUBLIC_HEADER)
+  set_target_properties(${TARGET} PROPERTIES PUBLIC_HEADER "${current_public_headers};${ARGN}")  
 endmacro()
 
 ############################################
@@ -46,29 +54,63 @@ endmacro()
 
 ############################################
 # Library target
+<<<<<<< HEAD
 add_library(MCTS "")
 set_target_properties(MCTS PROPERTIES PUBLIC_HEADER "")
+=======
+add_library(MCTS)
+>>>>>>> master
 add_subdirectory(src/Environments)
-add_subdirectory(src/Core)
+add_library(MCTS::Environments ALIAS Environments)
 
+add_subdirectory(src/Core)
+add_library(MCTS::Core ALIAS Core)
+
+<<<<<<< HEAD
 add_library(MCTS::MCTS ALIAS MCTS)
+=======
+
+target_link_libraries(MCTS
+     PUBLIC
+      MCTS::Environments
+      MCTS::Core)
+      
+
+>>>>>>> master
 target_compile_features(MCTS PRIVATE cxx_auto_type)
 target_compile_options(MCTS PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 ############################################
 # Installation instructions
 
+message(STATUS "include dir ${CMAKE_INTALL_INCLUDEDIR}")
+
 include(GNUInstallDirs)
-install(TARGETS MCTS
-  EXPORT MCTS-targets
+install(
+  TARGETS
+    MCTS
+    Environments
+    environments_objLib
+    Core
+    treepolicy_objLib
+    common_objLib
+    mctsAlg_objLib
+    runner_objLib
+    defaultpolicy_objLib
+    backpropagation_objLib
+  EXPORT MCTSTargets
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
+<<<<<<< HEAD
 #INSTALL(DIRECTORY /src DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/MCTS)
 
 install(EXPORT MCTS-targets
+=======
+install(EXPORT MCTSTargets
+>>>>>>> master
   FILE MCTSTargets.cmake
   NAMESPACE MCTS::
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS
@@ -83,11 +125,15 @@ write_basic_package_version_file(
 )
 
 # configure and install config, configversion
-configure_package_config_file(
+#configure_package_config_file(
+#    ${CMAKE_CURRENT_LIST_DIR}/cmake/MCTSConfig.cmake.in
+#    ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfig.cmake
+#    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS
+#)
+configure_file(
     ${CMAKE_CURRENT_LIST_DIR}/cmake/MCTSConfig.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfig.cmake
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MCTS
-)
+    MCTSConfig.cmake
+    @ONLY)
 
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/MCTSConfig.cmake
@@ -97,8 +143,10 @@ install(FILES
 
 #################################################
 # Exporting package to be found with find_package() by other CMake projects 
-export(EXPORT MCTS-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/MCTSTargets.cmake NAMESPACE MCTS::)
-
+export(EXPORT MCTSTargets
+      NAMESPACE MCTS::
+      FILE ${CMAKE_CURRENT_BINARY_DIR}/MCTSTargets.cmake)
+set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
 export(PACKAGE MCTS)
 
 
