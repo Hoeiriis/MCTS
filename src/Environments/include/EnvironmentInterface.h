@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef ENVIRONMENTBASE_H
-#define ENVIRONMENTBASE_H
+#ifndef ENVIRONMENTINTERFACE_H
+#define ENVIRONMENTINTERFACE_H
 
 #include "State.h"
 #include <stdexcept>
@@ -80,4 +80,4 @@ class EnvironmentInterface {
     virtual bool IsTerminal(State &state) = 0;
 };
 
-#endif // ENVIRONMENTBASE_H
+#endif // ENVIRONMENTINTERFACE_H

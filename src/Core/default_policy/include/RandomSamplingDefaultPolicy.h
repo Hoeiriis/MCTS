@@ -6,6 +6,7 @@
 class RandomSamplingDefaultPolicy : DefaultPolicyBase {
   public:
     explicit RandomSamplingDefaultPolicy(EnvironmentInterface &environment);
+
     Reward defaultPolicy(State) override;
 
   private:

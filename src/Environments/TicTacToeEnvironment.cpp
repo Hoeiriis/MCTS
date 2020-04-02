@@ -4,7 +4,7 @@
 TicTacToeEnv::TicTacToeEnv() {}
 
 State TicTacToeEnv::GetStartState() {
-    BoardState state(9, None);
+    BoardState state(9, NonePiece);
     State result = State(state);
 
     return result;
@@ -31,7 +31,7 @@ std::vector<State> TicTacToeEnv::GetValidChildStates(State &state) {
     BoardPiece piece = player_turn ? Circle : Cross;
 
     for (int i = 0; i < bState.size(); i++) {
-        if (bState[i] == None) {
+        if (bState[i] == NonePiece) {
 
             BoardState boardState(bState);
             boardState[i] = piece;
@@ -58,7 +58,7 @@ Reward TicTacToeEnv::EvaluateTerminalState(State &state) {
         i2 = condition[1];
         i3 = condition[2];
 
-        if (bstate[i1] == bstate[i2] && bstate[i1] == bstate[i3] && bstate[i1] != None) {
+        if (bstate[i1] == bstate[i2] && bstate[i1] == bstate[i3] && bstate[i1] != NonePiece) {
             return bstate[i1] == Cross ? 1 : -1;
         }
     }
@@ -73,7 +73,7 @@ void TicTacToeEnv::PrintBoard(State &state) {
         for (int j = 0; j < 3; j++) {
             int index = i * 3 + j;
             BoardPiece symbol = bstate[index];
-            std::cout << (symbol == None ? " u " : (symbol == Cross ? " X " : " O "));
+            std::cout << (symbol == NonePiece ? " u " : (symbol == Cross ? " X " : " O "));
         }
         std::cout << "\n";
     }

@@ -32,7 +32,68 @@ std::shared_ptr<SearchNode> MCTSBase::m_search(int n_searches) {
         Reward simulation_score = m_default_policy(expandedNode->state);
         // The score is backpropagated up through the search tree
         m_backpropagation(expandedNode, simulation_score);
+        
+        if(i % 200 == 0){
+            std::cout << "Iter: " << i << " of " << n_searches << std::endl;
+        }
+        
     }
 
     return m_best_child(m_root, 0);
+}
+
+std::shared_ptr<SearchNode> MCTSBase::search_iter_limit(int n_search_iterations) {
+    State initial_state = m_environment.GetStartState();
+    std::vector<State> unvisited_child_states = m_environment.GetValidChildStates(initial_state);
+    m_root = SearchNode::create_SearchNode(nullptr, initial_state, false);
+    m_root->set_unvisited_child_states(unvisited_child_states);
+
+    // run until stopping condition is met
+    m_root = m_search(n_search_iterations);
+    return unroll_search();
+}
+
+std::shared_ptr<SearchNode> MCTSBase::search_time_limit(int sec_to_run) {
+    State initial_state = m_environment.GetStartState();
+    std::vector<State> unvisited_child_states = m_environment.GetValidChildStates(initial_state);
+    m_root = SearchNode::create_SearchNode(nullptr, initial_state, false);
+    m_root->set_unvisited_child_states(unvisited_child_states);
+
+    time_t start = time(nullptr);
+    long timeLeft = sec_to_run;
+
+    // run until stopping condition is met
+    while(timeLeft > 0) {
+        // TreePolicy runs to find an unexpanded node to expand
+        auto expandedNode = m_tree_policy(m_root);
+        // From the expanded node, a simulation runs that returns a score
+        Reward simulation_score = m_default_policy(expandedNode->state);
+        // The score is backpropagated up through the search tree
+        m_backpropagation(expandedNode, simulation_score);
+
+        // update time left
+        timeLeft = sec_to_run - (time(nullptr) - start);
+    }
+
+    return unroll_search();
+}
+
+std::shared_ptr<SearchNode> MCTSBase::unroll_search() {
+    auto current_node = m_root;
+    // keep getting best child until we reach a terminal node or leaf node
+    while(!m_environment.IsTerminal(current_node->state)){
+
+        // If the node has child nodes run best child
+        if(!current_node->child_nodes.empty()){
+            current_node = m_best_child(current_node, 0);
+
+        // If the node has no children and is not Terminal, rerun unroll
+        } else {
+            current_node->score.at(0) *= -10;
+            current_node = unroll_search();
+            break;
+        }
+    }
+
+    return current_node;
 }

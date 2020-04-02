@@ -2,7 +2,10 @@
 #include <cfloat>
 #include <cassert>
 
-UCT::UCT(EnvironmentInterface &environment) : MCTSBase(environment), generator(std::mt19937(time(nullptr))) {
+UCT::UCT(EnvironmentInterface &environment)
+    : MCTSBase(environment), generator(std::mt19937(time(nullptr))),
+    m_defaultPolicy(RandomSamplingDefaultPolicy(m_environment))
+       {
 
     // UCT TreePolicy setup
     std::function<std::shared_ptr<SearchNode>(std::shared_ptr<SearchNode>)> f_expand =
@@ -62,7 +65,7 @@ std::shared_ptr<SearchNode> UCT::m_expand(std::shared_ptr<SearchNode> node) {
     State expanded_state = node->unvisited_child_states.at(i_random);
 
     // Create node from unvisited state
-    auto is_terminal = m_environment.IsTerminal(expanded_state);
+    bool is_terminal = m_environment.IsTerminal(expanded_state);
     auto expanded_node = SearchNode::create_SearchNode(node, expanded_state, is_terminal);
 
     // Set unvisited child States

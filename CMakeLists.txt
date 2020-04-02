@@ -7,7 +7,7 @@ project(MCTS
 set( CMAKE_POSITION_INDEPENDENT_CODE ON )
 ############################################
 # Cmake commands only enabled when developing 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND MCTS_Executable)
 
   message("Setting local variables")
   set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
@@ -131,17 +131,17 @@ set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
 export(PACKAGE MCTS)
 
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  # Testing
-  if(NOT "${TESTING}" STREQUAL "NO")
-    message("Testing is ENABLED")
-    set(TESTING YES)
-  else()
-    message("Testing is DISABLED")
-  endif()
+#if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND MCTS_Executable)
+#  # Testing
+#  if(NOT "${TESTING}" STREQUAL "NO")
+#    message("Testing is ENABLED")
+#    set(TESTING YES)
+#  else()
+#    message("Testing is DISABLED")
+#  endif()
 
-  if("${TESTING}" STREQUAL "YES")
-    enable_testing()
-    add_subdirectory(test)
-  endif()
-endif()
+#  if("${TESTING}" STREQUAL "YES")
+#    enable_testing()
+#    add_subdirectory(test)
+#  endif()
+#endif()
