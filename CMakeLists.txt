@@ -64,7 +64,7 @@ target_link_libraries(MCTS
       MCTS::Core)
       
 
-target_compile_features(MCTS PRIVATE cxx_auto_type)
+target_compile_features(MCTS PUBLIC cxx_std_17 PRIVATE cxx_auto_type)
 target_compile_options(MCTS PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 ############################################
