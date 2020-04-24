@@ -6,7 +6,7 @@
 #include <vector>
 
 class SearchNode {
-  private:
+  protected:
     SearchNode(SearchNode *parent_node, State &state, bool isTerminal);
 
   public:
