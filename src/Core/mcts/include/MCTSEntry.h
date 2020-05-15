@@ -25,8 +25,8 @@ public:
     bool bfs();
     bool dfs();
     int time_limit_sec = 10;
-    int states_explored = 0;
-    int count_states(std::shared_ptr<SearchNode>& root);
+    long states_explored = 0;
+    long count_states(std::shared_ptr<SearchNode>& root);
 
     inline std::vector<TerminalNodeScore> getTerminalNodeScores(){return terminalNodeScores;};
 

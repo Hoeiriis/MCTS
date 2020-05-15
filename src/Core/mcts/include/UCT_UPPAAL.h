@@ -20,6 +20,7 @@ class TerminalNodeScore {
         std::shared_ptr<SearchNode> node;
         double score;
         long time_to_find;
+        long nodes_expanded;
 };
 
 class UCT_UPPAAL : public MCTSInterface {
